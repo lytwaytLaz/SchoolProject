@@ -7,4 +7,7 @@ package ctr;
  */
 public class Person
 {
+    public Person(){
+        
+    }
 }
