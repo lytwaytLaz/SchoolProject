@@ -1,30 +1,37 @@
-package jpa;
-
-import javax.persistence.*;
+package ctr;
 
 /**
  * @author László Hágó
  * @version 1.0
  * @since 2016-09-06
  */
-@Entity
-public class Person
+public class PersonCtr
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @OneToOne
-    private Student student;
-
-    @OneToOne
-    private Teacher teacher;
-
     private String firstName;
     private String lastName;
     private String email;
     private String passWord;
     private int role;
+
+    public PersonCtr(String firstName, String lastName, String email, String passWord, int role)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.passWord = passWord;
+        this.role = role;
+    }
+
+    public PersonCtr(Long id, String firstName, String lastName, String email, String passWord, int role)
+    {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.passWord = passWord;
+        this.role = role;
+    }
 
     public Long getId()
     {
@@ -34,26 +41,6 @@ public class Person
     public void setId(Long id)
     {
         this.id = id;
-    }
-
-    public Student getStudent()
-    {
-        return student;
-    }
-
-    public void setStudent(Student student)
-    {
-        this.student = student;
-    }
-
-    public Teacher getTeacher()
-    {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher)
-    {
-        this.teacher = teacher;
     }
 
     public String getFirstName()

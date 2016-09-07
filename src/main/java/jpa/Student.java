@@ -14,50 +14,39 @@ public class Student
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @OneToOne
+    private Person person;
+
     @ManyToOne
+    private Attendance attendance;
 
-
-    private String firstName;
-    private String lastName;
-    private String email;
-
-    public long getId()
+    public Long getId()
     {
         return id;
     }
 
-    public void setId(long id)
+    public void setId(Long id)
     {
         this.id = id;
     }
 
-    public String getFirstName()
+    public Person getPerson()
     {
-        return firstName;
+        return person;
     }
 
-    public void setFirstName(String firstName)
+    public void setPerson(Person person)
     {
-        this.firstName = firstName;
+        this.person = person;
     }
 
-    public String getLastName()
+    public Attendance getAttendance()
     {
-        return lastName;
+        return attendance;
     }
 
-    public void setLastName(String lastName)
+    public void setAttendance(Attendance attendance)
     {
-        this.lastName = lastName;
-    }
-
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public void setEmail(String email)
-    {
-        this.email = email;
+        this.attendance = attendance;
     }
 }

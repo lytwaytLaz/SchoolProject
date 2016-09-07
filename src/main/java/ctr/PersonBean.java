@@ -1,59 +1,40 @@
-package jpa;
+package ctr;
 
-import javax.persistence.*;
+import ejb.PersonEjb;
+
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * @author László Hágó
  * @version 1.0
- * @since 2016-09-06
+ * @since 2016-09-07
  */
-@Entity
-public class Person
+@Named
+@RequestScoped
+public class PersonBean
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @OneToOne
-    private Student student;
-
-    @OneToOne
-    private Teacher teacher;
-
     private String firstName;
     private String lastName;
     private String email;
     private String passWord;
     private int role;
 
-    public Long getId()
-    {
-        return id;
-    }
+    @Inject
+    private PersonEjb pers;
 
-    public void setId(Long id)
+    public String submit()
     {
-        this.id = id;
-    }
+        System.out.println("submit");
+        pers.addPerson(new PersonCtr(getFirstName(), getLastName(), getEmail(), getPassWord(), getRole()));
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassWord("");
+        setRole(0);
 
-    public Student getStudent()
-    {
-        return student;
-    }
-
-    public void setStudent(Student student)
-    {
-        this.student = student;
-    }
-
-    public Teacher getTeacher()
-    {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher)
-    {
-        this.teacher = teacher;
+        return "login?faces-redirect=true";
     }
 
     public String getFirstName()
