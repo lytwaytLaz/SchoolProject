@@ -1,8 +1,10 @@
 package ctr;
 
 import ejb.PersonEjb;
+import util.SchoolUtil;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -85,5 +87,17 @@ public class PersonBean
     public void setRole(String role)
     {
         this.role = role;
+    }
+
+    public void login(ActionEvent actionEvent) {
+        if(getEmail().trim().length() <0){
+            SchoolUtil.addErrorMessage("person_email","e-mail can't be empty!");
+        }
+        if(getPassWord().trim().length() <0){
+            SchoolUtil.addErrorMessage("person_password","password can't be empty!");
+        }
+    }
+
+    public void restorePassword(ActionEvent actionEvent) {
     }
 }
