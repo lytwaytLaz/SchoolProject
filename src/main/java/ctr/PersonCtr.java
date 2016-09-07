@@ -7,14 +7,17 @@ package ctr;
  */
 public class PersonCtr
 {
+    public enum Role
+    {ADMIN, TEACHER, STUDENT}
+
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String passWord;
-    private int role;
+    private String role;
 
-    public PersonCtr(String firstName, String lastName, String email, String passWord, int role)
+    public PersonCtr(String firstName, String lastName, String email, String passWord, String roleId)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -23,7 +26,7 @@ public class PersonCtr
         this.role = role;
     }
 
-    public PersonCtr(Long id, String firstName, String lastName, String email, String passWord, int role)
+    public PersonCtr(Long id, String firstName, String lastName, String email, String passWord, String role)
     {
         this.id = id;
         this.firstName = firstName;
@@ -83,13 +86,14 @@ public class PersonCtr
         this.passWord = passWord;
     }
 
-    public int getRole()
+    public String getRole()
     {
         return role;
     }
 
-    public void setRole(int role)
+    public void setRole(String role)
     {
         this.role = role;
     }
+
 }

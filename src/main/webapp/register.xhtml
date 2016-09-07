@@ -5,21 +5,32 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <head></head>
-<h:form>
-    <h:outputLabel value="First name"/>
-    <h:inputText id="person" a:placeholder="First name" value="#{personBean.firstName}"/>
-    <h:commandButton value="Submit" action="#{personBean.submit}"/>
-    <h:outputLabel value="First name"/>
-    <h:inputText id="person" a:placeholder="First name" value="#{personBean.firstName}"/>
-    <h:commandButton value="Submit" action="#{personBean.submit}"/>
-    <h:outputLabel value="First name"/>
-    <h:inputText id="person" a:placeholder="First name" value="#{personBean.firstName}"/>
-    <h:commandButton value="Submit" action="#{personBean.submit}"/>
-    <h:outputLabel value="First name"/>
-    <h:inputText id="person" a:placeholder="First name" value="#{personBean.firstName}"/>
-    <h:commandButton value="Submit" action="#{personBean.submit}"/>
-</h:form>
+<div>
+    <h:form>
+        <h:outputLabel value="First name"/>
+        <h:inputText id="fname" a:placeholder="First name" value="#{personBean.firstName}"/>
+        <h:commandButton value="Submit" action="#{personBean.submit}"/>
+        <br/><br/>
+        <h:outputLabel value="Last name"/>
+        <h:inputText id="lname" a:placeholder="Last name" value="#{personBean.lastName}"/>
+        <h:commandButton value="Submit" action="#{personBean.submit}"/>
+        <br/><br/>
+        <h:outputLabel value="Email"/>
+        <h:inputText id="email" a:placeholder="anonymous@mailserver.com" value="#{personBean.email}"/>
+        <h:commandButton value="Submit" action="#{personBean.submit}"/>
+        <br/><br/>
+        <h:outputLabel value="Password"/>
+        <h:inputText id="password" a:placeholder="First name" value="#{personBean.passWord}"/>
+        <h:commandButton value="Submit" action="#{personBean.submit}"/>
+        <br/><br/>
+        <h:selectOneMenu value="#{user.favCoffee1}">
+            <f:selectItem itemValue="Cream Latte" itemLabel="Coffee3 - Cream Latte" />
+            <f:selectItem itemValue="Extreme Mocha" itemLabel="Coffee3 - Extreme Mocha" />
+            <f:selectItem itemValue="Buena Vista" itemLabel="Coffee3 - Buena Vista" />
+        </h:selectOneMenu>
+    </h:form>
+</div>
 </html>

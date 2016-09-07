@@ -20,11 +20,13 @@ public class Person
     @OneToOne
     private Teacher teacher;
 
+    @ManyToOne
+    private Role role;
+
     private String firstName;
     private String lastName;
     private String email;
     private String passWord;
-    private int role;
 
     public Long getId()
     {
@@ -96,13 +98,23 @@ public class Person
         this.passWord = passWord;
     }
 
-    public int getRole()
+    public Role getRole()
     {
         return role;
     }
 
-    public void setRole(int role)
+    public void setRole(Role role)
     {
         this.role = role;
     }
+
+    //    public String getRoleId()
+//    {
+//        return roleId;
+//    }
+//
+//    public void setRoleId(String roleId)
+//    {
+//        this.roleId = roleId;
+//    }
 }

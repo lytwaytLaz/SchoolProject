@@ -19,7 +19,7 @@ public class PersonBean
     private String lastName;
     private String email;
     private String passWord;
-    private int role;
+    private String role;
 
     @Inject
     private PersonEjb pers;
@@ -32,7 +32,7 @@ public class PersonBean
         setLastName("");
         setEmail("");
         setPassWord("");
-        setRole(0);
+        setRole("");
 
         return "login?faces-redirect=true";
     }
@@ -77,12 +77,12 @@ public class PersonBean
         this.passWord = passWord;
     }
 
-    public int getRole()
+    public String getRole()
     {
         return role;
     }
 
-    public void setRole(int role)
+    public void setRole(String role)
     {
         this.role = role;
     }
