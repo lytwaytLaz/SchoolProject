@@ -20,7 +20,7 @@
         <h:inputText id="email" a:placeholder="anonymous@mailserver.com" value="#{personBean.email}"/>
         <br/><br/>
         <h:outputLabel value="Password"/>
-        <h:inputText id="password" a:placeholder="First name" value="#{personBean.passWord}"/>
+        <h:inputText id="password" a:placeholder="password" value="#{personBean.passWord}"/>
         <br/><br/>
         <h:selectOneMenu value="#{personBean.roleId}">
             <f:selectItems value="#{personBean.roles}" var="roles" itemValue="#{roles.id}" itemLabel="#{roles.role}"/>
