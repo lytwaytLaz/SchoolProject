@@ -44,7 +44,7 @@
 
         </h:panelGrid>
             <div style="float: left; padding-top: 5%">
-            <h:commandButton value="Login" class="btn btn-primary btn-lg" style="padding-top: 10px; width: 100px" actionListener="#{personBean.login}"> <f:ajax execute="@form" render="@form"/></h:commandButton>
+            <h:commandButton value="Login" class="btn btn-primary btn-lg" style="padding-top: 10px; width: 100px" action="#{personBean.login}"></h:commandButton>
             </div>
             <div style="float: right; padding-top: 10%">
                 <h:commandLink value="Forgot Password ?" style="padding-top: 10px" actionListener="#{personBean.restorePassword}"> <f:ajax execute="@form" render="@form"/></h:commandLink>

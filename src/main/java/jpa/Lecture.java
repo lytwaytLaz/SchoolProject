@@ -1,6 +1,7 @@
 package jpa;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author László Hágó
@@ -13,6 +14,8 @@ public class Lecture
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Temporal(TemporalType.DATE)
+    private Date date;
 
     @ManyToOne
     private Course course;
@@ -25,6 +28,16 @@ public class Lecture
     public void setId(Long id)
     {
         this.id = id;
+    }
+
+    public Date getDate()
+    {
+        return date;
+    }
+
+    public void setDate(Date date)
+    {
+        this.date = date;
     }
 
     public Course getCourse()

@@ -1,12 +1,16 @@
 package ctr;
 
 import ejb.PersonEjb;
+import jpa.Person;
+import jpa.Role;
 import util.SchoolUtil;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author László Hágó
@@ -21,7 +25,12 @@ public class PersonBean
     private String lastName;
     private String email;
     private String passWord;
-    private String role;
+    private Role role;
+
+    private String roleName;
+    private Long roleId;
+
+
 
     @Inject
     private PersonEjb pers;
@@ -34,7 +43,7 @@ public class PersonBean
         setLastName("");
         setEmail("");
         setPassWord("");
-        setRole("");
+//        setRole("");
 
         return "login?faces-redirect=true";
     }
@@ -79,25 +88,78 @@ public class PersonBean
         this.passWord = passWord;
     }
 
-    public String getRole()
-    {
-        return role;
-    }
 
-    public void setRole(String role)
+
+    public void setRole(Role role)
     {
         this.role = role;
     }
 
-    public void login(ActionEvent actionEvent) {
+    public String login() {
         if(getEmail().trim().length() <0){
             SchoolUtil.addErrorMessage("person_email","e-mail can't be empty!");
         }
         if(getPassWord().trim().length() <0){
             SchoolUtil.addErrorMessage("person_password","password can't be empty!");
         }
+        List<Person> persons = pers.getPerson(getEmail());
+        if(!persons.isEmpty()){
+            Person person = persons.get(0);
+            if(person.getPassWord().equals(passWord) && person.getRole().getRole().equalsIgnoreCase("admin"))
+                return "register?faces-redirect=true";
+        }
+        return "login?faces-redirect=true";
     }
 
     public void restorePassword(ActionEvent actionEvent) {
     }
+
+    public List<Role> getRoles(){
+
+        List<Role> roles = new ArrayList<>();
+        roles = pers.getRoles();
+        return roles;
+    }
+
+
+
+    public String getRoleName()
+    {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName)
+    {
+        this.roleName = roleName;
+    }
+
+    public Long getRoleId()
+    {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId)
+    {
+        this.roleId = roleId;
+    }
+
+    public Role getRole()
+    {
+        for (Role currentRole: getRoles())
+        {
+            if (currentRole.getId().equals(roleId))
+                role = currentRole;
+        }
+        return role;
+    }
+
+//    public Long getRoleId()
+//    {
+//        return roleId;
+//    }
+//
+//    public void setRoleId(Long roleId)
+//    {
+//        this.roleId = roleId;
+//    }
 }

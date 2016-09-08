@@ -1,5 +1,7 @@
 package ctr;
 
+import jpa.Role;
+
 /**
  * @author László Hágó
  * @version 1.0
@@ -7,17 +9,14 @@ package ctr;
  */
 public class PersonCtr
 {
-    public enum Role
-    {ADMIN, TEACHER, STUDENT}
-
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String passWord;
-    private String role;
+    private Role role;
 
-    public PersonCtr(String firstName, String lastName, String email, String passWord, String roleId)
+    public PersonCtr(String firstName, String lastName, String email, String passWord, Role role)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -26,7 +25,7 @@ public class PersonCtr
         this.role = role;
     }
 
-    public PersonCtr(Long id, String firstName, String lastName, String email, String passWord, String role)
+    public PersonCtr(Long id, String firstName, String lastName, String email, String passWord, Role role)
     {
         this.id = id;
         this.firstName = firstName;
@@ -86,12 +85,12 @@ public class PersonCtr
         this.passWord = passWord;
     }
 
-    public String getRole()
+    public Role getRole()
     {
         return role;
     }
 
-    public void setRole(String role)
+    public void setRole(Role role)
     {
         this.role = role;
     }

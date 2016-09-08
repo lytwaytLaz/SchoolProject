@@ -8,19 +8,20 @@ import javax.persistence.*;
  * @since 2016-09-07
  */
 @Entity
+@NamedQuery(name = "selectAll",query = "SELECT r from Role r")
 public class Role
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String role;
 
-    public String getId()
+    public Long getId()
     {
         return id;
     }
 
-    public void setId(String id)
+    public void setId(Long id)
     {
         this.id = id;
     }
@@ -34,4 +35,6 @@ public class Role
     {
         this.role = role;
     }
+
+
 }
