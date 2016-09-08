@@ -6,9 +6,11 @@ import jpa.Role;
 import util.SchoolUtil;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +20,8 @@ import java.util.List;
  * @since 2016-09-07
  */
 @Named
-@RequestScoped
-public class PersonBean
+@SessionScoped
+public class PersonBean implements Serializable
 {
     private String firstName;
     private String lastName;
