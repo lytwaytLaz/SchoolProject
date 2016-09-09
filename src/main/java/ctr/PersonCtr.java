@@ -14,23 +14,28 @@ public class PersonCtr
     private String lastName;
     private String email;
     private String passWord;
+    private Long roleId;
 
-    public PersonCtr(String firstName, String lastName, String email, String passWord, Role role)
+    public PersonCtr(String firstName, String lastName, String email, String passWord, Long roleId)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.passWord = passWord;
+        this.roleId = roleId;
     }
 
-    public PersonCtr(Long id, String firstName, String lastName, String email, String passWord, Role role)
+    public PersonCtr(Long id, String firstName, String lastName, String email, String passWord, Long roleId)
     {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.passWord = passWord;
+        this.roleId = roleId;
     }
+
+
 
     public Long getId()
     {
@@ -82,4 +87,13 @@ public class PersonCtr
         this.passWord = passWord;
     }
 
+    public Long getRoleId()
+    {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId)
+    {
+        this.roleId = roleId;
+    }
 }

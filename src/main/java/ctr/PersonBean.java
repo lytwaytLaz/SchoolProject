@@ -5,7 +5,6 @@ import jpa.Person;
 import jpa.Role;
 import util.SchoolUtil;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
@@ -29,9 +28,8 @@ public class PersonBean implements Serializable
     private String passWord;
     private Role role;
 
-    private String roleName;
+    private String position;
     private Long roleId;
-
 
 
     @Inject
@@ -40,12 +38,11 @@ public class PersonBean implements Serializable
     public String submit()
     {
         System.out.println("submit");
-        pers.addPerson(new PersonCtr(getFirstName(), getLastName(), getEmail(), getPassWord(), getRole()));
+        pers.addPerson(new PersonCtr(getFirstName(), getLastName(), getEmail(), getPassWord(), getPosition()));
         setFirstName("");
         setLastName("");
         setEmail("");
         setPassWord("");
-//        setRole("");
 
         return "login?faces-redirect=true";
     }
@@ -92,10 +89,10 @@ public class PersonBean implements Serializable
 
 
 
-    public void setRole(Role role)
-    {
-        this.role = role;
-    }
+//    public void setRole(Role role)
+//    {
+//        this.role = role;
+//    }
 
     public String login() {
         if(getEmail().trim().length() <0){
@@ -107,7 +104,7 @@ public class PersonBean implements Serializable
         List<Person> persons = pers.getPerson(getEmail());
         if(!persons.isEmpty()){
             Person person = persons.get(0);
-            if(person.getPassWord().equals(passWord) && person.getRole().getRole().equalsIgnoreCase("admin"))
+            if(person.getPassWord().equals(passWord) && person.getRole().getPosition().equalsIgnoreCase("admin"))
                 return "register?faces-redirect=true";
         }
         return "login?faces-redirect=true";
@@ -125,14 +122,14 @@ public class PersonBean implements Serializable
 
 
 
-    public String getRoleName()
+    public String getPosition()
     {
-        return roleName;
+        return position;
     }
 
-    public void setRoleName(String roleName)
+    public void setPosition(String position)
     {
-        this.roleName = roleName;
+        this.position = position;
     }
 
     public Long getRoleId()
@@ -145,14 +142,14 @@ public class PersonBean implements Serializable
         this.roleId = roleId;
     }
 
-    public Role getRole()
+    public Long getRoleId()
     {
         for (Role currentRole: getRoles())
         {
             if (currentRole.getId().equals(roleId))
                 role = currentRole;
         }
-        return role;
+        return roleId;
     }
 
 //    public Long getRoleId()

@@ -30,6 +30,7 @@ public class PersonEjb
         personTbl.setLastName(p.getLastName());
         personTbl.setEmail(p.getEmail());
         personTbl.setPassWord(p.getPassWord());
+        personTbl.setRoleId(p.getRoleId);
 
         em.persist(personTbl);
     }
