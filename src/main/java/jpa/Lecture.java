@@ -11,14 +11,14 @@ import java.util.Date;
 @Entity
 public class Lecture
 {
+    @ManyToOne
+    private Course course;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Temporal(TemporalType.DATE)
     private Date date;
-
-    @ManyToOne
-    private Course course;
 
     public Long getId()
     {
@@ -39,16 +39,5 @@ public class Lecture
     {
         this.date = date;
     }
-
-    public Course getCourse()
-    {
-        return course;
-    }
-
-    public void setCourse(Course course)
-    {
-        this.course = course;
-    }
-
 
 }

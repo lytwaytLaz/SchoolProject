@@ -14,7 +14,7 @@ public class Role
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String role;
+    private String position;
 
     public Long getId()
     {
@@ -26,14 +26,14 @@ public class Role
         this.id = id;
     }
 
-    public String getRole()
+    public String getPosition()
     {
-        return role;
+        return position;
     }
 
-    public void setRole(String role)
+    public void setPosition(String role)
     {
-        this.role = role;
+        this.position = role;
     }
 
 

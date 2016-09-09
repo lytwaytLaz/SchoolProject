@@ -15,8 +15,7 @@ public class Course
     private Long id;
     private String courseName;
 
-    @ManyToOne
-    private Teacher teacher;
+
 
     public Long getId()
     {
@@ -38,13 +37,4 @@ public class Course
         this.courseName = courseName;
     }
 
-    public Teacher getTeacher()
-    {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher)
-    {
-        this.teacher = teacher;
-    }
 }

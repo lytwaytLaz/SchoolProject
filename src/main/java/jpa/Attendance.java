@@ -10,15 +10,15 @@ import javax.persistence.*;
 @Entity
 public class Attendance
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @ManyToOne
-    private Student student;
+    private Person person;
 
     @ManyToOne
     private Lecture lecture;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     public Long getId()
     {
@@ -30,23 +30,4 @@ public class Attendance
         this.id = id;
     }
 
-    public Student getStudent()
-    {
-        return student;
-    }
-
-    public void setStudent(Student student)
-    {
-        this.student = student;
-    }
-
-    public Lecture getLecture()
-    {
-        return lecture;
-    }
-
-    public void setLecture(Lecture lecture)
-    {
-        this.lecture = lecture;
-    }
 }

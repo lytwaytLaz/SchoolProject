@@ -11,15 +11,14 @@ import javax.persistence.*;
 @Entity
 public class Registration
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @ManyToOne
     private Course course;
 
     @ManyToOne
-    private Student student;
+    private Person person;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     public Long getId()
     {
@@ -30,26 +29,5 @@ public class Registration
     {
         this.id = id;
     }
-
-    public Course getCourse()
-    {
-        return course;
-    }
-
-    public void setCourse(Course course)
-    {
-        this.course = course;
-    }
-
-    public Student getStudent()
-    {
-        return student;
-    }
-
-    public void setStudent(Student student)
-    {
-        this.student = student;
-    }
-
 
 }

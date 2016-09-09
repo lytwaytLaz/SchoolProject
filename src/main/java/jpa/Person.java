@@ -15,19 +15,12 @@ import javax.persistence.*;
 
 public class Person
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @OneToOne
-    private Student student;
-
-    @OneToOne
-    private Teacher teacher;
-
     @ManyToOne
     private Role role;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -41,26 +34,6 @@ public class Person
     public void setId(Long id)
     {
         this.id = id;
-    }
-
-    public Student getStudent()
-    {
-        return student;
-    }
-
-    public void setStudent(Student student)
-    {
-        this.student = student;
-    }
-
-    public Teacher getTeacher()
-    {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher)
-    {
-        this.teacher = teacher;
     }
 
     public String getFirstName()
@@ -113,13 +86,4 @@ public class Person
         this.role = role;
     }
 
-    //    public String getRoleId()
-//    {
-//        return roleId;
-//    }
-//
-//    public void setRoleId(String roleId)
-//    {
-//        this.roleId = roleId;
-//    }
 }
