@@ -1,7 +1,5 @@
 package ctr;
 
-import jpa.Teacher;
-
 /**
  * Created by Yukie on 2016-09-07.
  */
@@ -9,7 +7,6 @@ public class CourseCtr {
 
     private Long id;
     private String courseCtrName;
-    private Teacher teacher;
 
     public CourseCtr(String courseCtrName) {
         this.courseCtrName = courseCtrName;
@@ -36,13 +33,4 @@ public class CourseCtr {
         this.courseCtrName = courseCtrName;
     }
 
-    public Teacher getTeacher()
-    {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher)
-    {
-        this.teacher = teacher;
-    }
 }
