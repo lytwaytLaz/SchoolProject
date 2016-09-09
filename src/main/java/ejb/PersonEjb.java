@@ -6,7 +6,6 @@ import jpa.Role;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -31,7 +30,6 @@ public class PersonEjb
         personTbl.setLastName(p.getLastName());
         personTbl.setEmail(p.getEmail());
         personTbl.setPassWord(p.getPassWord());
-        personTbl.setRole(p.getRole());
 
         em.persist(personTbl);
     }
@@ -56,15 +54,15 @@ public class PersonEjb
     public void initializeRoles(){
 
         Role adminRole = new Role();
-        adminRole.setRole("Admin");
+        adminRole.setPosition("Admin");
         em.persist(adminRole);
 
         Role teacherRole = new Role();
-        teacherRole.setRole("Teacher");
+        teacherRole.setPosition("Teacher");
         em.persist(teacherRole);
 
         Role studentRole = new Role();
-        studentRole.setRole("Student");
+        studentRole.setPosition("Student");
         em.persist(studentRole);
 
 

@@ -22,9 +22,9 @@ public class LectureEjb
 
     public void addLecture(LectureCtr l)
     {
+        System.out.println("add lecture");
         Lecture lectureTbl = new Lecture();
         lectureTbl.setDate(l.getLectureCtrDate());
-        lectureTbl.setCourse(l.getCourse());
 
         em.persist(lectureTbl);
     }
