@@ -14,7 +14,6 @@ public class PersonCtr
     private String lastName;
     private String email;
     private String passWord;
-    private Role role;
 
     public PersonCtr(String firstName, String lastName, String email, String passWord, Role role)
     {
@@ -22,7 +21,6 @@ public class PersonCtr
         this.lastName = lastName;
         this.email = email;
         this.passWord = passWord;
-        this.role = role;
     }
 
     public PersonCtr(Long id, String firstName, String lastName, String email, String passWord, Role role)
@@ -32,7 +30,6 @@ public class PersonCtr
         this.lastName = lastName;
         this.email = email;
         this.passWord = passWord;
-        this.role = role;
     }
 
     public Long getId()
@@ -83,16 +80,6 @@ public class PersonCtr
     public void setPassWord(String passWord)
     {
         this.passWord = passWord;
-    }
-
-    public Role getRole()
-    {
-        return role;
-    }
-
-    public void setRole(Role role)
-    {
-        this.role = role;
     }
 
 }
