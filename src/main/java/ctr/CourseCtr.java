@@ -1,20 +1,23 @@
 package ctr;
 
+import jpa.Teacher;
+
 /**
  * Created by Yukie on 2016-09-07.
  */
 public class CourseCtr {
 
     private Long id;
-    private String courseName;
+    private String courseCtrName;
+    private Teacher teacher;
 
-    public CourseCtr(String courseName) {
-        this.courseName = courseName;
+    public CourseCtr(String courseCtrName) {
+        this.courseCtrName = courseCtrName;
     }
 
-    public CourseCtr(Long id, String courseName) {
+    public CourseCtr(Long id, String courseCtrName) {
         this.id = id;
-        this.courseName = courseName;
+        this.courseCtrName = courseCtrName;
     }
 
     public Long getId() {
@@ -25,11 +28,21 @@ public class CourseCtr {
         this.id = id;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getCourseCtrName() {
+        return courseCtrName;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setCourseCtrName(String courseCtrName) {
+        this.courseCtrName = courseCtrName;
+    }
+
+    public Teacher getTeacher()
+    {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher)
+    {
+        this.teacher = teacher;
     }
 }
