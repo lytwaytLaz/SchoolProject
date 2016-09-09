@@ -21,7 +21,8 @@ public class CourseEjb
     public void addCourse(CourseCtr c)
     {
         Course courseTbl = new Course();
-        courseTbl.setCourseName(c.getCourseName());
+        courseTbl.setCourseName(c.getCourseCtrName());
+        courseTbl.setTeacher(c.getTeacher());
 
         em.persist(courseTbl);
     }
