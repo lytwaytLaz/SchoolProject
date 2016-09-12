@@ -2,7 +2,6 @@ package ejb;
 
 import ctr.PersonCtr;
 import jpa.Person;
-import jpa.Role;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,8 +20,6 @@ public class PersonEjb
     private EntityManager em;
 
 
-
-
     public void addPerson(PersonCtr p)
     {
         Person personTbl = new Person();
@@ -30,45 +27,30 @@ public class PersonEjb
         personTbl.setLastName(p.getLastName());
         personTbl.setEmail(p.getEmail());
         personTbl.setPassWord(p.getPassWord());
-        personTbl.setRoleId(p.getRoleId);
+        personTbl.setRole(p.getRole());
 
         em.persist(personTbl);
     }
 
-    public List<Role> getRoles()
-    {
-        List<Role> roles;
-        roles = em.createNamedQuery("selectAll").getResultList();
-        return roles;
-    }
+
+
 
 
     public List<Person> getPerson(String email)
     {
         List<Person> persons;
-        persons = em.createNamedQuery("selectPerson").setParameter("filt",email).getResultList();
+        persons = em.createNamedQuery(
+                "selectPerson")
+                .setParameter("filt",email)
+                .getResultList();
         return persons;
     }
 
 
 
-    public void initializeRoles(){
-
-        Role adminRole = new Role();
-        adminRole.setPosition("Admin");
-        em.persist(adminRole);
-
-        Role teacherRole = new Role();
-        teacherRole.setPosition("Teacher");
-        em.persist(teacherRole);
-
-        Role studentRole = new Role();
-        studentRole.setPosition("Student");
-        em.persist(studentRole);
-
-
-
-
-
-    }
+//    public List<Person> getAll()
+//    {
+//        List<Person> person = em.createNamedQuery("selectPerson").getResultList();
+//        return person.stream().map(m -> new PersonCtr(m.getPerson_id(), m.getFirstName(), m.getLastName(), m.getEmail(), m.getPassWord(), m.getRole())).collect(Collectors.toList());
+//    }
 }
