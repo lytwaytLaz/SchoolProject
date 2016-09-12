@@ -9,26 +9,32 @@
 
 <head></head>
 <div>
+    <h:outputLink id="course" value="course.xhtml">
+        <h:outputText value="Register new course"/>
+    </h:outputLink>
+</div>
+<div>
     <h:form>
         <h:outputLabel value="First name"/>
-        <h:inputText person_id="fname" a:placeholder="First name" value="#{personBean.firstName}"/>
+        <h:inputText id="fname" a:placeholder="First name" value="#{personBean.firstName}"/>
         <br/><br/>
         <h:outputLabel value="Last name"/>
-        <h:inputText person_id="lname" a:placeholder="Last name" value="#{personBean.lastName}"/>
+        <h:inputText id="lname" a:placeholder="Last name" value="#{personBean.lastName}"/>
         <br/><br/>
         <h:outputLabel value="Email"/>
-        <h:inputText person_id="email" a:placeholder="email@address.com" value="#{personBean.email}"/>
+        <h:inputText id="email" a:placeholder="email@address.com" value="#{personBean.email}"/>
         <br/><br/>
         <h:outputLabel value="Password"/>
-        <h:inputText person_id="password" a:placeholder="password" value="#{personBean.passWord}"/>
+        <h:inputText id="password" a:placeholder="password" value="#{personBean.passWord}"/>
         <br/><br/>
-        <h:selectOneMenu value="#{roleBean.type}">
-            <f:selectItems value="#{roleBean.roleMap}" />
+        <h:selectOneMenu value="#{personBean.role_id}">
+            <f:selectItems value="#{roleBean.roles}" var="roles" itemValue="#{roles.role_id}" itemLabel="#{roles.type}" />
         </h:selectOneMenu>
 
         <br/><br/>
         <h:commandButton value="Submit" action="#{personBean.submit}"/>
         <br/><br/>
     </h:form>
+
 </div>
 </html>

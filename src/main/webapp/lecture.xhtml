@@ -5,16 +5,21 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head></h:head>
 
 <h:form>
     <h:outputLabel value="Lecture date"/>
-    <h:inputText person_id="ldate" a:placeholder="Lecture date" value="#{lectureBean.lectureBeanDate}"/>
+    <h:inputText id="lecture_date" a:placeholder="yyyyMMdd" value="#{lectureBean.lectureBeanDate}">
+        <f:convertDateTime pattern = "yyyyMMdd"/>
+    </h:inputText>
     <br/><br/>
-    <h:outputLabel value="Course name"/>
-    <h:inputText person_id="cname" a:placeholder="Course name" value="#{courseBean.courseBeanName}"/>
+    <h:selectOneMenu value="#{lectureBean.course_id}">
+        <f:selectItems value="#{courseBean.courses}" var="courses" itemValue="#{courses.course_id}"
+                       itemLabel="#{courses.courseName}"/>
+    </h:selectOneMenu>
     <br/><br/>
     <h:commandButton value="Submit" action="#{lectureBean.submit}"/>
     <br/><br/>
