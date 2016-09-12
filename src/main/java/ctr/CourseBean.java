@@ -2,10 +2,13 @@ package ctr;
 
 import ejb.CourseEjb;
 import ejb.PersonEjb;
+import jpa.Course;
+import jpa.Role;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
 
 /**
  * @author László Hágó
@@ -20,6 +23,7 @@ public class CourseBean
 {
     private Long courseBeanId;
     private String courseBeanName;
+    private List<Course> courses;
 
     @Inject
     private CourseEjb courseEjb;
@@ -51,5 +55,12 @@ public class CourseBean
     public Long getCourseBeanId()
     {
         return courseBeanId;
+    }
+
+    public List<Course> getCourses()
+    {
+        courses = courseEjb.getCourses();
+//        System.out.println("Roles passed on: " + roles);
+        return courses;
     }
 }
