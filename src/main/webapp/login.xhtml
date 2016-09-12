@@ -21,30 +21,30 @@
             <h3>Welcome! Please Login to the System</h3><hr/>
         </div>
 
-        <div class="col-md-6 " style=" width: 500px; height: 200px; position: absolute; margin: auto; top: 0; bottom: 400px; left: 0; right: 0; border-radius: 10px; border: solid steelblue;" >
+        <div class="col-md-6 " style=" width: 500px; height: 200px; type: absolute; margin: auto; top: 0; bottom: 400px; left: 0; right: 0; border-radius: 10px; border: solid steelblue;" >
         <h:panelGrid columns="2" style="align-self: center" styleClass="color-rect-border">
 
             <h:panelGroup>
-                <h:outputLabel style="padding-top: 20px" value="E-mail: "></h:outputLabel>
+                <h:outputLabel style="padding-top: 20px" value="E-mail: "/>
             </h:panelGroup>
 
             <h:panelGroup>
-                <h:inputText id="person_email" a:placeholder="exemple@abc.com" value="#{personBean.email}"></h:inputText>
+                <h:inputText person_id="person_email" a:placeholder="exemple@abc.com" value="#{personBean.email}"/>
             </h:panelGroup>
 
             <h:panelGroup>
-                <h:outputLabel id="person_password" value="Password: "></h:outputLabel>
+                <h:outputLabel person_id="person_password" value="Password: "/>
             </h:panelGroup>
 
             <h:panelGroup>
 
-                <h:inputSecret a:placeholder="Password" value="#{personBean.passWord}"></h:inputSecret>
+                <h:inputSecret a:placeholder="Password" value="#{personBean.passWord}"/>
             </h:panelGroup>
 
 
         </h:panelGrid>
             <div style="float: left; padding-top: 5%">
-            <h:commandButton value="Login" class="btn btn-primary btn-lg" style="padding-top: 10px; width: 100px" action="#{personBean.login}"></h:commandButton>
+            <h:commandButton value="Login" class="btn btn-primary btn-lg" style="padding-top: 10px; width: 100px" action="#{loginBean.login}"/>
             </div>
             <div style="float: right; padding-top: 10%">
                 <h:commandLink value="Forgot Password ?" style="padding-top: 10px" actionListener="#{personBean.restorePassword}"> <f:ajax execute="@form" render="@form"/></h:commandLink>
