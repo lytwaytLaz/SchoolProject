@@ -24,8 +24,9 @@ public class RoleEjb
         roles = em.createNamedQuery(
                 "selectAll")
                 .getResultList();
-        System.out.println("Roles gotted: "+roles.toString());
         return roles;
+
+
 //        for (Role role:roles)
 //        {
 //            if("admin".equals(role.getType()))

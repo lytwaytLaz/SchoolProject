@@ -2,11 +2,13 @@ package ejb;
 
 import ctr.PersonCtr;
 import jpa.Person;
+import jpa.Role;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author László Hágó
@@ -27,14 +29,11 @@ public class PersonEjb
         personTbl.setLastName(p.getLastName());
         personTbl.setEmail(p.getEmail());
         personTbl.setPassWord(p.getPassWord());
-        personTbl.setRole(p.getRole());
+        Role role = em.find(Role.class, p.getRole_id());
+        personTbl.setRole(role);
 
         em.persist(personTbl);
     }
-
-
-
-
 
     public List<Person> getPerson(String email)
     {

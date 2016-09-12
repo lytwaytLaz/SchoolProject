@@ -22,22 +22,20 @@ public class PersonBean implements Serializable
     private String email;
     private String passWord;
     private Role role;
-
+    private Long role_id;
 
     @Inject
     private PersonEjb pers;
-//    private RoleEjb roleEjb;
 
     public String submit()
     {
-        System.out.println("submit");
-        pers.addPerson(new PersonCtr(getFirstName(), getLastName(), getEmail(), getPassWord(), getRole()));
+        pers.addPerson(new PersonCtr(getFirstName(), getLastName(), getEmail(), getPassWord(), getRole_id()));
         setFirstName("");
         setLastName("");
         setEmail("");
         setPassWord("");
 
-        return "login?faces-redirect=true";
+        return "register?faces-redirect=true";
     }
 
     public String getFirstName()
@@ -93,4 +91,13 @@ public class PersonBean implements Serializable
         return role;
     }
 
+    public Long getRole_id()
+    {
+        return role_id;
+    }
+
+    public void setRole_id(Long role_id)
+    {
+        this.role_id = role_id;
+    }
 }

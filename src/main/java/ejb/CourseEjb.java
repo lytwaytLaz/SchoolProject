@@ -6,6 +6,7 @@ import jpa.Course;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * @author László Hágó
@@ -24,5 +25,14 @@ public class CourseEjb
         courseTbl.setCourseName(c.getCourseCtrName());
 
         em.persist(courseTbl);
+    }
+
+    public List<Course> getCourses()
+    {
+        List<Course> courses;
+        courses = em.createNamedQuery(
+                "selectAllCourses")
+                .getResultList();
+        return courses;
     }
 }
