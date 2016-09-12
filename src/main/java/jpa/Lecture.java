@@ -40,4 +40,13 @@ public class Lecture
         this.date = date;
     }
 
+    public Course getCourse()
+    {
+        return course;
+    }
+
+    public void setCourse(Course course)
+    {
+        this.course = course;
+    }
 }
