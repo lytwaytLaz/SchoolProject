@@ -8,11 +8,16 @@ import javax.persistence.*;
  */
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = "selectAllCourses",
+                query = "SELECT c from Course c"),
+        @NamedQuery(
+                name = "selectCourseName",
+                query = "SELECT c FROM Course c WHERE c.courseName LIKE :courseName")})
+
 public class Course
 {
-    @ManyToOne
-    private Person person;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long course_id;
