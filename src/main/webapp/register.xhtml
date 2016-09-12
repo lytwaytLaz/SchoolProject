@@ -11,21 +11,21 @@
 <div>
     <h:form>
         <h:outputLabel value="First name"/>
-        <h:inputText id="fname" a:placeholder="First name" value="#{personBean.firstName}"/>
+        <h:inputText person_id="fname" a:placeholder="First name" value="#{personBean.firstName}"/>
         <br/><br/>
         <h:outputLabel value="Last name"/>
-        <h:inputText id="lname" a:placeholder="Last name" value="#{personBean.lastName}"/>
+        <h:inputText person_id="lname" a:placeholder="Last name" value="#{personBean.lastName}"/>
         <br/><br/>
         <h:outputLabel value="Email"/>
-        <h:inputText id="email" a:placeholder="anonymous@mailserver.com" value="#{personBean.email}"/>
+        <h:inputText person_id="email" a:placeholder="email@address.com" value="#{personBean.email}"/>
         <br/><br/>
         <h:outputLabel value="Password"/>
-        <h:inputText id="password" a:placeholder="password" value="#{personBean.passWord}"/>
+        <h:inputText person_id="password" a:placeholder="password" value="#{personBean.passWord}"/>
         <br/><br/>
-        <h:selectOneMenu value="#{personBean.roleId}">
-            <f:selectItems value="#{personBean.roles}" var="roles" itemValue="#{roles.id}" itemLabel="#{roles.position}"/>
-
+        <h:selectOneMenu value="#{roleBean.type}">
+            <f:selectItems value="#{roleBean.roleMap}" />
         </h:selectOneMenu>
+
         <br/><br/>
         <h:commandButton value="Submit" action="#{personBean.submit}"/>
         <br/><br/>
