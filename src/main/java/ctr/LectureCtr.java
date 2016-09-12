@@ -12,7 +12,7 @@ import java.util.Date;
 public class LectureCtr
 
 {
-    private Long lectureCtrId;
+    private Long lecture_id;
     private Date lectureCtrDate;
     private Course course;
 
@@ -22,21 +22,21 @@ public class LectureCtr
         this.course = course;
     }
 
-    public LectureCtr(Long lectureCtrId, Date lectureCtrDate, Course course)
+    public LectureCtr(Long lecture_id, Date lectureCtrDate, Course course)
     {
-        this.lectureCtrId = lectureCtrId;
+        this.lecture_id = lecture_id;
         this.lectureCtrDate = lectureCtrDate;
         this.course = course;
     }
 
-    public Long getLectureCtrId()
+    public Long getLecture_id()
     {
-        return lectureCtrId;
+        return lecture_id;
     }
 
-    public void setLectureCtrId(Long lectureCtrId)
+    public void setLecture_id(Long lecture_id)
     {
-        this.lectureCtrId = lectureCtrId;
+        this.lecture_id = lecture_id;
     }
 
     public Date getLectureCtrDate()
