@@ -9,42 +9,43 @@ import jpa.Role;
  */
 public class PersonCtr
 {
-    private Long id;
+    private Long person_id;
     private String firstName;
     private String lastName;
     private String email;
     private String passWord;
-    private Long roleId;
+    private Role role;
 
-    public PersonCtr(String firstName, String lastName, String email, String passWord, Long roleId)
+    public PersonCtr(String firstName, String lastName, String email, String passWord, Role role)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.passWord = passWord;
-        this.roleId = roleId;
+        this.role = role;
+
     }
 
-    public PersonCtr(Long id, String firstName, String lastName, String email, String passWord, Long roleId)
+    public PersonCtr(Long person_id, String firstName, String lastName, String email, String passWord, Role role)
     {
-        this.id = id;
+        this.person_id = person_id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.passWord = passWord;
-        this.roleId = roleId;
+        this.role = role;
     }
 
 
 
-    public Long getId()
+    public Long getPerson_id()
     {
-        return id;
+        return person_id;
     }
 
-    public void setId(Long id)
+    public void setPerson_id(Long person_id)
     {
-        this.id = id;
+        this.person_id = person_id;
     }
 
     public String getFirstName()
@@ -87,13 +88,13 @@ public class PersonCtr
         this.passWord = passWord;
     }
 
-    public Long getRoleId()
+    public Role getRole()
     {
-        return roleId;
+        return role;
     }
 
-    public void setRoleId(Long roleId)
+    public void setRole(Role role)
     {
-        this.roleId = roleId;
+        this.role = role;
     }
 }
