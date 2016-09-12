@@ -8,32 +8,40 @@ import javax.persistence.*;
  * @since 2016-09-07
  */
 @Entity
-@NamedQuery(name = "selectAll",query = "SELECT r from Role r")
+@NamedQueries({
+        @NamedQuery(
+                name = "selectAll",
+                query = "SELECT r from Role r"),
+        @NamedQuery(
+                name = "selectRoleId",
+                query = "SELECT r FROM Role r WHERE r.type LIKE :type")
+
+})
 public class Role
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String position;
+    private Long role_id;
+    private String type;
 
-    public Long getId()
+    public Long getRole_id()
     {
-        return id;
+        return role_id;
     }
 
-    public void setId(Long id)
+    public void setRole_id(Long id)
     {
-        this.id = id;
+        this.role_id = id;
     }
 
-    public String getPosition()
+    public String getType()
     {
-        return position;
+        return type;
     }
 
-    public void setPosition(String role)
+    public void setType(String role)
     {
-        this.position = role;
+        this.type = role;
     }
 
 

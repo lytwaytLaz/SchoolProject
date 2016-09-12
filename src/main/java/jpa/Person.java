@@ -9,7 +9,9 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries(        {
-                @NamedQuery(name = "selectPerson",query = "SELECT p from Person p where locate(:filt,p.email) > 0")
+                @NamedQuery(
+                        name = "selectPerson",
+                        query = "SELECT p from Person p where locate(:filt, p.email) > 0")
         }
 )
 
@@ -20,20 +22,21 @@ public class Person
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long person_id;
+
     private String firstName;
     private String lastName;
     private String email;
     private String passWord;
 
-    public Long getId()
+    public Long getPerson_id()
     {
-        return id;
+        return person_id;
     }
 
-    public void setId(Long id)
+    public void setPerson_id(Long id)
     {
-        this.id = id;
+        this.person_id = id;
     }
 
     public String getFirstName()

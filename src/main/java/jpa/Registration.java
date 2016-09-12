@@ -18,16 +18,16 @@ public class Registration
     private Person person;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long registration_id;
 
-    public Long getId()
+    public Long getRegistration_id()
     {
-        return id;
+        return registration_id;
     }
 
-    public void setId(Long id)
+    public void setRegistration_id(Long id)
     {
-        this.id = id;
+        this.registration_id = id;
     }
 
 }

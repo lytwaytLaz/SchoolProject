@@ -16,18 +16,18 @@ public class Lecture
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long lecture_id;
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    public Long getId()
+    public Long getLecture_id()
     {
-        return id;
+        return lecture_id;
     }
 
-    public void setId(Long id)
+    public void setLecture_id(Long id)
     {
-        this.id = id;
+        this.lecture_id = id;
     }
 
     public Date getDate()

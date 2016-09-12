@@ -10,21 +10,24 @@ import javax.persistence.*;
 @Entity
 public class Course
 {
+    @ManyToOne
+    private Person person;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long course_id;
     private String courseName;
 
 
 
-    public Long getId()
+    public Long getCourse_id()
     {
-        return id;
+        return course_id;
     }
 
-    public void setId(Long id)
+    public void setCourse_id(Long id)
     {
-        this.id = id;
+        this.course_id = id;
     }
 
     public String getCourseName()

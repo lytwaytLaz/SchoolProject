@@ -1,7 +1,6 @@
 package jpa;
 
 import javax.persistence.*;
-import javax.persistence.criteria.Predicate;
 
 /**
  * @author László Hágó
@@ -19,18 +18,18 @@ public class Attendance
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long attendence_id;
 
     private Boolean present;
 
-    public Long getId()
+    public Long getAttendence_id()
     {
-        return id;
+        return attendence_id;
     }
 
-    public void setId(Long id)
+    public void setAttendence_id(Long id)
     {
-        this.id = id;
+        this.attendence_id = id;
     }
 
     public Person getPerson()
