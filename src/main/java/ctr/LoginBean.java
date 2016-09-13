@@ -56,11 +56,11 @@ public class LoginBean implements Serializable
         List<Person> persons = login.getPerson(getEmail());
         if(!persons.isEmpty()){
             Person person = persons.get(0);
-            if(person.getPassWord().equals(passWord) && person.getRole().getRole_id() == 10)
-                return "register?faces-redirect=true";
+            if(person.getPassWord().equals(passWord) && person.getRole().getRole_id() == 30)
+                return "person?faces-redirect=true";
             else if(person.getPassWord().equals(passWord) && person.getRole().getRole_id() == 20)
             return "course?faces-redirect=true";
-            else if(person.getPassWord().equals(passWord) && person.getRole().getRole_id() == 30)
+            else if(person.getPassWord().equals(passWord) && person.getRole().getRole_id() == 10)
                 return "lecture?faces-redirect=true";
         }
         return "login?faces-redirect=true";

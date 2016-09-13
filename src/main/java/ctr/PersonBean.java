@@ -35,7 +35,7 @@ public class PersonBean implements Serializable
         setEmail("");
         setPassWord("");
 
-        return "register?faces-redirect=true";
+        return "person?faces-redirect=true";
     }
 
     public String getFirstName()

@@ -16,6 +16,7 @@ public class Registration
 
     @ManyToOne
     private Person person;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long registration_id;
@@ -29,5 +30,6 @@ public class Registration
     {
         this.registration_id = id;
     }
+
 
 }

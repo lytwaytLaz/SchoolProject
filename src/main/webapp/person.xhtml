@@ -25,7 +25,7 @@
         <h:inputText id="email" a:placeholder="email@address.com" value="#{personBean.email}"/>
         <br/><br/>
         <h:outputLabel value="Password"/>
-        <h:inputText id="password" a:placeholder="password" value="#{personBean.passWord}"/>
+        <h:inputSecret id="password" a:placeholder="password" value="#{personBean.passWord}"/>
         <br/><br/>
         <h:selectOneMenu value="#{personBean.role_id}">
             <f:selectItems value="#{roleBean.roles}" var="roles" itemValue="#{roles.role_id}" itemLabel="#{roles.type}" />

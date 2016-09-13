@@ -11,10 +11,19 @@
 <h:head></h:head>
 
 <h:form>
-    <h:outputLabel value="Lecture date"/>
-    <h:inputText id="lecture_date" a:placeholder="yyyyMMdd" value="#{lectureBean.lectureBeanDate}">
-        <f:convertDateTime pattern = "yyyyMMdd"/>
-    </h:inputText>
+    <h:panelGrid columns="2" cellpadding="5">
+        <!--<p:multiSelectListbox value="#{lectureBean.course_id}" effect="slide" header="Courses" showHeaders="true">-->
+            <!--<f:selectItems value="#{courseBean.courses}" />-->
+        <!--</p:multiSelectListbox>-->
+        <p:outputLabel for="calendar" value="Lecture date"/>
+        <br/>
+        <p:calendar id="calendar" value="#{lectureBean.lectureBeanDate}" pattern="yyyy-MM-dd" mode="popup"
+                    navigator="true"/>
+    </h:panelGrid>
+    <!--<h:outputLabel value="Lecture date"/>-->
+    <!--<h:inputText id="lecture_date" a:placeholder="yyyyMMdd" value="#{lectureBean.lectureBeanDate}">-->
+    <!--<f:convertDateTime pattern = "yyyyMMdd"/>-->
+    <!--</h:inputText>-->
     <br/><br/>
     <h:selectOneMenu value="#{lectureBean.course_id}">
         <f:selectItems value="#{courseBean.courses}" var="courses" itemValue="#{courses.course_id}"
