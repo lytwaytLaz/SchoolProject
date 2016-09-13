@@ -2,14 +2,10 @@ package ctr;
 
 import ejb.LectureEjb;
 import jpa.Course;
-import org.primefaces.context.RequestContext;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -33,7 +29,7 @@ public class LectureBean
     {
         System.out.println("Submitted lecture date and Id");
         lecEjb.addLecture(new LectureCtr(getLectureBeanDate(), getCourse_id()));
-//        setLectureBeanDate(null);
+        setLectureBeanDate(null);
         return "login?faces-redirect=true";
     }
 
