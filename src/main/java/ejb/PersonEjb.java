@@ -45,6 +45,15 @@ public class PersonEjb
         return persons;
     }
 
+    public List<Person> getPersons()
+    {
+        List<Person> persons;
+        persons = em.createNamedQuery(
+                "selectAllPersons")
+                .getResultList();
+        return persons;
+    }
+
 
 
 //    public List<Person> getAll()

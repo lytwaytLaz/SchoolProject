@@ -23,6 +23,7 @@ public class PersonBean implements Serializable
     private String passWord;
     private Role role;
     private Long role_id;
+    private String fullName;
 
     @Inject
     private PersonEjb pers;
@@ -58,6 +59,13 @@ public class PersonBean implements Serializable
         this.lastName = lastName;
     }
 
+    public String getFullName()
+    {
+        fullName = getFirstName() + " " + getLastName();
+
+        return fullName;
+    }
+
     public String getEmail()
     {
         return email;
@@ -79,14 +87,14 @@ public class PersonBean implements Serializable
     }
 
 
-
     public void setRole(Role role)
     {
         this.role = role;
     }
 
 
-    public Role getRole(){
+    public Role getRole()
+    {
 
         return role;
     }
@@ -100,4 +108,6 @@ public class PersonBean implements Serializable
     {
         this.role_id = role_id;
     }
+
+
 }

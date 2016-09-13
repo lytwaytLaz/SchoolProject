@@ -8,11 +8,14 @@ import javax.persistence.*;
  * @since 2016-09-06
  */
 @Entity
-@NamedQueries(        {
-                @NamedQuery(
-                        name = "selectPerson",
-                        query = "SELECT p from Person p where locate(:filt, p.email) > 0")
-        }
+@NamedQueries({
+        @NamedQuery(
+                name = "selectAllPersons",
+                query = "SELECT p from Person p"),
+        @NamedQuery(
+                name = "selectPerson",
+                query = "SELECT p from Person p where locate(:filt, p.email) > 0")
+}
 )
 
 public class Person

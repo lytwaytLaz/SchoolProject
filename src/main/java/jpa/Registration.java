@@ -9,6 +9,14 @@ import javax.persistence.*;
  */
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = "selectAllCourses",
+                query = "SELECT r from Course r"),
+        @NamedQuery(
+                name = "selectCourseName",
+                query = "SELECT r FROM Course r WHERE r.courseName LIKE :courseName")})
+
 public class Registration
 {
     @ManyToOne
@@ -31,5 +39,23 @@ public class Registration
         this.registration_id = id;
     }
 
+    public Course getCourse()
+    {
+        return course;
+    }
 
+    public void setCourse(Course course)
+    {
+        this.course = course;
+    }
+
+    public Person getPerson()
+    {
+        return person;
+    }
+
+    public void setPerson(Person person)
+    {
+        this.person = person;
+    }
 }
