@@ -16,7 +16,7 @@ public class RegistrationCtr
     private Course course;
     private Long course_id;
 
-    public RegistrationCtr(Long person_id, Long course_id)
+    public RegistrationCtr(Long course_id, Long person_id)
     {
         this.person_id = person_id;
         this.course_id = course_id;

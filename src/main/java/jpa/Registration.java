@@ -11,11 +11,9 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
         @NamedQuery(
-                name = "selectAllCourses",
-                query = "SELECT r from Course r"),
-        @NamedQuery(
-                name = "selectCourseName",
-                query = "SELECT r FROM Course r WHERE r.courseName LIKE :courseName")})
+                name = "selectAllRegistrations",
+                query = "SELECT r from Registration r")
+        })
 
 public class Registration
 {

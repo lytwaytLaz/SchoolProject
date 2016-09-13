@@ -11,16 +11,17 @@
 <h:head></h:head>
 
 <h:form>
-    <h:outputLabel value="Course name"/>
-    <h:inputText id="cname_reg" a:placeholder="Course name" value="#{courseBean.courseBeanName}"/>
+    <h:selectOneMenu value="#{registrationBean.course_id}">
+        <f:selectItems value="#{courseBean.courses}" var="courses" itemValue="#{courses.course_id}"
+                       itemLabel="#{courses.courseName}"/>
+    </h:selectOneMenu>
+
+    <h:selectOneMenu value="#{registrationBean.person_id}">
+        <f:selectItems value="#{personBean.persons}" var="persons" itemValue="#{persons.person_id}"
+                       itemLabel="#{persons.firstName} #{persons.lastName}"/>
+    </h:selectOneMenu>
     <br/><br/>
-    <div>
-        <h:outputLink id="reg_link" value="person.xhtml">
-            <h:outputText value="Register user"/>
-        </h:outputLink>
-    </div>
-    <br/><br/>
-    <h:commandButton value="Submit" action="#{courseBean.submit}"/>
+    <h:commandButton value="Submit" action="#{registrationBean.submit}"/>
     <br/><br/>
 </h:form>
 </html>

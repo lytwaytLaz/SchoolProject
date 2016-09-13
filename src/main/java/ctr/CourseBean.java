@@ -1,9 +1,7 @@
 package ctr;
 
 import ejb.CourseEjb;
-import ejb.PersonEjb;
 import jpa.Course;
-import jpa.Role;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -31,7 +29,7 @@ public class CourseBean
 
     public String submit()
     {
-
+        System.out.println("Course submit");
         courseEjb.addCourse(new CourseCtr(getCourseBeanName()));
         setCourseBeanName("");
 

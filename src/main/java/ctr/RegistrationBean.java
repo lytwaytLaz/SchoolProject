@@ -18,6 +18,8 @@ public class RegistrationBean implements Serializable
 {
     private Long person_id;
     private Long course_id;
+    private String firstName;
+    private String lastName;
 
     @Inject
     private RegistrationEjb reg;
@@ -26,7 +28,7 @@ public class RegistrationBean implements Serializable
     {
         reg.addRegistration(new RegistrationCtr(getCourse_id(), getPerson_id()));
 
-        return "registration?faces-redirect=true";
+        return "login?faces-redirect=true";
     }
 
 
@@ -48,5 +50,30 @@ public class RegistrationBean implements Serializable
     public void setCourse_id(Long course_id)
     {
         this.course_id = course_id;
+    }
+
+    public String getFirstName()
+    {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName)
+    {
+        this.firstName = firstName;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
+    }
+
+    public String getFullName()
+    {
+        return getFirstName() + " " + getLastName();
     }
 }

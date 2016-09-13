@@ -6,9 +6,7 @@ import jpa.Person;
 import jpa.Registration;
 
 import javax.ejb.Stateless;
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -30,6 +28,18 @@ public class RegistrationEjb
         Person person = em.find(Person.class, r.getPerson_id());
         registrationTbl.setCourse(course);
         registrationTbl.setPerson(person);
+
+        em.persist(registrationTbl);
+    }
+
+    public List<Registration> getRegistration()
+    {
+        List<Registration> registrations;
+        registrations = em.createNamedQuery(
+                "selectAllRegistrations")
+                .getResultList();
+        return registrations;
+
     }
 
 }
