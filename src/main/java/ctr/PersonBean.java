@@ -1,12 +1,15 @@
 package ctr;
 
 import ejb.PersonEjb;
+import jpa.Course;
+import jpa.Person;
 import jpa.Role;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author László Hágó
@@ -23,6 +26,7 @@ public class PersonBean implements Serializable
     private String passWord;
     private Role role;
     private Long role_id;
+    private List<Person> persons;
     private String fullName;
 
     @Inject
@@ -109,5 +113,9 @@ public class PersonBean implements Serializable
         this.role_id = role_id;
     }
 
-
+    public List<Person> getPersons()
+    {
+        persons = pers.getPersons();
+        return persons;
+    }
 }
