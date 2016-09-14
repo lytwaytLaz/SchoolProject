@@ -8,22 +8,25 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head>
+<h:head>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1"/>-->
+    <!--<title>jQuery UI Datepicker - Display month &amp; year menus</title>-->
+    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css"/>-->
+    <!--<link rel="stylesheet" href="/resources/demos/style.css"/>-->
+    <!--<h:outputScript src="https://code.jquery.com/jquery-1.12.4.js"></h:outputScript>-->
+    <!--<h:outputScript src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></h:outputScript>-->
+    <!--<ui:define name="datepicker">-->
+        <!--<h:outputScript name="resources\js\DatePicker.js" target="head"/>-->
+    <!--</ui:define>-->
+</h:head>
 
 <h:form>
     <h:panelGrid columns="2" cellpadding="5">
-        <!--<p:multiSelectListbox value="#{lectureBean.course_id}" effect="slide" header="Courses" showHeaders="true">-->
-            <!--<f:selectItems value="#{courseBean.courses}" />-->
-        <!--</p:multiSelectListbox>-->
         <p:outputLabel for="calendar" value="Lecture date"/>
         <br/>
         <p:calendar id="calendar" value="#{lectureBean.lectureBeanDate}" pattern="yyyy-MM-dd" mode="popup"
                     navigator="true"/>
     </h:panelGrid>
-    <!--<h:outputLabel value="Lecture date"/>-->
-    <!--<h:inputText id="lecture_date" a:placeholder="yyyyMMdd" value="#{lectureBean.lectureBeanDate}">-->
-    <!--<f:convertDateTime pattern = "yyyyMMdd"/>-->
-    <!--</h:inputText>-->
     <br/><br/>
     <h:selectOneMenu value="#{lectureBean.course_id}">
         <f:selectItems value="#{courseBean.courses}" var="courses" itemValue="#{courses.course_id}"
