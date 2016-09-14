@@ -4,50 +4,51 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:b="http://bootsfaces.net/ui"
+>
 <h:head>
 
     <title>Lexicon's OCA Exam Practice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="author" content="Riccardo Massera"/>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <h:outputScript src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"/>
     <h:outputScript src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>
+
+
+    <style type="text/css">
+                .form-signin {
+                            margin: 0 auto;
+                            max-width: 330px;
+                             padding: 15px;
+                         }
+                 </style>
+
+
+
 </h:head>
+<h:body style="padding-top: 60px; background-color: #add;">
+    <b:container>
+        <h:form styleClass="form-signin" prependId="false">
+            <h2 class="form-signin-heading">Please sign in</h2>
 
-<div  class="container" >
-    <h:form>
-        <div class="container" align="center">
-            <h2>Lexicon's Local School Project</h2>
-            <h3>Welcome! Please Login to the System</h3><hr/>
-        </div>
+            <b:inputText id="email" placeholder="Email address" value="#{loginBean.email}">
+                                     <f:facet name="prepend">
+                                         <b:icon name="user" />
+                                     </f:facet>
+                                 </b:inputText>
 
-        <div class="col-md-6 " style=" width: 500px; height: 200px; position: absolute; margin: auto; top: 0; bottom: 400px; left: 0; right: 0; border-radius: 10px; border: solid steelblue;" >
-        <h:panelGrid columns="2" style="align-self: center" styleClass="color-rect-border">
 
-            <h:panelGroup>
-                <h:outputLabel style="padding-top: 20px" value="E-mail: "></h:outputLabel>
-            </h:panelGroup>
+            <b:inputText id="password" placeholder="Password" type="password" value="#{loginBean.passWord}">
+                                     <f:facet name="prepend">
+                                         <b:iconAwesome name="key" />
+                                     </f:facet>
+                                 </b:inputText>
 
-            <h:panelGroup>
-                <h:inputText id="person_email" a:placeholder="exemple@abc.com" value="#{loginBean.email}"></h:inputText>
-            </h:panelGroup>
-
-            <h:panelGroup>
-                <h:outputLabel id="person_password" value="Password: "></h:outputLabel>
-            </h:panelGroup>
-
-            <h:panelGroup>
-
-                <h:inputSecret a:placeholder="Password" value="#{loginBean.passWord}"></h:inputSecret>
-            </h:panelGroup>
-        </h:panelGrid>
-            <div style="float: left; padding-top: 5%">
-            <h:commandButton value="Login" class="btn btn-primary btn-lg" style="padding-top: 10px; width: 100px" action="#{loginBean.login}"></h:commandButton>
-            </div>
-            <div style="float: right; padding-top: 10%">
-                <h:commandLink value="Forgot Password ?" style="padding-top: 10px" action="#{loginBean.restorePassword}"></h:commandLink>
-            </div>
-        </div>
-    </h:form>
-</div>
+            <b:selectBooleanCheckbox value="true" caption="remember me"/>
+            <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="lg" action="#{loginBean.login}"/>
+            <b:navCommandLink value="Forgot Password ?" action="#{loginBean.restorePassword}"></b:navCommandLink>
+        </h:form>
+    </b:container>
+</h:body>
 </html>
