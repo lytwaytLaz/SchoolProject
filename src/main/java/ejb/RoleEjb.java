@@ -25,13 +25,14 @@ public class RoleEjb
                 "selectAll")
                 .getResultList();
         return roles;
+    }
 
-
-//        for (Role role:roles)
-//        {
-//            if("admin".equals(role.getType()))
-//                return role;
-//        }
-//        return null;
+    public Long getRoleIdByType(List<Role> roles, String type)
+    {
+        for (Role role : roles) {
+            if (type.equals(role.getType()))
+                return role.getRole_id();
+        }
+        return 0L;
     }
 }

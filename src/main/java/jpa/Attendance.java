@@ -8,6 +8,14 @@ import javax.persistence.*;
  * @since 2016-09-06
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = "selectAllAttendance",
+                query = "SELECT a from Attendance a"),
+        @NamedQuery(
+                name = "selectAllPersonsByRoleId",
+                query = "SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id WHERE p.role.role_id = ?1")
+})
 public class Attendance
 {
     @ManyToOne

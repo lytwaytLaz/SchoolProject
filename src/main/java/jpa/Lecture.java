@@ -9,6 +9,9 @@ import java.util.Date;
  * @since 2016-09-06
  */
 @Entity
+@NamedQuery(
+        name = "selectAllLectures",
+        query = "SELECT le from Lecture le")
 public class Lecture
 {
     @ManyToOne

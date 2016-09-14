@@ -3,10 +3,12 @@ package ejb;
 import ctr.LectureCtr;
 import jpa.Course;
 import jpa.Lecture;
+import jpa.Role;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * @author László Hágó
@@ -31,6 +33,15 @@ public class LectureEjb
         lectureTbl.setCourse(course);
 
         em.persist(lectureTbl);
+    }
+
+    public List<Lecture> getLectures()
+    {
+        List<Lecture> lectures;
+        lectures = em.createNamedQuery(
+                "selectAllLectures")
+                .getResultList();
+        return lectures;
     }
 
 

@@ -12,6 +12,10 @@ import javax.persistence.*;
         @NamedQuery(
                 name = "selectAllPersons",
                 query = "SELECT p from Person p"),
+//        @NamedQuery(
+//                name = "selectAllPersonsByRoleId",
+//                query = "SELECT p FROM Person p WHERE p.role.role_id = :r_id"),
+
         @NamedQuery(
                 name = "selectPerson",
                 query = "SELECT p from Person p where locate(:filt, p.email) > 0")
