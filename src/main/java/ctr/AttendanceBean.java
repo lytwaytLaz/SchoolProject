@@ -2,9 +2,9 @@ package ctr;
 
 import ejb.AttendanceEjb;
 import ejb.RoleEjb;
-import jpa.Attendance;
 import jpa.Person;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,8 +23,9 @@ public class AttendanceBean implements Serializable
     private Long person_id;
     private Long lecture_id;
     private Boolean present;
-    private List<Person> studentsByCourse;
+    private List<Person> students;
     private String type = "Student";
+    private Long course_id;
 
     @Inject
     private AttendanceEjb att;
@@ -32,10 +33,40 @@ public class AttendanceBean implements Serializable
     @Inject
     private RoleEjb roleEjb;
 
-    public String check()
+    public Long getCourse_id()
     {
-        att.getPersonsByRole(roleEjb.getRoleIdByType(roleEjb.getRoles(), type));
+        return course_id;
+    }
 
+    public void setCourse_id(Long course_id)
+    {
+        System.out.println("Set Course ID: " + course_id);
+        this.course_id = course_id;
+    }
+
+    public List<Person> getStudents()
+    {
+        students = att.getStudents(roleEjb.getRoleIdByType(roleEjb.getRoles(), type));
+
+        return students;
+    }
+
+    public List<Person> getStudentsByCourse()
+    {
+        System.out.println("StudentsBy Course ID: " + course_id);
+
+        if (course_id != null) {
+
+
+            students = att.getStudentsByCourse(roleEjb.getRoleIdByType(roleEjb.getRoles(), type), course_id);
+            return students;
+        }
+        else
+            return null;
+    }
+
+    public String refresh()
+    {
         return "attendance?faces-redirect=true";
     }
 

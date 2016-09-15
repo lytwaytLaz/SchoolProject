@@ -5,8 +5,34 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head></h:head>
 <f:view>
-    <h:outputLabel value="Hello, world"/>
+    <h:form>
+        <h:outputText></h:outputText>
+        <b:dataTable value="#{attendanceBean.students}" var="students">
+
+            <b:dataTableColumn value="#{students.person_id}"/>
+            <b:dataTableColumn value="#{students.firstName}"/>
+            <b:dataTableColumn value="#{students.lastName}"/>
+        </b:dataTable>
+        <h:selectOneMenu value="#{attendanceBean.course_id}">
+            <f:selectItems value="#{courseBean.courses}" var="courses" itemValue="#{courses.course_id}" itemLabel="#{courses.courseName}"/>
+        </h:selectOneMenu>
+        <br/>
+        <h:commandButton value="Submit" action="#{attendanceBean.refresh}"/>
+
+        <br/>
+
+        <b:dataTable value="#{attendanceBean.studentsByCourse}" var="studentsByCourse">
+            <b:dataTableColumn value="#{studentsByCourse.person_id}"/>
+            <b:dataTableColumn value="#{studentsByCourse.firstName}"/>
+            <b:dataTableColumn value="#{studentsByCourse.lastName}"/>
+        </b:dataTable>
+
+    </h:form>
 </f:view>
+
 </html>

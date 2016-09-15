@@ -13,9 +13,13 @@ import javax.persistence.*;
                 name = "selectAllAttendance",
                 query = "SELECT a from Attendance a"),
         @NamedQuery(
-                name = "selectAllPersonsByRoleId",
-                query = "SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id WHERE p.role.role_id = ?1")
+                name = "selectAllStudents",
+                query = "SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id WHERE p.role.role_id = ?1"),
+        @NamedQuery(
+                name = "selectAllStudentsByCourse",
+                query = "SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id WHERE p.role.role_id = ?1 AND r.course.course_id = ?2")
 })
+
 public class Attendance
 {
     @ManyToOne

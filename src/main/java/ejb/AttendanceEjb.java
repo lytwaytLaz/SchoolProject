@@ -2,6 +2,7 @@ package ejb;
 
 import ctr.AttendanceCtr;
 import jpa.Attendance;
+import jpa.Course;
 import jpa.Person;
 
 import javax.ejb.Stateless;
@@ -20,30 +21,25 @@ public class AttendanceEjb
 {
     @PersistenceContext
     private EntityManager em;
-//    public void addAttendance(AttendanceCtr a)
-//    {
-//        Attendance attendanceTbl = new Attendance();
-//
-//        attendanceTbl.
-//    }
 
-//    public List<Person> getPersonsByRole(int roleId)
-//    {
-//        List<Person> persons;
-//        persons = em.createNamedQuery(
-//                "selectAllPersonsByRoleId")
-//                .setParameter("r_id", roleId)
-//                .getResultList();
-//        return persons;
-//
-//    }
-
-    public List<Person> getPersonsByRole(Long role_id)
+    public List<Person> getStudents(Long role_id)
     {
         List<Person> persons;
         persons = em.createNamedQuery(
-                "selectAllPersonsByRoleId", Person.class)
+                "selectAllStudents", Person.class)
                 .setParameter(1, role_id)
+                .getResultList();
+        return persons;
+
+    }
+
+    public List<Person> getStudentsByCourse(Long role_id, Long course_id)
+    {
+        List<Person> persons;
+        persons = em.createNamedQuery(
+                "selectAllStudentsByCourse", Person.class)
+                .setParameter(1, role_id)
+                .setParameter(2, course_id)
                 .getResultList();
         return persons;
 

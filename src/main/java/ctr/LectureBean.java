@@ -28,6 +28,7 @@ public class LectureBean
     public String submit()
     {
         System.out.println("Submitted lecture date and Id");
+
         lecEjb.addLecture(new LectureCtr(getLectureBeanDate(), getCourse_id()));
         setLectureBeanDate(null);
         return "login?faces-redirect=true";
