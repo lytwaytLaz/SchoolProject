@@ -17,7 +17,13 @@ import javax.persistence.*;
                 query = "SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id WHERE p.role.role_id = ?1"),
         @NamedQuery(
                 name = "selectAllStudentsByCourse",
-                query = "SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id WHERE p.role.role_id = ?1 AND r.course.course_id = ?2")
+                query = "SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id WHERE p.role.role_id = ?1 AND r.course.course_id = ?2"),
+//        @NamedQuery(
+//                name = "selectAllStudentsByCourseAndLecture",
+//                query = "SELECT p FROM Person p JOIN Lecture lec ON (SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id WHERE p.role.role_id = ?1 AND r.course.course_id = ?2)=lec.course.course_id WHERE lec.lecture_id "),
+        @NamedQuery(
+                name = "selectAllStudentsByCourseAndLecture",
+                query = "SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id JOIN Lecture lec ON r.course.course_id = lec.course.course_id WHERE p.role.role_id = ?1 AND r.course.course_id = ?2  AND lec.lecture_id = ?3")
 })
 
 public class Attendance

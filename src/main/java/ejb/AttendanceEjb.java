@@ -45,4 +45,17 @@ public class AttendanceEjb
 
     }
 
+    public List<Person> getStudentsByCourseAndLecture(Long role_id, Long course_id, Long lecture_id)
+    {
+        List<Person> persons;
+        persons = em.createNamedQuery(
+                "selectAllStudentsByCourseAndLecture", Person.class)
+                .setParameter(1, role_id)
+                .setParameter(2, course_id)
+                .setParameter(3, lecture_id)
+                .getResultList();
+        return persons;
+
+    }
+
 }

@@ -44,6 +44,16 @@ public class AttendanceBean implements Serializable
         this.course_id = course_id;
     }
 
+    public Long getLecture_id()
+    {
+        return lecture_id;
+    }
+
+    public void setLecture_id(Long lecture_id)
+    {
+        this.lecture_id = lecture_id;
+    }
+
     public List<Person> getStudents()
     {
         students = att.getStudents(roleEjb.getRoleIdByType(roleEjb.getRoles(), type));
@@ -59,6 +69,20 @@ public class AttendanceBean implements Serializable
 
 
             students = att.getStudentsByCourse(roleEjb.getRoleIdByType(roleEjb.getRoles(), type), course_id);
+            return students;
+        }
+        else
+            return null;
+    }
+
+    public List<Person> getStudentsByCourseAndLecture()
+    {
+        System.out.println("StudentsBy Course ID: " + course_id);
+
+        if (course_id != null) {
+
+
+            students = att.getStudentsByCourseAndLecture(roleEjb.getRoleIdByType(roleEjb.getRoles(), type), course_id, lecture_id);
             return students;
         }
         else

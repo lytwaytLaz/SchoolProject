@@ -20,6 +20,7 @@ public class Lecture
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long lecture_id;
+
     @Temporal(TemporalType.DATE)
     private Date date;
 

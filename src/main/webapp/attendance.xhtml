@@ -18,6 +18,7 @@
             <b:dataTableColumn value="#{students.firstName}"/>
             <b:dataTableColumn value="#{students.lastName}"/>
         </b:dataTable>
+
         <h:selectOneMenu value="#{attendanceBean.course_id}">
             <f:selectItems value="#{courseBean.courses}" var="courses" itemValue="#{courses.course_id}" itemLabel="#{courses.courseName}"/>
         </h:selectOneMenu>
@@ -27,6 +28,17 @@
             <b:dataTableColumn value="#{studentsByCourse.person_id}"/>
             <b:dataTableColumn value="#{studentsByCourse.firstName}"/>
             <b:dataTableColumn value="#{studentsByCourse.lastName}"/>
+        </b:dataTable>
+
+        <h:selectOneMenu value="#{lectureBean.course_id}">
+            <f:selectItems value="#{lectureBean.lectures}" var="lectures" itemValue="#{lectures.lecture_id}" itemLabel="#{lectures.date}"/>
+        </h:selectOneMenu>
+        <h:commandButton value="Submit" action="#{attendanceBean.refresh}"/>
+        <br/>
+        <b:dataTable value="#{attendanceBean.studentsByCourse}" var="studentsByCourse">
+            <b:dataTableColumn value="#{studentsByCourseAndLecture.person_id}"/>
+            <b:dataTableColumn value="#{studentsByCourseAndLecture.firstName}"/>
+            <b:dataTableColumn value="#{studentsByCourseAndLecture.lastName}"/>
         </b:dataTable>
 
     </h:form>

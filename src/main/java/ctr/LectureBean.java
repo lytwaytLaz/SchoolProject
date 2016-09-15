@@ -2,11 +2,13 @@ package ctr;
 
 import ejb.LectureEjb;
 import jpa.Course;
+import jpa.Lecture;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author László Hágó
@@ -21,6 +23,7 @@ public class LectureBean
     private Course lectureBeanCourse;
     private Course course;
     private Long course_id;
+    private List<Lecture> lectures;
 
     @Inject
     private LectureEjb lecEjb;
@@ -73,5 +76,11 @@ public class LectureBean
     public void setCourse_id(Long course_id)
     {
         this.course_id = course_id;
+    }
+
+    public List<Lecture> getLectures()
+    {
+        lectures = lecEjb.getLectures();
+        return lectures;
     }
 }

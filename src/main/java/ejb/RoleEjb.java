@@ -35,4 +35,5 @@ public class RoleEjb
         }
         return 0L;
     }
+
 }
