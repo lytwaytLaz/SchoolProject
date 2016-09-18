@@ -8,7 +8,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author László Hágó
@@ -41,6 +40,16 @@ public class PersonEjb
         persons = em.createNamedQuery(
                 "selectPerson")
                 .setParameter("filt",email)
+                .getResultList();
+        return persons;
+    }
+
+    public List<Person> getPersonsNotAdmin ()
+    {
+        List<Person> persons;
+        persons = em.createNamedQuery(
+                "selectAllPersonsByRoleId")
+//                .setParameter("filt",email)
                 .getResultList();
         return persons;
     }
