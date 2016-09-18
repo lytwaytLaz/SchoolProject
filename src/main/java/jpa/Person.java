@@ -12,9 +12,10 @@ import javax.persistence.*;
         @NamedQuery(
                 name = "selectAllPersons",
                 query = "SELECT p from Person p"),
-//        @NamedQuery(
-//                name = "selectAllPersonsByRoleId",
-//                query = "SELECT p FROM Person p WHERE p.role.role_id = :r_id"),
+
+        @NamedQuery(
+                name = "selectAllPersonsByRoleId",
+                query = "SELECT p FROM Person p WHERE NOT (p.role.role_id = 30) ORDER BY p.firstName"),
 
         @NamedQuery(
                 name = "selectPerson",

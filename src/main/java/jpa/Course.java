@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(
                 name = "selectAllCourses",
-                query = "SELECT c from Course c"),
+                query = "SELECT c FROM Course c ORDER BY c.courseName"),
         @NamedQuery(
                 name = "selectCourseName",
                 query = "SELECT c FROM Course c WHERE c.courseName LIKE :courseName")})
