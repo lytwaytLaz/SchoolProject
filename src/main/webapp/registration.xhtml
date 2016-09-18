@@ -17,7 +17,7 @@
     </h:selectOneMenu>
 
     <h:selectOneMenu value="#{registrationBean.person_id}">
-        <f:selectItems value="#{personBean.persons}" var="persons" itemValue="#{persons.person_id}"
+        <f:selectItems value="#{personBean.personsNotAdmin}" var="persons" itemValue="#{persons.person_id}"
                        itemLabel="#{persons.firstName} #{persons.lastName}"/>
     </h:selectOneMenu>
     <br/><br/>
