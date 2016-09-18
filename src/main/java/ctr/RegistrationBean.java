@@ -28,7 +28,7 @@ public class RegistrationBean implements Serializable
     {
         reg.addRegistration(new RegistrationCtr(getCourse_id(), getPerson_id()));
 
-        return "login?faces-redirect=true";
+        return "registration?faces-redirect=true";
     }
 
 
