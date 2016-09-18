@@ -7,8 +7,9 @@ import jpa.Lecture;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
+
 
 /**
  * @author László Hágó
@@ -34,7 +35,7 @@ public class LectureBean
 
         lecEjb.addLecture(new LectureCtr(getLectureBeanDate(), getCourse_id()));
         setLectureBeanDate(null);
-        return "login?faces-redirect=true";
+        return "lecture?faces-redirect=true";
     }
 
     public Date getLectureBeanDate()

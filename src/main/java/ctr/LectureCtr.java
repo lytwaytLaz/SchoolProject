@@ -1,8 +1,8 @@
 package ctr;
 
 import jpa.Course;
+import java.sql.Date;
 
-import java.util.Date;
 
 /**
  * @author László Hágó
