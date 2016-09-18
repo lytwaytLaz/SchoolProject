@@ -31,7 +31,7 @@
         </b:dataTable>
 
         <h:selectOneMenu value="#{lectureBean.course_id}">
-            <f:selectItems value="#{lectureBean.lectures}" var="lectures" itemValue="#{lectures.lecture_id}" itemLabel="#{lectures.date}"/>
+            <f:selectItems value="#{lectureBean.lectures}" var="lectures" itemValue="#{lectures.lecture_id}" itemLabel="#{lectures.course.courseName} - #{lectures.date}"/>
         </h:selectOneMenu>
         <h:commandButton value="Submit" action="#{attendanceBean.refresh}"/>
         <br/>
