@@ -1,7 +1,8 @@
 package jpa;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
+
 
 /**
  * @author László Hágó
@@ -21,7 +22,6 @@ public class Lecture
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long lecture_id;
 
-    @Temporal(TemporalType.DATE)
     private Date date;
 
     public Long getLecture_id()
