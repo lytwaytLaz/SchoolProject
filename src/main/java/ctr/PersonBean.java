@@ -1,7 +1,6 @@
 package ctr;
 
 import ejb.PersonEjb;
-import jpa.Course;
 import jpa.Person;
 import jpa.Role;
 
@@ -118,4 +117,12 @@ public class PersonBean implements Serializable
         persons = pers.getPersons();
         return persons;
     }
+
+    public List<Person> getPersonsNotAdmin()
+    {
+        persons = pers.getPersonsNotAdmin();
+        return persons;
+    }
+
+
 }
