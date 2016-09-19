@@ -28,10 +28,10 @@ import javax.persistence.*;
 
 public class Attendance
 {
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Person person;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Lecture lecture;
 
     @Id

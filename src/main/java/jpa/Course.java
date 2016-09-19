@@ -1,5 +1,6 @@
 package jpa;
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author László Hágó
@@ -18,12 +19,16 @@ import javax.persistence.*;
 
 public class Course
 {
+    @OneToMany(mappedBy = "course", orphanRemoval=true)
+    private List<Registration> registration;
+
+    @OneToMany(mappedBy = "course", orphanRemoval=true)
+    private List<Lecture> lecture;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long course_id;
     private String courseName;
-
-
 
     public Long getCourse_id()
     {

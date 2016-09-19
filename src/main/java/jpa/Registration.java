@@ -17,10 +17,10 @@ import javax.persistence.*;
 
 public class Registration
 {
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Course course;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Person person;
 
     @Id

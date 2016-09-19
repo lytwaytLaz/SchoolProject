@@ -1,7 +1,8 @@
 package jpa;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -12,9 +13,12 @@ import java.sql.Date;
 @Entity
 @NamedQuery(
         name = "selectAllLectures",
-        query = "SELECT le from Lecture le")
+        query = "SELECT le from Lecture le ORDER BY le.date")
 public class Lecture
 {
+    @OneToMany(mappedBy = "lecture", orphanRemoval=true)
+    private List<Attendance> attendance;
+
     @ManyToOne
     private Course course;
 
@@ -22,6 +26,7 @@ public class Lecture
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long lecture_id;
 
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     public Long getLecture_id()

@@ -2,6 +2,10 @@ package jpa;
 
 import javax.persistence.*;
 
+import java.util.List;
+
+import static javafx.scene.input.KeyCode.R;
+
 /**
  * @author László Hágó
  * @version 1.0
@@ -25,6 +29,12 @@ import javax.persistence.*;
 
 public class Person
 {
+    @OneToMany(mappedBy = "person", orphanRemoval=true)
+    private List<Registration> registration;
+
+    @OneToMany(mappedBy = "person", orphanRemoval=true)
+    private List<Attendance> attendance;
+
     @ManyToOne
     private Role role;
 
