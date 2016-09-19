@@ -6,7 +6,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
     <!--<meta name="viewport" content="width=device-width, initial-scale=1"/>-->
@@ -21,19 +22,25 @@
 </h:head>
 
 <h:form>
-    <h:panelGrid columns="2" cellpadding="5">
-        <p:outputLabel for="calendar" value="Lecture date"/>
-        <br/>
-        <p:calendar id="calendar" value="#{lectureBean.lectureBeanDate}" pattern="yyyy-MM-dd" mode="popup"
-                    navigator="true"/>
-    </h:panelGrid>
+    <b:column medium-screen="2">
+        <b:datepicker id="calendar" value="#{lectureBean.lectureBeanDate}" pattern="yyyy-MM-dd" mode="popup-icon" showWeek="true" firstDay="1" changeYear="true" changeMonth="true"
+                      required="true" />
+    </b:column>
+    <!--<h:panelGrid columns="2" cellpadding="5">-->
+        <!--<p:outputLabel for="calendar" value="Lecture date"/>-->
+        <!--<br/>-->
+        <!--<p:calendar id="calendar" value="#{lectureBean.lectureBeanDate}" pattern="yyyy-MM-dd" mode="popup"-->
+                    <!--navigator="true"/>-->
+    <!--</h:panelGrid>-->
     <br/><br/>
     <h:selectOneMenu value="#{lectureBean.course_id}">
         <f:selectItems value="#{courseBean.courses}" var="courses" itemValue="#{courses.course_id}"
                        itemLabel="#{courses.courseName}"/>
     </h:selectOneMenu>
+
     <br/><br/>
-    <h:commandButton value="Submit" action="#{lectureBean.submit}"/>
-    <br/><br/>
+    <b:row>
+        <b:commandButton value="submit" update="@form" col-sm="2" look="success" action="#{lectureBean.submit}"/>
+    </b:row>
 </h:form>
 </html>
