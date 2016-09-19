@@ -9,29 +9,37 @@
       xmlns:b="http://bootsfaces.net/ui">
 
 <h:head></h:head>
-
-<h:form>
+<b:jumbotron>
     <b:container id="lecture-date" fluid="true">
-        <b:row>
-            <b:column span="1"><h:outputLabel value="Pick course"/></b:column>
-            <b:column span="2">
-                <b:selectOneMenu id="course-picker" value="#{lectureBean.course_id}">
-                    <f:selectItems value="#{courseBean.courses}" var="courses" itemValue="#{courses.course_id}"
-                                   itemLabel="#{courses.courseName}"/>
-                </b:selectOneMenu>
-            </b:column>
-        </b:row>
-        <b:row>
-            <b:column span="1"><h:outputLabel value="Pick date"/></b:column>
-            <b:column span="2">
-                <b:datepicker id="date-picker" value="#{lectureBean.lectureBeanDate}" pattern="yyyy-MM-dd"
-                              mode="popup-icon" showWeek="true" firstDay="1" changeYear="true" changeMonth="true"
-                              required="true"/>
-            </b:column>
-            <b:column span="1">
-                <b:commandButton value="submit" update="@form" look="success" action="#{lectureBean.submit}"/>
-            </b:column>
-        </b:row>
+        <h:form>
+            <b:container>
+                <b:row>
+                    <b:column span="1"><h:outputLabel value="Course"/></b:column>
+                    <b:column span="2">
+                        <b:selectOneMenu id="course-picker" value="#{lectureBean.course_id}">
+                            <f:selectItems value="#{courseBean.courses}" var="courses" itemValue="#{courses.course_id}"
+                                           itemLabel="#{courses.courseName}"/>
+                        </b:selectOneMenu>
+                    </b:column>
+                </b:row>
+            </b:container>
+
+            <b:container>
+                <b:row>
+                    <b:column span="1"><h:outputLabel value="Date"/></b:column>
+                    <b:column span="2">
+                        <b:datepicker id="date-picker" value="#{lectureBean.lectureBeanDate}" pattern="yyyy-MM-dd"
+                                      mode="popup-icon" showWeek="true" firstDay="1" changeYear="true"
+                                      changeMonth="true"
+                                      required="true"/>
+                    </b:column>
+                    <b:column span="1">
+                        <b:commandButton value="submit" update="@form" look="success" action="#{lectureBean.submit}"/>
+                    </b:column>
+                </b:row>
+            </b:container>
+
+        </h:form>
     </b:container>
-</h:form>
+</b:jumbotron>
 </html>
