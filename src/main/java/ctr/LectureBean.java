@@ -7,7 +7,7 @@ import jpa.Lecture;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 
