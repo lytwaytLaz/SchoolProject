@@ -23,13 +23,19 @@ public class RegistrationEjb
 
     public void addRegistration(RegistrationCtr r)
     {
-        Registration registrationTbl = new Registration();
+        Registration registrationTbl;
+        if (r.getRegistration_id() == null)
+            registrationTbl = new Registration();
+        else
+            registrationTbl = em.find(Registration.class, r.getRegistration_id());
+
         Course course = em.find(Course.class, r.getCourse_id());
         Person person = em.find(Person.class, r.getPerson_id());
         registrationTbl.setCourse(course);
         registrationTbl.setPerson(person);
 
-        em.persist(registrationTbl);
+
+        em.merge(registrationTbl);
     }
 
     public List<Registration> getRegistration()
