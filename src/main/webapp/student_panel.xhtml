@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+
+
+<h:head>
+    <title>Student</title>
+    <meta name="author" content="Riccardo Massera"></meta>
+</h:head>
+
+<h:body style="padding-top: 60px; background-color: #add;">
+    <h:form>
+
+        <div class="container" align="center">
+            <h2>Lexicon's Local School Project</h2>
+            <h3>Student Dashboard</h3><hr/>
+        </div>
+
+
+        <b:container fluid="true">
+            <b:accordion expanded-panels="panel1,panel3">
+                <b:panel id="courses" title="Courses" look="primary">
+                    <b:dataTable styleClass="table table-striped" value="#{attendanceBean.students}" var="student" rows="15">
+                        <b:column>
+                            <f:facet name="header"><h:outputText value="First Name"/></f:facet>
+                            <b:label text="#{student.firstName}"/>
+                        </b:column>
+                        <b:column>
+                            <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
+                            <b:label text="#{student.lastName}"/>
+                        </b:column>
+                        <b:column>
+                            <f:facet name="header"><h:outputText value="E-mail"/></f:facet>
+                            <b:label text="#{student.email}"/>
+                        </b:column>
+                    </b:dataTable>
+                </b:panel>
+
+
+                <b:panel id="attendance" title="Attendance" look="primary">
+                    <b:dataTable styleClass="table table-striped" value="#{courseBean.courses}" var="courses" rows="15">
+                        <b:column>
+                            <f:facet name="header"><h:outputText value="Course Id"/></f:facet>
+                            <h:outputText value="#{courses.course_id}"/>
+                        </b:column>
+                        <b:column>
+                            <f:facet name="header"><h:outputText value="Course Name"/></f:facet>
+                            <h:outputText value="#{courses.courseName}"/>
+                        </b:column>
+                    </b:dataTable>
+                </b:panel>
+
+            </b:accordion>
+        </b:container>
+    </h:form>
+</h:body>
+
+
+
+</html>
