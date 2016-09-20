@@ -4,7 +4,6 @@ import ejb.AttendanceEjb;
 import ejb.RoleEjb;
 import jpa.Person;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;

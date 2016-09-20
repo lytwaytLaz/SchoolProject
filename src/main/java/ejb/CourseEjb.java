@@ -1,6 +1,5 @@
 package ejb;
 
-import ctr.CourseCtr;
 import jpa.Course;
 
 import javax.ejb.Stateless;
@@ -19,12 +18,9 @@ public class CourseEjb
     @PersistenceContext
     private EntityManager em;
 
-    public void addCourse(CourseCtr c)
+    public void addCourse(Course c)
     {
-        Course courseTbl = new Course();
-        courseTbl.setCourseName(c.getCourseCtrName());
-
-        em.persist(courseTbl);
+        em.persist(c);
     }
 
     public List<Course> getCourses()

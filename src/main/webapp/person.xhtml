@@ -28,7 +28,7 @@
         <h:inputSecret id="password" a:placeholder="password" value="#{personBean.passWord}"/>
         <br/><br/>
         <h:selectOneMenu value="#{personBean.role_id}">
-            <f:selectItems value="#{roleBean.roles}" var="roles" itemValue="#{roles.role_id}" itemLabel="#{roles.type}"/>
+            <f:selectItems value="#{roleBean.roles}" var="r" itemValue="#{r.role_id}" itemLabel="#{r.type}"/>
         </h:selectOneMenu>
 
         <br/><br/>

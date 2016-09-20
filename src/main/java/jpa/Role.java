@@ -25,9 +25,18 @@ public class Role
     @Column(unique = true)
     private String type;
 
+    public Role()
+    {
+    }
+
     public Long getRole_id()
     {
         return role_id;
+    }
+
+    public Role(Long role_id)
+    {
+        this.role_id = role_id;
     }
 
     public void setRole_id(Long id)

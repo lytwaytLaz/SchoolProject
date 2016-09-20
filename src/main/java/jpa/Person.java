@@ -1,10 +1,9 @@
 package jpa;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 import java.util.List;
-
-import static javafx.scene.input.KeyCode.R;
 
 /**
  * @author László Hágó
@@ -36,18 +35,42 @@ public class Person
     private List<Attendance> attendance;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Role role;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long person_id;
 
+    @Column(nullable = false)
+    @Size(min = 2)
     private String firstName;
+
+    @Column(nullable = false)
+    @Size(min = 2)
     private String lastName;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
+    @Size(min = 5)
     private String email;
+
+    @Column(nullable = false)
+    @Size(min = 6)
     private String passWord;
+
+    public Person(String firstName, String lastName, String email, String passWord, Role role)
+    {
+        this.role = role;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.passWord = passWord;
+    }
+
+    public Person()
+    {
+    }
+
 
     public Long getPerson_id()
     {

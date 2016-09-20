@@ -1,13 +1,9 @@
 package ejb;
 
-import ctr.AttendanceCtr;
-import jpa.Attendance;
-import jpa.Course;
 import jpa.Person;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.Parameter;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 

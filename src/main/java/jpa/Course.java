@@ -1,7 +1,7 @@
 package jpa;
-import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -31,9 +31,18 @@ public class Course
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long course_id;
 
-    @NotNull
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
+    @Size(min = 3)
     private String courseName;
+
+    public Course(String courseName)
+    {
+        this.courseName = courseName;
+    }
+
+    public Course()
+    {
+    }
 
     public Long getCourse_id()
     {

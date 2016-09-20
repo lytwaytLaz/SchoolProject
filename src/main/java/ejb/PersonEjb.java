@@ -21,17 +21,18 @@ public class PersonEjb
     private EntityManager em;
 
 
-    public void addPerson(PersonCtr p)
+    public void addPerson(Person p)
     {
-        Person personTbl = new Person();
-        personTbl.setFirstName(p.getFirstName());
-        personTbl.setLastName(p.getLastName());
-        personTbl.setEmail(p.getEmail());
-        personTbl.setPassWord(p.getPassWord());
-        Role role = em.find(Role.class, p.getRole_id());
-        personTbl.setRole(role);
+//        Person personTbl = new Person();
+//
+//        personTbl.setFirstName(p.getFirstName());
+//        personTbl.setLastName(p.getLastName());
+//        personTbl.setEmail(p.getEmail());
+//        personTbl.setPassWord(p.getPassWord());
+//        Role role = em.find(Role.class, p.getRole().getRole_id());
+        p.setRole(em.find(Role.class, p.getRole().getRole_id()));
 
-        em.persist(personTbl);
+        em.persist(p);
     }
 
     public List<Person> getPerson(String email)

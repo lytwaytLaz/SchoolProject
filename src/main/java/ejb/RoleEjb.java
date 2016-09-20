@@ -36,4 +36,13 @@ public class RoleEjb
         return 0L;
     }
 
+    public Role getRoleByType(List<Role> roles, String type)
+    {
+        for (Role role : roles) {
+            if (type.equals(role.getType()))
+                return role;
+        }
+        return null;
+    }
+
 }

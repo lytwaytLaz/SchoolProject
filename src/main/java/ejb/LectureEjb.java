@@ -3,7 +3,6 @@ package ejb;
 import ctr.LectureCtr;
 import jpa.Course;
 import jpa.Lecture;
-import jpa.Role;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

@@ -18,6 +18,7 @@ import java.util.List;
 @SessionScoped
 public class RoleBean implements Serializable
 {
+    private Role role;
     private List<Role> roles;
 
     @Inject
@@ -27,5 +28,15 @@ public class RoleBean implements Serializable
     {
         roles = roleEjb.getRoles();
         return roles;
+    }
+
+    public Role getRole()
+    {
+        return role;
+    }
+
+    public void setRole(String type)
+    {
+        this.role = roleEjb.getRoleByType(getRoles(), type);
     }
 }

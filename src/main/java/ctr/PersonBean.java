@@ -4,6 +4,7 @@ import ejb.PersonEjb;
 import jpa.Person;
 import jpa.Role;
 
+import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,11 +34,17 @@ public class PersonBean implements Serializable
 
     public String submit()
     {
-        pers.addPerson(new PersonCtr(getFirstName(), getLastName(), getEmail(), getPassWord(), getRole_id()));
-        setFirstName("");
-        setLastName("");
-        setEmail("");
-        setPassWord("");
+        try {
+            pers.addPerson(new Person(getFirstName(), getLastName(), getEmail(), getPassWord(), new Role(getRole_id())));
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setPassWord("");
+        }
+        catch (EJBException ejbe)
+        {
+            return "person?faces-redirect=true";
+        }
 
         return "person?faces-redirect=true";
     }

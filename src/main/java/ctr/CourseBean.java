@@ -1,8 +1,10 @@
 package ctr;
 
+import com.sun.istack.internal.NotNull;
 import ejb.CourseEjb;
 import jpa.Course;
 
+import javax.ejb.EJBException;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,6 +22,8 @@ public class CourseBean
 
 {
     private Long courseBeanId;
+
+    @NotNull
     private String courseBeanName;
     private List<Course> courses;
 
@@ -29,12 +33,17 @@ public class CourseBean
 
     public String submit()
     {
-        System.out.println("Course submit");
-        courseEjb.addCourse(new CourseCtr(getCourseBeanName()));
+        try {
+            System.out.println("Course submit");
+            courseEjb.addCourse(new Course(getCourseBeanName()));
+        } catch (EJBException ejbe) {
+            return "course?faces-redirect=true";
+        }
         setCourseBeanName("");
 
-        return  "course?faces-redirect=true";
+        return "course?faces-redirect=true";
     }
+
     public String getCourseBeanName()
     {
         return courseBeanName;
