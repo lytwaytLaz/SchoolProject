@@ -11,6 +11,10 @@ import java.util.List;
  * @since 2016-09-06
  */
 @Entity
+@Table(
+        name="Lecture",
+        uniqueConstraints = @UniqueConstraint(columnNames ={ "course_course_id", "date"})
+)
 @NamedQuery(
         name = "selectAllLectures",
         query = "SELECT le from Lecture le ORDER BY le.date")

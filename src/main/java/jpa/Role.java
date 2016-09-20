@@ -21,6 +21,8 @@ public class Role
 {
     @Id
     private Long role_id;
+
+    @Column(unique = true)
     private String type;
 
     public Long getRole_id()

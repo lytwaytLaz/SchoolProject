@@ -9,6 +9,10 @@ import javax.persistence.*;
  */
 
 @Entity
+@Table(
+        name="Registration",
+        uniqueConstraints = @UniqueConstraint(columnNames ={ "course_course_id", "person_person_id"})
+)
 @NamedQueries({
         @NamedQuery(
                 name = "selectAllRegistrations",

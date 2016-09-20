@@ -1,4 +1,6 @@
 package jpa;
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -28,6 +30,9 @@ public class Course
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long course_id;
+
+    @NotNull
+    @Column(unique = true)
     private String courseName;
 
     public Long getCourse_id()
