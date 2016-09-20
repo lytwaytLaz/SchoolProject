@@ -1,6 +1,9 @@
 package ctr;
 
 import ejb.RegistrationEjb;
+import jpa.Course;
+import jpa.Person;
+import jpa.Registration;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -18,15 +21,18 @@ public class RegistrationBean implements Serializable
 {
     private Long person_id;
     private Long course_id;
-    private String firstName;
-    private String lastName;
+    private String courseName;
 
     @Inject
     private RegistrationEjb reg;
 
+
+    //TODO Fix addRegistration, something needs to be done about the construtor for Course and Person
     public String submit()
     {
-        reg.addRegistration(new RegistrationCtr(getCourse_id(), getPerson_id()));
+        reg.addRegistration(
+                        new Registration(new Course(),
+                        new Person()));
 
         return "registration?faces-redirect=true";
     }
@@ -52,28 +58,13 @@ public class RegistrationBean implements Serializable
         this.course_id = course_id;
     }
 
-    public String getFirstName()
+    public String getCourseName()
     {
-        return firstName;
+        return courseName;
     }
 
-    public void setFirstName(String firstName)
+    public void setCourseName(String courseName)
     {
-        this.firstName = firstName;
-    }
-
-    public String getLastName()
-    {
-        return lastName;
-    }
-
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
-    }
-
-    public String getFullName()
-    {
-        return getFirstName() + " " + getLastName();
+        this.courseName = courseName;
     }
 }
