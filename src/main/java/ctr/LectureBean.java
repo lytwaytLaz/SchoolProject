@@ -40,7 +40,7 @@ public class LectureBean
             return "lecture?faces-redirect=true";
 
         }
-        setLectureDate(null);
+//        setLectureDate(null);
         return "lecture?faces-redirect=true";
     }
 

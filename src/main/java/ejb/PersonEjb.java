@@ -47,14 +47,14 @@ public class PersonEjb
         return persons;
     }
 
-    public List<Person> getPersonsNotAdmin ()
+    public List<Person> getPersonsByRole(Long role_id)
     {
-        List<Person> persons;
-        persons = em.createNamedQuery(
-                "selectAllPersonsByRoleId")
-//                .setParameter("filt",email)
+        List<Person> personsByRole;
+        personsByRole = em.createNamedQuery(
+                "selectPersonsByRoleId", Person.class)
+                .setParameter(1, role_id)
                 .getResultList();
-        return persons;
+        return personsByRole;
     }
 
     public List<Person> getPersons()

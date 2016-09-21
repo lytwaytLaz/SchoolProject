@@ -28,16 +28,17 @@ public class PersonBean implements Serializable
     private Long role_id;
     private List<Person> persons;
     private String fullName;
+    private List<Person> personByRole;
 
     @Inject
     private PersonEjb pers;
 
-    public String submit()
+    public String submit(Long role_id)
     {
         try {
             pers.addPerson(
                             new Person(getFirstName(), getLastName(),
-                            getEmail(), getPassWord(), new Role(getRole_id())));
+                            getEmail(), getPassWord(), new Role(role_id)));
             setFirstName("");
             setLastName("");
             setEmail("");
@@ -127,10 +128,10 @@ public class PersonBean implements Serializable
         return persons;
     }
 
-    public List<Person> getPersonsNotAdmin()
+    public List<Person> getPersonsByRole(Long role_id)
     {
-        persons = pers.getPersonsNotAdmin();
-        return persons;
+        personByRole = pers.getPersonsByRole(role_id);
+        return personByRole;
     }
 
 

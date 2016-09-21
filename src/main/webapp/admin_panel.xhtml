@@ -25,7 +25,7 @@
    <b:container fluid="true">
         <b:accordion expanded-panels="panel1,panel3">
             <b:panel id="student" title="Student" look="primary">
-                <b:dataTable styleClass="table table-striped" value="#{attendanceBean.students}" var="student" rows="15">
+                <b:dataTable styleClass="table table-striped" value="#{personBean.getPersonsByRole(10)}" var="student" rows="15">
                         <b:column>
                             <f:facet name="header"><h:outputText value="First Name"/></f:facet>
                             <b:label text="#{student.firstName}"/>
@@ -80,7 +80,7 @@
 
                     <b:row>
                         <b:column span="2" offset="2">
-                            <b:commandButton value="Save" action="#{personBean.submit}" look="primary" style="width:100%" />
+                            <b:commandButton value="Save" action="#{personBean.submit(10)}" look="primary" style="width:100%" />
                         </b:column>
                     </b:row>
                 </b:panel>
@@ -88,14 +88,18 @@
 
 
             <b:panel id="teacher" title="Teacher" look="primary">
-                <b:dataTable styleClass="table table-striped" value="#{courseBean.courses}" var="courses" rows="15">
+                <b:dataTable styleClass="table table-striped" value="#{personBean.getPersonsByRole(20)}" var="teacher" rows="15">
                     <b:column>
-                        <f:facet name="header"><h:outputText value="Course Id"/></f:facet>
-                        <h:outputText value="#{courses.course_id}"/>
+                        <f:facet name="header"><h:outputText value="First Name"/></f:facet>
+                        <b:label text="#{teacher.firstName}"/>
                     </b:column>
                     <b:column>
-                        <f:facet name="header"><h:outputText value="Course Name"/></f:facet>
-                        <h:outputText value="#{courses.courseName}"/>
+                        <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
+                        <b:label text="#{teacher.lastName}"/>
+                    </b:column>
+                    <b:column>
+                        <f:facet name="header"><h:outputText value="E-mail"/></f:facet>
+                        <b:label text="#{teacher.email}"/>
                     </b:column>
                 </b:dataTable>
 
