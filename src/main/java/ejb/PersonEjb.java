@@ -29,6 +29,8 @@ public class PersonEjb
 //        personTbl.setLastName(p.getLastName());
 //        personTbl.setEmail(p.getEmail());
 //        personTbl.setPassWord(p.getPassWord());
+
+
 //        Role role = em.find(Role.class, p.getRole().getRole_id());
         p.setRole(em.find(Role.class, p.getRole().getRole_id()));
 

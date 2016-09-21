@@ -4,6 +4,7 @@ import ejb.LectureEjb;
 import jpa.Course;
 import jpa.Lecture;
 
+import javax.ejb.EJBException;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,7 +21,7 @@ import java.util.List;
 @RequestScoped
 public class LectureBean
 {
-    private Date lectureBeanDate;
+    private Date lectureDate;
     private Course lectureBeanCourse;
     private Course course;
     private Long course_id;
@@ -31,21 +32,26 @@ public class LectureBean
 
     public String submit()
     {
-        System.out.println("Submitted lecture date and Id");
+        try {
+            lecEjb.addLecture(new Lecture(new Course(getCourse_id()), getLectureDate()));
+        }
+        catch (EJBException ejbe)
+        {
+            return "lecture?faces-redirect=true";
 
-        lecEjb.addLecture(new LectureCtr(getLectureBeanDate(), getCourse_id()));
-        setLectureBeanDate(null);
+        }
+        setLectureDate(null);
         return "lecture?faces-redirect=true";
     }
 
-    public Date getLectureBeanDate()
+    public Date getLectureDate()
     {
-        return lectureBeanDate;
+        return lectureDate;
     }
 
-    public void setLectureBeanDate(Date lectureDate)
+    public void setLectureDate(Date lectureDate)
     {
-        this.lectureBeanDate = lectureDate;
+        this.lectureDate = lectureDate;
     }
 
 

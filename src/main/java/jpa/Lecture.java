@@ -33,6 +33,17 @@ public class Lecture
     @Temporal(TemporalType.DATE)
     private Date date;
 
+
+    public Lecture(Course course, Date date)
+    {
+        this.course = course;
+        this.date = date;
+    }
+
+    public Lecture()
+    {
+    }
+
     public Long getLecture_id()
     {
         return lecture_id;

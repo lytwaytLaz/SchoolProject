@@ -28,10 +28,10 @@ import java.util.List;
 
 public class Person
 {
-    @OneToMany(mappedBy = "person", orphanRemoval=true)
+    @OneToMany(mappedBy = "person", orphanRemoval = true)
     private List<Registration> registration;
 
-    @OneToMany(mappedBy = "person", orphanRemoval=true)
+    @OneToMany(mappedBy = "person", orphanRemoval = true)
     private List<Attendance> attendance;
 
     @ManyToOne
@@ -65,6 +65,11 @@ public class Person
         this.lastName = lastName;
         this.email = email;
         this.passWord = passWord;
+    }
+
+    public Person(Long person_id)
+    {
+        this.person_id = person_id;
     }
 
     public Person()

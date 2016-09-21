@@ -18,8 +18,9 @@
                     <b:column span="1"><h:outputLabel value="Course"/></b:column>
                     <b:column span="2">
                         <b:selectOneMenu value="#{registrationBean.course_id}">
-                            <f:selectItems value="#{courseBean.courses}" var="courses" itemValue="#{courses.course_id}"
-                                           itemLabel="#{courses.courseName}"/>
+                            <f:selectItems value="#{courseBean.courses}" var="c"
+                                           itemValue="#{c.course_id}"
+                                           itemLabel="#{c.courseName}"/>
                         </b:selectOneMenu>
                     </b:column>
                 </b:row>
@@ -30,9 +31,9 @@
                     <b:column span="1"><h:outputLabel value="Student"/></b:column>
                     <b:column span="2">
                         <b:selectOneMenu value="#{registrationBean.person_id}">
-                            <f:selectItems value="#{personBean.personsNotAdmin}" var="persons"
-                                           itemValue="#{persons.person_id}"
-                                           itemLabel="#{persons.firstName} #{persons.lastName}"/>
+                            <f:selectItems value="#{personBean.persons}" var="p"
+                                           itemValue="#{p.person_id}"
+                                           itemLabel="#{p.firstName} #{p.lastName}"/>
                         </b:selectOneMenu>
                     </b:column>
                     <b:column span="1">

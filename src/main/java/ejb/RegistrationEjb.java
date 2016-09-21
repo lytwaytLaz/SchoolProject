@@ -21,21 +21,15 @@ public class RegistrationEjb
     @PersistenceContext
     private EntityManager em;
 
-    public void addRegistration(RegistrationCtr r)
+    public void addRegistration(Registration r)
     {
-        Registration registrationTbl;
-        if (r.getRegistration_id() == null)
-            registrationTbl = new Registration();
-        else
-            registrationTbl = em.find(Registration.class, r.getRegistration_id());
 
-        Course course = em.find(Course.class, r.getCourse_id());
-        Person person = em.find(Person.class, r.getPerson_id());
-        registrationTbl.setCourse(course);
-        registrationTbl.setPerson(person);
+//        Course course = em.find(Course.class, r.getCourse().getCourse_id());
+//        Person person = em.find(Person.class, r.getPerson().getPerson_id());
+        r.setCourse(em.find(Course.class, r.getCourse().getCourse_id()));
+        r.setPerson(em.find(Person.class, r.getPerson().getPerson_id()));
 
-
-        em.merge(registrationTbl);
+        em.persist(r);
     }
 
     public List<Registration> getRegistration()

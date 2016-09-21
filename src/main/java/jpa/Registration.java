@@ -10,14 +10,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(
-        name="Registration",
-        uniqueConstraints = @UniqueConstraint(columnNames ={ "course_course_id", "person_person_id"})
+        name = "Registration",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"course_course_id", "person_person_id"})
 )
 @NamedQueries({
         @NamedQuery(
                 name = "selectAllRegistrations",
                 query = "SELECT r from Registration r")
-        })
+})
 
 public class Registration
 {
@@ -30,6 +30,16 @@ public class Registration
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long registration_id;
+
+    public Registration(Course course, Person person)
+    {
+        this.course = course;
+        this.person = person;
+    }
+
+    public Registration()
+    {
+    }
 
     public Long getRegistration_id()
     {

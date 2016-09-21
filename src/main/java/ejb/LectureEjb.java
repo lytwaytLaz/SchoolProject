@@ -3,6 +3,7 @@ package ejb;
 import ctr.LectureCtr;
 import jpa.Course;
 import jpa.Lecture;
+import jpa.Role;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -22,16 +23,18 @@ public class LectureEjb
     @PersistenceContext
     private EntityManager em;
 
-    public void addLecture(LectureCtr l)
+    public void addLecture(Lecture l)
     {
-        Lecture lectureTbl = new Lecture();
+//        Lecture lectureTbl = new Lecture();
+//
+//        lectureTbl.setDate(l.getLectureCtrDate());
+//
+//        Course course = em.find(Course.class, l.getCourse_id());
+//        lectureTbl.setCourse(course);
 
-        lectureTbl.setDate(l.getLectureCtrDate());
+        l.setCourse(em.find(Course.class, l.getCourse().getCourse_id()));
 
-        Course course = em.find(Course.class, l.getCourse_id());
-        lectureTbl.setCourse(course);
-
-        em.persist(lectureTbl);
+        em.persist(l);
     }
 
     public List<Lecture> getLectures()

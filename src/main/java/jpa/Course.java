@@ -40,6 +40,11 @@ public class Course
         this.courseName = courseName;
     }
 
+    public Course(Long course_id)
+    {
+        this.course_id = course_id;
+    }
+
     public Course()
     {
     }

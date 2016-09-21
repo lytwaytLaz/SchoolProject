@@ -35,7 +35,9 @@ public class PersonBean implements Serializable
     public String submit()
     {
         try {
-            pers.addPerson(new Person(getFirstName(), getLastName(), getEmail(), getPassWord(), new Role(getRole_id())));
+            pers.addPerson(
+                            new Person(getFirstName(), getLastName(),
+                            getEmail(), getPassWord(), new Role(getRole_id())));
             setFirstName("");
             setLastName("");
             setEmail("");

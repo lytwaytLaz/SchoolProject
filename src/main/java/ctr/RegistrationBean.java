@@ -5,6 +5,7 @@ import jpa.Course;
 import jpa.Person;
 import jpa.Registration;
 
+import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,17 +23,26 @@ public class RegistrationBean implements Serializable
     private Long person_id;
     private Long course_id;
     private String courseName;
+    private String email;
+
+
 
     @Inject
     private RegistrationEjb reg;
 
 
-    //TODO Fix addRegistration, something needs to be done about the construtor for Course and Person
     public String submit()
     {
-        reg.addRegistration(
-                        new Registration(new Course(),
-                        new Person()));
+        try {
+            reg.addRegistration(
+                    new Registration(new Course(getCourse_id()),
+                            new Person(getPerson_id())));
+        }
+        catch (EJBException ejbe)
+        {
+            return "registration?faces-redirect=true";
+
+        }
 
         return "registration?faces-redirect=true";
     }
@@ -67,4 +77,16 @@ public class RegistrationBean implements Serializable
     {
         this.courseName = courseName;
     }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
 }
+
