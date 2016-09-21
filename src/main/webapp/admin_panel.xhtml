@@ -13,143 +13,150 @@
 </h:head>
 
 <h:body style="padding-top: 60px; background-color: #add;">
-    <h:form>
-
-        <div class="container" align="center">
-            <h2>Lexicon's Local School Project</h2>
-            <h3>Admin Dashboard</h3><hr/>
-        </div>
-
+    <div class="container" align="center">
+        <h2>Lexicon's Local School Project</h2>
+        <h3>Admin Dashboard</h3>
+        <br/>
+    </div>
 
 
-   <b:container fluid="true">
+    <b:container fluid="true">
         <b:accordion expanded-panels="panel1,panel3">
             <b:panel id="student" title="Student" look="primary">
-                <b:dataTable styleClass="table table-striped" value="#{personBean.getPersonsByRole(10)}" var="student" rows="15">
-                        <b:column>
-                            <f:facet name="header"><h:outputText value="First Name"/></f:facet>
-                            <b:label text="#{student.firstName}"/>
-                       </b:column>
-                        <b:column>
-                            <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
-                            <b:label text="#{student.lastName}"/>
-                        </b:column>
-                        <b:column>
-                            <f:facet name="header"><h:outputText value="E-mail"/></f:facet>
-                            <b:label text="#{student.email}"/>
-                        </b:column>
+                <b:dataTable styleClass="table table-striped" value="#{personBean.getPersonsByRole(10)}" var="student"
+                             rows="15">
+                    <b:column>
+                        <f:facet name="header"><h:outputText value="First Name"/></f:facet>
+                        <h:outputText value="#{student.firstName}"/>
+                    </b:column>
+                    <b:column>
+                        <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
+                        <h:outputText value="#{student.lastName}"/>
+                    </b:column>
+                    <b:column>
+                        <f:facet name="header"><h:outputText value="E-mail"/></f:facet>
+                        <h:outputText value="#{student.email}"/>
+                    </b:column>
                 </b:dataTable>
 
-                <b:panel id="register_new_student" title="Register New Student" look="success" collapsed="true">
-                    <b:row>
-                        <b:column medium-screen="2">
-                            <h:outputText value="First Name:"/>
-                        </b:column>
-                        <b:column medium-screen="4">
-                            <b:inputText placeholder="First Name" value="#{personBean.firstName}"/>
-                        </b:column>
+                <h:form>
+                        <b:panel id="register_new_student" title="Register New Student" look="info" collapsed="true">
 
-                    </b:row>
-                    <b:row>
-                        <b:column medium-screen="2">
-                            <h:outputText value="Last Name:"/>
-                        </b:column>
-                        <b:column medium-screen="4">
-                            <b:inputText placeholder="Last Name" value="#{personBean.lastName}"/>
-                        </b:column>
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputText value="First Name:"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="First Name" value="#{personBean.firstName}"/>
+                                </b:column>
 
-                    </b:row>
-                    <b:row>
-                        <b:column medium-screen="2">
-                            <h:outputText value="Email:"/>
-                        </b:column>
-                        <b:column medium-screen="4">
-                            <b:inputText placeholder="email@address.com" value="#{personBean.email}"/>
-                        </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputText value="Last Name:"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="Last Name" value="#{personBean.lastName}"/>
+                                </b:column>
 
-                    </b:row>
-                    <b:row>
-                        <b:column medium-screen="2">
-                            <h:outputText value="Password:"/>
-                        </b:column>
-                        <b:column medium-screen="4">
-                            <b:inputSecret placeholder="Password" value="#{personBean.passWord}"/>
-                        </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputText value="Email:"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="email@address.com" value="#{personBean.email}"/>
+                                </b:column>
 
-                    </b:row>
+                            </b:row>
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputText value="Password:"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputSecret placeholder="Password" value="#{personBean.passWord}"/>
+                                </b:column>
 
-                    <b:row>
-                        <b:column span="2" offset="2">
-                            <b:commandButton value="Save" action="#{personBean.submit(10)}" look="primary" style="width:100%" />
-                        </b:column>
-                    </b:row>
-                </b:panel>
+                            </b:row>
+
+                            <b:row>
+                                <b:column span="2" offset="2">
+                                    <b:commandButton value="Save" update="register_new_student" ajax="true"
+                                                     actionListener="#{personBean.submit(10)}" look="primary"
+                                                     style="width:100%"/>
+                                </b:column>
+                            </b:row>
+
+                        </b:panel>
+                </h:form>
             </b:panel>
 
 
             <b:panel id="teacher" title="Teacher" look="primary">
-                <b:dataTable styleClass="table table-striped" value="#{personBean.getPersonsByRole(20)}" var="teacher" rows="15">
+                <b:dataTable styleClass="table table-striped" value="#{personBean.getPersonsByRole(20)}"
+                             var="teacher" rows="15">
                     <b:column>
                         <f:facet name="header"><h:outputText value="First Name"/></f:facet>
-                        <b:label text="#{teacher.firstName}"/>
+                        <h:outputText value="#{teacher.firstName}"/>
                     </b:column>
                     <b:column>
                         <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
-                        <b:label text="#{teacher.lastName}"/>
+                        <h:outputText value="#{teacher.lastName}"/>
                     </b:column>
                     <b:column>
                         <f:facet name="header"><h:outputText value="E-mail"/></f:facet>
-                        <b:label text="#{teacher.email}"/>
+                        <h:outputText value="#{teacher.email}"/>
                     </b:column>
                 </b:dataTable>
+                <h:form>
+                <b:panel id="register_new_teacher" title="Register New Teacher" look="info" collapsed="true">
 
-                <b:panel id="register_new_teacher" title="Register New Teacher" look="success" collapsed="true">
-                    <b:row>
-                        <b:column medium-screen="2">
-                            <h:outputText value="First Name:"/>
-                        </b:column>
-                        <b:column medium-screen="4">
-                            <b:inputText placeholder="First Name" value="#{personBean.firstName}"/>
-                        </b:column>
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="First Name:"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="First Name" value="#{personBean.firstName}"/>
+                            </b:column>
 
-                    </b:row>
-                    <b:row>
-                        <b:column medium-screen="2">
-                            <h:outputText value="Last Name:"/>
-                        </b:column>
-                        <b:column medium-screen="4">
-                            <b:inputText placeholder="Last Name" value="#{personBean.lastName}"/>
-                        </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="Last Name:"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Last Name" value="#{personBean.lastName}"/>
+                            </b:column>
 
-                    </b:row>
-                    <b:row>
-                        <b:column medium-screen="2">
-                            <h:outputText value="Email:"/>
-                        </b:column>
-                        <b:column medium-screen="4">
-                            <b:inputText placeholder="email@address.com" value="#{personBean.email}"/>
-                        </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="Email:"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="email@address.com" value="#{personBean.email}"/>
+                            </b:column>
 
-                    </b:row>
-                    <b:row>
-                        <b:column medium-screen="2">
-                            <h:outputText value="Password:"/>
-                        </b:column>
-                        <b:column medium-screen="4">
-                            <b:inputSecret placeholder="Password" value="#{personBean.passWord}"/>
-                        </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="Password:"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputSecret placeholder="Password" value="#{personBean.passWord}"/>
+                            </b:column>
 
-                    </b:row>
+                        </b:row>
 
-                    <b:row>
-                        <b:column span="2" offset="2">
-                            <b:commandButton value="Save"  action="#{personBean.submit}" look="primary" style="width:100%" />
-                        </b:column>
-                    </b:row>
+                        <b:row>
+                            <b:column span="2" offset="2">
+                                <b:commandButton value="Save" actionListener="#{personBean.submit(20)}" update="register_new_teacher" look="primary"
+                                                 style="width:100%"/>
+                            </b:column>
+                        </b:row>
 
                 </b:panel>
-
-
+                </h:form>
 
             </b:panel>
 
@@ -165,24 +172,27 @@
                         <h:outputText value="#{courses.courseName}"/>
                     </b:column>
                 </b:dataTable>
+                <h:form>
+                <b:panel id="register_new_course" title="Register New Course" look="info" collapsed="true">
 
-                <b:panel id="register_new_course" title="Register New Course" look="success" collapsed="true">
-                    <b:row>
-                        <b:column medium-screen="2">
-                            <h:outputText value="Course Name:"/>
-                        </b:column>
-                        <b:column medium-screen="4">
-                            <b:inputText placeholder="Course Name" value="#{courseBean.courseBeanName}"/>
-                        </b:column>
-                    </b:row>
-                    <b:row>
-                        <b:column span="2" offset="2">
-                            <b:commandButton value="Save"  action="#{courseBean.submit}" look="primary" style="width:100%" />
-                        </b:column>
-                    </b:row>
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="Course Name:"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Course Name" value="#{courseBean.courseBeanName}"/>
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column span="2" offset="2">
+                                <b:commandButton value="Save" actionListener="#{courseBean.submit}" update="register_new_course" look="primary"
+                                                 style="width:100%"/>
+                            </b:column>
+                        </b:row>
+
 
                 </b:panel>
-
+                </h:form>
             </b:panel>
 
             <b:panel id="attendance" title="Attendance" look="primary">
@@ -198,8 +208,6 @@
                 </b:dataTable>
             </b:panel>
         </b:accordion>
-        </b:container>
-    </h:form>
-
+    </b:container>
 </h:body>
 </html>
