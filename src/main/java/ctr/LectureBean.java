@@ -25,7 +25,9 @@ public class LectureBean
     private Course lectureBeanCourse;
     private Course course;
     private Long course_id;
+    private Long lecture_id;
     private List<Lecture> lectures;
+    private List<Lecture> lecturesByCourse;
 
     @Inject
     private LectureEjb lecEjb;
@@ -85,9 +87,25 @@ public class LectureBean
         this.course_id = course_id;
     }
 
+    public Long getLecture_id()
+    {
+        return lecture_id;
+    }
+
+    public void setLecture_id(Long lecture_id)
+    {
+        this.lecture_id = lecture_id;
+    }
+
     public List<Lecture> getLectures()
     {
         lectures = lecEjb.getLectures();
         return lectures;
+    }
+
+    public List<Lecture> getLecturesByCourse(Long course_id)
+    {
+        lecturesByCourse = lecEjb.getLecturesByCourse(course_id);
+        return lecturesByCourse;
     }
 }

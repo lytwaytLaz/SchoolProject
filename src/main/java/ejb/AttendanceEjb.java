@@ -1,5 +1,6 @@
 package ejb;
 
+import jpa.Attendance;
 import jpa.Person;
 
 import javax.ejb.Stateless;
@@ -17,6 +18,12 @@ public class AttendanceEjb
 {
     @PersistenceContext
     private EntityManager em;
+
+    public void addAttendance(Attendance a)
+    {
+
+        em.persist(a);
+    }
 
     public List<Person> getStudents(Long role_id)
     {

@@ -300,7 +300,57 @@
                         <h:outputText value="#{courses.courseName}"/>
                     </b:column>
                 </b:dataTable>
+                <h:form>
+
+                    <b:row>
+                        <b:panel span="4" id="choose_course" title="Choose Course" look="info"
+                                 collapsed="true">
+
+                            <b:row>
+                                <b:column span="2"><h:outputText value="Course:"/></b:column>
+                                <b:column span="4">
+                                    <b:selectOneMenu id="course-picker" value="#{lectureBean.course_id}">
+                                        <f:selectItems value="#{courseBean.courses}" var="courses"
+                                                       itemValue="#{courses.course_id}"
+                                                       itemLabel="#{courses.courseName}"/>
+                                    </b:selectOneMenu>
+                                </b:column>
+                                <b:column span="1">
+                                    <b:commandButton value="Save"
+                                                     actionListener="#{lectureBean.submit}" look="primary"
+                                                     update="choose_course"/>
+                                </b:column>
+                            </b:row>
+                        </b:panel>
+
+                        <b:panel span="8" id="choose_lecture" title="Choose Lecture Date" look="info"
+                                 collapsed="true">
+
+                            <b:row>
+                                <b:column span="1"><h:outputText value="Lecture Date:"/></b:column>
+                                <b:column span="3">
+                                    <b:selectOneMenu id="lecture_picker" value="#{lectureBean.lecture_id}">
+                                        <f:selectItems value="#{lectureBean.getLecturesByCourse(lectureBean.course_id)}" var="leb"
+                                                       itemValue="#{leb.lecture_id}"
+                                                       itemLabel="#{leb.date}"/>
+                                    </b:selectOneMenu>
+                                </b:column>
+
+
+                                <b:column span="1">
+                                    <b:commandButton value="Save"
+                                                     actionListener="#{lectureBean.submit}" look="primary"
+                                                     update="choose_lecture"/>
+                                </b:column>
+                            </b:row>
+
+
+                        </b:panel>
+                    </b:row>
+                </h:form>
+
             </b:panel>
+
         </b:accordion>
     </b:container>
 </h:body>

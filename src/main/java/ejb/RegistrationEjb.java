@@ -32,6 +32,8 @@ public class RegistrationEjb
         em.persist(r);
     }
 
+
+
     public List<Registration> getRegistration()
     {
         List<Registration> registrations;

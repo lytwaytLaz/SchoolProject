@@ -46,6 +46,16 @@ public class LectureEjb
         return lectures;
     }
 
+    public List<Lecture> getLecturesByCourse(Long course_id)
+    {
+        List<Lecture> lecturesByCourse;
+        lecturesByCourse = em.createNamedQuery(
+                "selectLecturesByCourse", Lecture.class)
+                .setParameter(1, course_id)
+                .getResultList();
+        return lecturesByCourse;
+    }
+
 
 
 

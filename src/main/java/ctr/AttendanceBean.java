@@ -2,8 +2,12 @@ package ctr;
 
 import ejb.AttendanceEjb;
 import ejb.RoleEjb;
+import jpa.Attendance;
+import jpa.Course;
 import jpa.Person;
+import jpa.Registration;
 
+import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -31,6 +35,18 @@ public class AttendanceBean implements Serializable
 
     @Inject
     private RoleEjb roleEjb;
+
+//    public String submit()
+//    {
+//        try
+//        {
+//            att.addAttendance(new Attendance(new Person(new Registration(getCourse_id())), new Course(getCourse_id())));
+//        }
+//        catch (EJBException ejbe)
+//        {
+//
+//        }
+//    }
 
     public Long getCourse_id()
     {
@@ -74,19 +90,11 @@ public class AttendanceBean implements Serializable
             return null;
     }
 
-    public List<Person> getStudentsByCourseAndLecture()
-    {
-        System.out.println("StudentsBy Course ID: " + course_id);
-
-        if (course_id != null) {
-
-
-            students = att.getStudentsByCourseAndLecture(roleEjb.getRoleIdByType(roleEjb.getRoles(), type), course_id, lecture_id);
-            return students;
-        }
-        else
-            return null;
-    }
+//    public List<Person> getStudentsByCourseAndLecture()
+//    {
+//        students = att.getStudentsByCourseAndLecture();
+//        return students;
+//    }
 
     public String refresh()
     {

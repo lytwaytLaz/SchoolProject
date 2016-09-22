@@ -15,9 +15,20 @@ import java.util.List;
         name="Lecture",
         uniqueConstraints = @UniqueConstraint(columnNames ={ "course_course_id", "date"})
 )
-@NamedQuery(
+@NamedQueries(
+        {
+        @NamedQuery(
         name = "selectAllLectures",
-        query = "SELECT le from Lecture le ORDER BY le.date")
+        query = "SELECT le from Lecture le ORDER BY le.date"),
+
+        @NamedQuery(
+                name = "selectLecturesByCourse",
+                query = "SELECT leb FROM Lecture leb WHERE (leb.course.course_id = ?1) ORDER BY leb.date"
+        )}
+)
+
+
+
 public class Lecture
 {
     @OneToMany(mappedBy = "lecture", orphanRemoval=true)
@@ -38,6 +49,11 @@ public class Lecture
     {
         this.course = course;
         this.date = date;
+    }
+
+    public Lecture(Long lecture_id)
+    {
+        this.lecture_id = lecture_id;
     }
 
     public Lecture()
