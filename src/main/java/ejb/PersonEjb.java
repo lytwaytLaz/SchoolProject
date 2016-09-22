@@ -22,15 +22,6 @@ public class PersonEjb
 
     public void addPerson(Person p)
     {
-//        Person personTbl = new Person();
-//
-//        personTbl.setFirstName(p.getFirstName());
-//        personTbl.setLastName(p.getLastName());
-//        personTbl.setEmail(p.getEmail());
-//        personTbl.setPassWord(p.getPassWord());
-
-
-//        Role role = em.find(Role.class, p.getRole().getRole_id());
         p.setRole(em.find(Role.class, p.getRole().getRole_id()));
 
         em.persist(p);
@@ -64,12 +55,4 @@ public class PersonEjb
                 .getResultList();
         return persons;
     }
-
-
-
-//    public List<Person> getAll()
-//    {
-//        List<Person> person = em.createNamedQuery("selectPerson").getResultList();
-//        return person.stream().map(m -> new PersonCtr(m.getPerson_id(), m.getFirstName(), m.getLastName(), m.getEmail(), m.getPassWord(), m.getRole())).collect(Collectors.toList());
-//    }
 }
