@@ -317,7 +317,7 @@
                                 </b:column>
                                 <b:column span="1">
                                     <b:commandButton value="Save"
-                                                     actionListener="#{lectureBean.submit}" look="primary"
+                                                     actionListener="#{lectureBean.course_id}" look="primary"
                                                      update="choose_course"/>
                                 </b:column>
                             </b:row>
@@ -330,7 +330,7 @@
                                 <b:column span="1"><h:outputText value="Lecture Date:"/></b:column>
                                 <b:column span="3">
                                     <b:selectOneMenu id="lecture_picker" value="#{lectureBean.lecture_id}">
-                                        <f:selectItems value="#{lectureBean.getLecturesByCourse(lectureBean.course_id)}" var="leb"
+                                        <f:selectItems value="#{lectureBean.getLecturesByCourse()}" var="leb"
                                                        itemValue="#{leb.lecture_id}"
                                                        itemLabel="#{leb.date}"/>
                                     </b:selectOneMenu>
