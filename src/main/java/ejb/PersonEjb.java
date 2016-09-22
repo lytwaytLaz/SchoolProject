@@ -1,6 +1,5 @@
 package ejb;
 
-import ctr.PersonCtr;
 import jpa.Person;
 import jpa.Role;
 

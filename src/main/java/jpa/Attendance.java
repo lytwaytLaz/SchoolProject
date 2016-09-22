@@ -46,6 +46,17 @@ public class Attendance
 
     private Boolean present;
 
+    public Attendance()
+    {
+    }
+
+    public Attendance(Person person, Lecture lecture, Boolean present)
+    {
+        this.person = person;
+        this.lecture = lecture;
+        this.present = present;
+    }
+
     public Long getAttendence_id()
     {
         return attendence_id;
