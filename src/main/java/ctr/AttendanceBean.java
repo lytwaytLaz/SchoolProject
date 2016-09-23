@@ -2,10 +2,7 @@ package ctr;
 
 import ejb.AttendanceEjb;
 import ejb.RoleEjb;
-import jpa.Attendance;
-import jpa.Course;
-import jpa.Person;
-import jpa.Registration;
+import jpa.*;
 
 import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
@@ -29,24 +26,44 @@ public class AttendanceBean implements Serializable
     private List<Person> students;
     private String type = "Student";
     private Long course_id;
+    private List<Person> studentsByCourse;
+    private List<Person> studentsByLecture;
 
     @Inject
-    private AttendanceEjb att;
+    private AttendanceEjb attEjb;
 
     @Inject
     private RoleEjb roleEjb;
 
-//    public String submit()
+    public String submit()
+    {
+        try
+            {
+//                students = attEjb.getStudentsByLecture(course_id, lecture_id);
+
+            for(Person student: studentsByLecture) {
+                Attendance attendance = new Attendance(student, present);
+                attEjb.addAttendance(attendance);
+            }
+        }
+        catch (EJBException ejbe)
+        {
+            return "admin_panel?faces-redirect=true";
+
+        }
+        return "admin_panel?faces-redirect=true";
+    }
+
+
+//    public List<Person> getStudentsByLecture()
 //    {
-//        try
-//        {
-//            att.addAttendance(new Attendance(new Person(new Registration(getCourse_id())), new Course(getCourse_id())));
-//        }
-//        catch (EJBException ejbe)
-//        {
-//
-//        }
+//        return studentsByLecture;
 //    }
+
+    public void setStudentsByLecture(List<Person> studentsByLecture)
+    {
+        this.studentsByLecture = studentsByLecture;
+    }
 
     public Long getCourse_id()
     {
@@ -71,30 +88,33 @@ public class AttendanceBean implements Serializable
 
     public List<Person> getStudents()
     {
-        students = att.getStudents(roleEjb.getRoleIdByType(roleEjb.getRoles(), type));
+        students = attEjb.getStudents(roleEjb.getRoleIdByType(roleEjb.getRoles(), type));
 
         return students;
     }
 
-    public List<Person> getStudentsByCourse()
+    public Boolean getPresent()
     {
-        System.out.println("StudentsBy Course ID: " + course_id);
-
-        if (course_id != null) {
-
-
-            students = att.getStudentsByCourse(roleEjb.getRoleIdByType(roleEjb.getRoles(), type), course_id);
-            return students;
-        }
-        else
-            return null;
+        return present;
     }
 
-//    public List<Person> getStudentsByCourseAndLecture()
-//    {
-//        students = att.getStudentsByCourseAndLecture();
-//        return students;
-//    }
+    public void setPresent(Boolean present)
+    {
+        this.present = present;
+    }
+
+    public List<Person> getStudentsByCourse()
+    {
+            studentsByCourse = attEjb.getStudentsByCourse(course_id, lecture_id);
+            return studentsByCourse;
+
+    }
+
+    public List<Person> getStudentsByLecture()
+    {
+        studentsByLecture = attEjb.getStudentsByLecture(getCourse_id(), getLecture_id());
+        return studentsByLecture;
+    }
 
     public String refresh()
     {

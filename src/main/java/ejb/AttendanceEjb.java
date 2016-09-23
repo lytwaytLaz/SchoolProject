@@ -1,6 +1,7 @@
 package ejb;
 
 import jpa.Attendance;
+import jpa.Lecture;
 import jpa.Person;
 
 import javax.ejb.Stateless;
@@ -21,10 +22,10 @@ public class AttendanceEjb
 
     public void addAttendance(Attendance a)
     {
+        a.setLecture(em.find(Lecture.class, a.getLecture().getLecture_id()));
 
         em.persist(a);
     }
-
     public List<Person> getStudents(Long role_id)
     {
         List<Person> persons;
@@ -48,12 +49,12 @@ public class AttendanceEjb
 
     }
 
-    public List<Person> getStudentsByCourseAndLecture(Long role_id, Long course_id, Long lecture_id)
+    public List<Person> getStudentsByLecture(Long course_id, Long lecture_id)
     {
         List<Person> persons;
         persons = em.createNamedQuery(
-                "selectAllStudentsByCourseAndLecture", Person.class)
-                .setParameter(1, role_id)
+                "selectAllStudentsByLecture", Person.class)
+                .setParameter(1, 10L)
                 .setParameter(2, course_id)
                 .setParameter(3, lecture_id)
                 .getResultList();

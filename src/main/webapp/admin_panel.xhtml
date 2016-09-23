@@ -293,23 +293,11 @@
             </b:panel>
 
             <b:panel id="attendance" title="Attendance" look="primary">
-                <b:dataTable styleClass="table table-striped" value="#{courseBean.courses}" var="courses" rows="15">
-                    <b:column>
-                        <f:facet name="header"><h:outputText value="Course Id"/></f:facet>
-                        <h:outputText value="#{courses.course_id}"/>
-                    </b:column>
-                    <b:column>
-                        <f:facet name="header"><h:outputText value="Course Name"/></f:facet>
-                        <h:outputText value="#{courses.courseName}"/>
-                    </b:column>
-                </b:dataTable>
+
+
+
                 <h:form>
 
-                    <b:row>
-                        <b:panel span="4" id="choose_course" title="Choose Course" look="info"
-                                 collapsed="true">
-
-                            <b:row>
                                 <b:column span="2"><h:outputText value="Course:"/></b:column>
                                 <b:column span="4">
                                     <b:selectOneMenu id="course-picker" value="#{lectureBean.course_id}">
@@ -320,20 +308,17 @@
                                 </b:column>
                                 <b:column span="1">
                                     <b:commandButton value="Save"
-                                                     actionListener="#{lectureBean.course_id}" look="primary"
-                                                     update="choose_course"/>
+                                                     look="primary"
+                                                     update="@form"/>
                                 </b:column>
-                            </b:row>
-                        </b:panel>
 
-                        <b:panel span="8" id="choose_lecture" title="Choose Lecture Date" look="info"
-                                 collapsed="true">
 
-                            <b:row>
+
+
                                 <b:column span="1"><h:outputText value="Lecture Date:"/></b:column>
                                 <b:column span="3">
-                                    <b:selectOneMenu id="lecture_picker" value="#{lectureBean.lecture_id}">
-                                        <f:selectItems value="#{lectureBean.getLecturesByCourse(402)}" var="leb"
+                                    <b:selectOneMenu id="lecture_picker" value="#{attendanceBean.lecture_id}">
+                                        <f:selectItems value="#{lectureBean.lecturesByCourse}" var="leb"
                                                        itemValue="#{leb.lecture_id}"
                                                        itemLabel="#{leb.date}"/>
                                     </b:selectOneMenu>
@@ -342,15 +327,36 @@
 
                                 <b:column span="1">
                                     <b:commandButton value="Save"
-                                                     actionListener="#{lectureBean.submit}" look="primary"
-                                                     update="choose_lecture"/>
+                                                     look="primary"
+                                                     update="@form"/>
                                 </b:column>
-                            </b:row>
+                                <b:column span="1">
+                                    <b:commandButton value="Save"
+                                                     look="primary"
+                                                     actionListener="#{attendanceBean.submit}"
+                                                     update="@form"/>
+                                </b:column>
 
-
-                        </b:panel>
-                    </b:row>
                 </h:form>
+
+
+                <b:dataTable styleClass="table table-striped" value="#{attendanceBean.studentsByLecture}" var="student"
+                             rows="15">
+                    <b:column>
+                        <f:facet name="header"><h:outputText value="First Name"/></f:facet>
+                        <h:outputText value="#{student.firstName}"/>
+                    </b:column>
+                    <b:column>
+                        <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
+                        <h:outputText value="#{student.lastName}"/>
+                    </b:column>
+                    <b:column>
+                        <f:facet name="header"><h:outputText value="E-mail"/></f:facet>
+                        <h:outputText value="#{student.email}"/>
+                    </b:column>
+                </b:dataTable>
+
+
 
             </b:panel>
 

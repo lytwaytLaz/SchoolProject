@@ -6,8 +6,10 @@ import jpa.Lecture;
 
 import javax.ejb.EJBException;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -18,8 +20,8 @@ import java.util.List;
  * @since 2016-09-08
  */
 @Named
-@RequestScoped
-public class LectureBean
+@SessionScoped
+public class LectureBean implements Serializable
 {
     private Date lectureDate;
     private Course lectureBeanCourse;
@@ -28,6 +30,7 @@ public class LectureBean
     private Long lecture_id;
     private List<Lecture> lectures;
     private List<Lecture> lecturesByCourse;
+
 
     @Inject
     private LectureEjb lecEjb;
@@ -103,9 +106,10 @@ public class LectureBean
         return lectures;
     }
 
-    public List<Lecture> getLecturesByCourse(Long course_id)
+    public List<Lecture> getLecturesByCourse()
     {
-        lecturesByCourse = lecEjb.getLecturesByCourse(course_id);
+        lecturesByCourse = lecEjb.getLecturesByCourse(getCourse_id());
         return lecturesByCourse;
     }
+
 }

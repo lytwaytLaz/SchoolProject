@@ -6,8 +6,10 @@ import jpa.Course;
 
 import javax.ejb.EJBException;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -17,8 +19,8 @@ import java.util.List;
  */
 
 @Named
-@RequestScoped
-public class CourseBean
+@SessionScoped
+public class CourseBean implements Serializable
 
 {
     private Long courseBeanId;
@@ -36,6 +38,7 @@ public class CourseBean
         try {
             System.out.println("Course submit");
             courseEjb.addCourse(new Course(getCourseBeanName()));
+
         } catch (EJBException ejbe) {
             return "course?faces-redirect=true";
         }
@@ -43,6 +46,7 @@ public class CourseBean
 
         return "course?faces-redirect=true";
     }
+
 
     public String getCourseBeanName()
     {

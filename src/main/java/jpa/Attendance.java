@@ -1,6 +1,7 @@
 package jpa;
 
 import javax.persistence.*;
+import javax.persistence.criteria.Predicate;
 
 /**
  * @author László Hágó
@@ -26,7 +27,7 @@ import javax.persistence.*;
 //                name = "selectAllStudentsByCourseAndLecture",
 //                query = "SELECT p FROM Person p JOIN Lecture lec ON (SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id WHERE p.role.role_id = ?1 AND r.course.course_id = ?2)=lec.course.course_id WHERE lec.lecture_id "),
         @NamedQuery(
-                name = "selectAllStudentsByCourseAndLecture",
+                name = "selectAllStudentsByLecture",
                 query = "SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id " +
                         "JOIN Lecture lec ON r.course.course_id = lec.course.course_id " +
                         "WHERE p.role.role_id = ?1 AND r.course.course_id = ?2  AND lec.lecture_id = ?3")
@@ -48,6 +49,12 @@ public class Attendance
 
     public Attendance()
     {
+    }
+
+    public Attendance(Person person, Boolean present)
+    {
+        this.person = person;
+        this.present = present;
     }
 
     public Attendance(Person person, Lecture lecture, Boolean present)
@@ -75,5 +82,15 @@ public class Attendance
     public void setPerson(Person person)
     {
         this.person = person;
+    }
+
+    public Lecture getLecture()
+    {
+        return lecture;
+    }
+
+    public void setLecture(Lecture lecture)
+    {
+        this.lecture = lecture;
     }
 }

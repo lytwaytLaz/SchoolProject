@@ -37,6 +37,11 @@ public class Registration
         this.person = person;
     }
 
+    public Registration(Course course)
+    {
+        this.course = course;
+    }
+
     public Registration()
     {
     }
