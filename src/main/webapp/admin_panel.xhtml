@@ -236,6 +236,7 @@
                 <h:form>
 
                     <b:row>
+                        <h:form>
                         <b:panel span="6" id="Add_new_course" title="Add New Course" look="info"
                                  collapsed="true">
 
@@ -254,7 +255,8 @@
                                 </b:column>
                             </b:row>
                         </b:panel>
-
+                        </h:form>
+                        <h:form>
                         <b:panel span="6" id="Add_new_lecture" title="Add Lecture Date" look="info"
                                  collapsed="true">
 
@@ -285,6 +287,7 @@
 
 
                         </b:panel>
+                        </h:form>
                     </b:row>
                 </h:form>
             </b:panel>
@@ -330,7 +333,7 @@
                                 <b:column span="1"><h:outputText value="Lecture Date:"/></b:column>
                                 <b:column span="3">
                                     <b:selectOneMenu id="lecture_picker" value="#{lectureBean.lecture_id}">
-                                        <f:selectItems value="#{lectureBean.getLecturesByCourse()}" var="leb"
+                                        <f:selectItems value="#{lectureBean.getLecturesByCourse(402)}" var="leb"
                                                        itemValue="#{leb.lecture_id}"
                                                        itemLabel="#{leb.date}"/>
                                     </b:selectOneMenu>
