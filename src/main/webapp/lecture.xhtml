@@ -8,6 +8,11 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:b="http://bootsfaces.net/ui">
 
+<f:view>
+    <f:event type="preRenderView"
+             listener="#{loginBean.forwardToLoginIfNotLoggedIn}" />
+</f:view>
+
 <h:head></h:head>
 <b:jumbotron>
     <b:container id="lecture-date" fluid="true">

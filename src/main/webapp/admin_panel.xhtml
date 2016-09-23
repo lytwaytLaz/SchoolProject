@@ -7,6 +7,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
 >
 
+<f:view>
+    <f:event type="preRenderView"
+              listener="#{loginBean.forwardToLoginIfNotLoggedIn}" />
+</f:view>
+
+
+
 <h:head>
     <title>Admin</title>
     <meta name="author" content="Riccardo Massera"></meta>
