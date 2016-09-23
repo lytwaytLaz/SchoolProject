@@ -5,7 +5,11 @@ import jpa.Person;
 import util.SchoolUtil;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.FacesEvent;
+import javax.faces.event.PhaseEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -22,9 +26,22 @@ public class LoginBean implements Serializable
 {
     private String email;
     private String passWord;
+    private boolean isLoggedin;
 
     @Inject
     private LoginEjb login;
+
+    public void forwardToLoginIfNotLoggedIn(ComponentSystemEvent fevent){
+
+        if(!isLoggedin){
+            FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(
+                    FacesContext.getCurrentInstance(),
+                    null,
+                    "/login?faces-redirect=true" );
+        }
+
+    }
+
 
     public String getEmail()
     {
@@ -55,13 +72,15 @@ public class LoginBean implements Serializable
         }
         List<Person> persons = login.getPerson(getEmail());
         if(!persons.isEmpty()){
+            isLoggedin = true;
             Person person = persons.get(0);
             if(person.getPassWord().equals(passWord) && person.getRole().getRole_id() == 30)
-                return "person?faces-redirect=true";
+                return "admin_panel?faces-redirect=true";
             else if(person.getPassWord().equals(passWord) && person.getRole().getRole_id() == 20)
-            return "course?faces-redirect=true";
+            return "teacher_panel?faces-redirect=true";
             else if(person.getPassWord().equals(passWord) && person.getRole().getRole_id() == 10)
-                return "lecture?faces-redirect=true";
+                return "student_panel?faces-redirect=true";
+
         }
         return "login?faces-redirect=true";
     }
