@@ -1,7 +1,6 @@
 package ejb;
 
 import jpa.Attendance;
-import jpa.Lecture;
 import jpa.Person;
 
 import javax.ejb.Stateless;
@@ -22,7 +21,7 @@ public class AttendanceEjb
 
     public void addAttendance(Attendance a)
     {
-        a.setLecture(em.find(Lecture.class, a.getLecture().getLecture_id()));
+//        a.setLecture(em.find(Lecture.class, a.getLecture().getLecture_id()));
 
         em.persist(a);
     }
@@ -37,6 +36,7 @@ public class AttendanceEjb
 
     }
 
+
     public List<Person> getStudentsByCourse(Long role_id, Long course_id)
     {
         List<Person> persons;
@@ -49,18 +49,13 @@ public class AttendanceEjb
 
     }
 
-    /*TODO: If I put a dummy value in for course_id the list is created fine,
-    TODO: but just on the webb page. The DB query works fine,
-    TODO: but the Attendance table in the DB is NOT populated.
-    TODO: One problem is setting the course_id in AttendanceBean
-    TODO: Another is getting the DB populated*/
-    public List<Person> getStudentsByLecture(Long course_id, Long lecture_id)
+    public List<Person> getStudentsByLecture(Long role_id, Long course_id, Long lecture_id)
     {
         List<Person> persons;
         persons = em.createNamedQuery(
                 "selectAllStudentsByLecture", Person.class)
-                .setParameter(1, 10)
-                .setParameter(2, 402)
+                .setParameter(1, role_id)
+                .setParameter(2, course_id)
                 .setParameter(3, lecture_id)
                 .getResultList();
         return persons;
