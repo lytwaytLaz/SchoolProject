@@ -5,7 +5,6 @@ import ejb.CourseEjb;
 import jpa.Course;
 
 import javax.ejb.EJBException;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
