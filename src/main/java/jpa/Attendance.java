@@ -22,9 +22,6 @@ import javax.persistence.*;
         @NamedQuery(
                 name = "selectAllStudentsByCourse",
                 query = "SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id WHERE p.role.role_id = ?1 AND r.course.course_id = ?2"),
-//        @NamedQuery(
-//                name = "selectAllStudentsByCourseAndLecture",
-//                query = "SELECT p FROM Person p JOIN Lecture lec ON (SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id WHERE p.role.role_id = ?1 AND r.course.course_id = ?2)=lec.course.course_id WHERE lec.lecture_id "),
         @NamedQuery(
                 name = "selectAllStudentsByLecture",
                 query = "SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id " +
@@ -42,18 +39,12 @@ public class Attendance
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long attendence_id;
+    private Long attendance_id;
 
-    private Boolean present = false;
+    private boolean present = false;
 
     public Attendance()
     {
-    }
-
-    public Attendance(Person person, Boolean present)
-    {
-        this.person = person;
-        this.present = present;
     }
 
     public Attendance(Person person, Lecture lecture, Boolean present)
@@ -65,12 +56,12 @@ public class Attendance
 
     public Long getAttendence_id()
     {
-        return attendence_id;
+        return attendance_id;
     }
 
     public void setAttendence_id(Long id)
     {
-        this.attendence_id = id;
+        this.attendance_id = id;
     }
 
     public Person getPerson()
