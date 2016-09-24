@@ -1,7 +1,6 @@
 package jpa;
 
 import javax.persistence.*;
-import javax.persistence.criteria.Predicate;
 
 /**
  * @author László Hágó
@@ -30,7 +29,7 @@ import javax.persistence.criteria.Predicate;
                 name = "selectAllStudentsByLecture",
                 query = "SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id " +
                         "JOIN Lecture lec ON r.course.course_id = lec.course.course_id " +
-                        "WHERE p.role.role_id = ?1 AND r.course.course_id = ?2  AND lec.lecture_id = ?3")
+                        "WHERE p.role.role_id = ?1 AND r.course.course_id = ?2  AND lec.lecture_id = ?3 ORDER BY p.firstName")
 })
 
 public class Attendance
@@ -45,7 +44,7 @@ public class Attendance
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long attendence_id;
 
-    private Boolean present;
+    private Boolean present = false;
 
     public Attendance()
     {
