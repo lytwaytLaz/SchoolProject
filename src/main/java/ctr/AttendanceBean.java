@@ -22,7 +22,7 @@ public class AttendanceBean implements Serializable
 {
     private Long person_id;
     private Long lecture_id;
-    private Boolean present;
+    private Boolean present = false;
     private List<Person> students;
     private String type = "Student";
     private Long course_id;
@@ -41,8 +41,8 @@ public class AttendanceBean implements Serializable
             {
 //                students = attEjb.getStudentsByLecture(course_id, lecture_id);
 
-            for(Person student: studentsByLecture) {
-                Attendance attendance = new Attendance(student, present);
+            for(Person student: getStudentsByLecture()) {
+                Attendance attendance = new Attendance(student, getPresent());
                 attEjb.addAttendance(attendance);
             }
         }
@@ -81,6 +81,7 @@ public class AttendanceBean implements Serializable
         return lecture_id;
     }
 
+    //TODO This method gets called and the right lecture_id is set
     public void setLecture_id(Long lecture_id)
     {
         this.lecture_id = lecture_id;
@@ -110,9 +111,16 @@ public class AttendanceBean implements Serializable
 
     }
 
+
+    //TODO: When submit is called it runs but the course_id is null
+    //TODO: Only lecture_id is set in AttendanceBean
+    //TODO: Get course_id from Lecture instance
+    //TODO: Sounds easy but I'm a bit stuck
+    //TODO: Either send it directly to AttendanceBean from the web page,
+    //TODO: or extract it from the Lecture instance in the submit function
     public List<Person> getStudentsByLecture()
     {
-        studentsByLecture = attEjb.getStudentsByLecture(getCourse_id(), getLecture_id());
+        studentsByLecture = attEjb.getStudentsByLecture(course_id, lecture_id);
         return studentsByLecture;
     }
 
