@@ -1,6 +1,7 @@
 package ctr;
 
 import ejb.AttendanceEjb;
+import ejb.LectureEjb;
 import ejb.RoleEjb;
 import jpa.*;
 
@@ -22,7 +23,7 @@ public class AttendanceBean implements Serializable
 {
     private Long person_id;
     private Long lecture_id;
-    private Boolean present = false;
+    private boolean present; //Couldn't make it work with Boolean, resorted to primitive
     private List<Person> students;
     private String type = "Student";
     private Long course_id;
@@ -35,14 +36,18 @@ public class AttendanceBean implements Serializable
     @Inject
     private RoleEjb roleEjb;
 
+    @Inject
+    private LectureEjb lecEjb;
+
     public String submit()
     {
+        //Injecting lecEjb to be able to get course_id through lecture_id
+        setCourse_id(lecEjb.getCourse_id(lecture_id));
         try
             {
-//                students = attEjb.getStudentsByLecture(course_id, lecture_id);
 
             for(Person student: getStudentsByLecture()) {
-                Attendance attendance = new Attendance(student, getPresent());
+                Attendance attendance = new Attendance(student, new Lecture(lecture_id), present);
                 attEjb.addAttendance(attendance);
             }
         }
@@ -81,7 +86,6 @@ public class AttendanceBean implements Serializable
         return lecture_id;
     }
 
-    //TODO This method gets called and the right lecture_id is set
     public void setLecture_id(Long lecture_id)
     {
         this.lecture_id = lecture_id;
@@ -94,12 +98,12 @@ public class AttendanceBean implements Serializable
         return students;
     }
 
-    public Boolean getPresent()
+    public boolean getPresent()
     {
         return present;
     }
 
-    public void setPresent(Boolean present)
+    public void setPresent(boolean present)
     {
         this.present = present;
     }
@@ -111,16 +115,10 @@ public class AttendanceBean implements Serializable
 
     }
 
-
-    //TODO: When submit is called it runs but the course_id is null
-    //TODO: Only lecture_id is set in AttendanceBean
-    //TODO: Get course_id from Lecture instance
-    //TODO: Sounds easy but I'm a bit stuck
-    //TODO: Either send it directly to AttendanceBean from the web page,
-    //TODO: or extract it from the Lecture instance in the submit function
     public List<Person> getStudentsByLecture()
     {
-        studentsByLecture = attEjb.getStudentsByLecture(course_id, lecture_id);
+
+        studentsByLecture = attEjb.getStudentsByLecture(10L, course_id, lecture_id);
         return studentsByLecture;
     }
 
