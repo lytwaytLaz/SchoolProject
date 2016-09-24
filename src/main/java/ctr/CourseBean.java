@@ -23,10 +23,11 @@ public class CourseBean implements Serializable
 
 {
     private Long courseBeanId;
+    private List<Course> courses;
 
     @NotNull
     private String courseBeanName;
-    private List<Course> courses;
+
 
     @Inject
     private CourseEjb courseEjb;
