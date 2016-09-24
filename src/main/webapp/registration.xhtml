@@ -8,45 +8,5 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:b="http://bootsfaces.net/ui">
 
-<f:view>
-    <f:event type="preRenderView"
-             listener="#{loginBean.forwardToLoginIfNotLoggedIn}" />
-</f:view>
 
-<h:head></h:head>
-<b:jumbotron>
-    <b:container id="registration" fluid="true">
-        <h:form>
-            <b:container>
-                <b:row>
-                    <b:column span="1"><h:outputLabel value="Course"/></b:column>
-                    <b:column span="2">
-                        <b:selectOneMenu value="#{registrationBean.course_id}">
-                            <f:selectItems value="#{courseBean.courses}" var="c"
-                                           itemValue="#{c.course_id}"
-                                           itemLabel="#{c.courseName}"/>
-                        </b:selectOneMenu>
-                    </b:column>
-                </b:row>
-            </b:container>
-
-            <b:container>
-                <b:row>
-                    <b:column span="1"><h:outputLabel value="Student"/></b:column>
-                    <b:column span="2">
-                        <b:selectOneMenu value="#{registrationBean.person_id}">
-                            <f:selectItems value="#{personBean.persons}" var="p"
-                                           itemValue="#{p.person_id}"
-                                           itemLabel="#{p.firstName} #{p.lastName}"/>
-                        </b:selectOneMenu>
-                    </b:column>
-                    <b:column span="1">
-                        <b:commandButton value="submit" update="@form" look="success"
-                                         action="#{registrationBean.submit}"/>
-                    </b:column>
-                </b:row>
-            </b:container>
-        </h:form>
-    </b:container>
-</b:jumbotron>
 </html>

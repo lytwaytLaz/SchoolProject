@@ -8,45 +8,4 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-<f:view>
-    <f:event type="preRenderView"
-             listener="#{loginBean.forwardToLoginIfNotLoggedIn}" />
-</f:view>
-
-<h:head></h:head>
-<f:view>
-    <h:form>
-        <h:outputText></h:outputText>
-        <b:dataTable value="#{attendanceBean.students}" var="students">
-
-            <b:dataTableColumn value="#{students.person_id}"/>
-            <b:dataTableColumn value="#{students.firstName}"/>
-            <b:dataTableColumn value="#{students.lastName}"/>
-        </b:dataTable>
-
-        <h:selectOneMenu value="#{attendanceBean.course_id}">
-            <f:selectItems value="#{courseBean.courses}" var="courses" itemValue="#{courses.course_id}" itemLabel="#{courses.courseName}"/>
-        </h:selectOneMenu>
-        <h:commandButton value="Submit" action="#{attendanceBean.refresh}"/>
-        <br/>
-        <b:dataTable value="#{attendanceBean.studentsByCourse}" var="studentsByCourse">
-            <b:dataTableColumn value="#{studentsByCourse.person_id}"/>
-            <b:dataTableColumn value="#{studentsByCourse.firstName}"/>
-            <b:dataTableColumn value="#{studentsByCourse.lastName}"/>
-        </b:dataTable>
-
-        <h:selectOneMenu value="#{lectureBean.course_id}">
-            <f:selectItems value="#{lectureBean.lectures}" var="lectures" itemValue="#{lectures.lecture_id}" itemLabel="#{lectures.course.courseName} - #{lectures.date}"/>
-        </h:selectOneMenu>
-        <h:commandButton value="Submit" action="#{attendanceBean.refresh}"/>
-        <br/>
-        <b:dataTable value="#{attendanceBean.studentsByCourse}" var="studentsByCourseAndLecture">
-            <b:dataTableColumn value="#{studentsByCourseAndLecture.person_id}"/>
-            <b:dataTableColumn value="#{studentsByCourseAndLecture.firstName}"/>
-            <b:dataTableColumn value="#{studentsByCourseAndLecture.lastName}"/>
-        </b:dataTable>
-
-    </h:form>
-</f:view>
-
 </html>
