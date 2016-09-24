@@ -104,9 +104,7 @@ public class LectureBean implements Serializable
         lectures = lecEjb.getLectures();
         return lectures;
     }
-    //TODO This methods is correctly called from the web page,
-    //TODO and creates a list with the correct number of lectures.
-    //TODO: The list gets passed on to the dropdown list Pick Lecture Date
+
     public List<Lecture> getLecturesByCourse()
     {
         lecturesByCourse = lecEjb.getLecturesByCourse(getCourse_id());
