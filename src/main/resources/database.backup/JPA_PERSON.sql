@@ -1,0 +1,13 @@
+INSERT INTO JPA.PERSON (PERSON_ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE_ROLE_ID) VALUES (1, 'admin@admin.com', 'admin', 'admin', 'adminadmin', 30);
+INSERT INTO JPA.PERSON (PERSON_ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE_ROLE_ID) VALUES (2, 'laszlo@hago.se', 'Laszlo', 'Hago', 'joanna', 10);
+INSERT INTO JPA.PERSON (PERSON_ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE_ROLE_ID) VALUES (4, 'tomasito@hagolo.se', 'Tomasito', 'Hagolo', 'lottas', 10);
+INSERT INTO JPA.PERSON (PERSON_ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE_ROLE_ID) VALUES (5, 'yukie@boman.se', 'Yukie', 'Boman', 'timlina', 20);
+INSERT INTO JPA.PERSON (PERSON_ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE_ROLE_ID) VALUES (6, 'ash@haider.se', 'Ash', 'Haider', 'muhammed', 10);
+INSERT INTO JPA.PERSON (PERSON_ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE_ROLE_ID) VALUES (401, 'zaphod@vortex.universe', 'Zaphod', 'Beeblebrox', 'twofaced', 10);
+INSERT INTO JPA.PERSON (PERSON_ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE_ROLE_ID) VALUES (402, 'tim@gunslinger.org', 'Timothy', 'Dalton', 'ihateluckyluke', 10);
+INSERT INTO JPA.PERSON (PERSON_ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE_ROLE_ID) VALUES (403, 'jc@resurrection.in3days.god', 'Jesus', 'Christ', 'muhammedisgreat', 10);
+INSERT INTO JPA.PERSON (PERSON_ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE_ROLE_ID) VALUES (404, 'takeshi@superstar.jp', 'Takeshi', 'Kitano', 'hanabi', 10);
+INSERT INTO JPA.PERSON (PERSON_ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE_ROLE_ID) VALUES (405, 'adam@firsthuman.org', 'Adam', 'Man', 'givemeribwoman', 10);
+INSERT INTO JPA.PERSON (PERSON_ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE_ROLE_ID) VALUES (411, 'eilert@ithinkimelvis.pelvis', 'Eilert', 'Pilarm', 'lovemetender', 20);
+INSERT INTO JPA.PERSON (PERSON_ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE_ROLE_ID) VALUES (412, 'yusuf@cat.stevens.org', 'Yusuf', 'Islam', 'whoami', 20);
+INSERT INTO JPA.PERSON (PERSON_ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE_ROLE_ID) VALUES (8, 'satan@brimstone.hell', 'Louis', 'Cypher', 'adminadmin', 10);
