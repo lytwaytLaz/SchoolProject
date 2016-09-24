@@ -1,6 +1,5 @@
 package ejb;
 
-import ctr.RegistrationCtr;
 import jpa.Course;
 import jpa.Person;
 import jpa.Registration;
