@@ -23,8 +23,8 @@ import java.util.List;
 
         @NamedQuery(
                 name = "selectLecturesByCourse",
-                query = "SELECT leb FROM Lecture leb WHERE (leb.course.course_id = ?1) ORDER BY leb.date"
-        )}
+                query = "SELECT leb FROM Lecture leb WHERE (leb.course.course_id = ?1) ORDER BY leb.date")
+        }
 )
 
 
