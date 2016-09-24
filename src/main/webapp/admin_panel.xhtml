@@ -306,7 +306,7 @@
                                     <b:datepicker id="date-picker" value="#{lectureBean.lectureDate}"
                                                   placeholder="yyyy-MM-dd" format="YYYY-MM-DD"
                                                   show-week="true"
-                                                  change-year="true" change-month="true" required="true"/>
+                                                  changeYear="true" changeMonth="true" required="true"/>
                                 </b:column>
                                 <b:column span="1">
                                     <b:commandButton value="Save"
@@ -341,8 +341,7 @@
                             <b:column span="1">
                                 <b:commandButton value="Submit"
                                                  look="primary"
-
-                                                 update="course-picker lecture_picker"/>
+                                                 update="course-picker lecture-picker attendance-table"/>
                             </b:column>
                         </b:row>
                     </b:panel>
@@ -351,7 +350,7 @@
                         <b:row>
                             <b:column span="1"><h:outputText value="Lecture Date:"/></b:column>
                             <b:column span="3">
-                                <b:selectOneMenu id="lecture_picker" value="#{attendanceBean.lecture_id}">
+                                <b:selectOneMenu id="lecture-picker" value="#{attendanceBean.lecture_id}">
                                     <f:selectItems value="#{lectureBean.lecturesByCourse}" var="leb"
                                                    itemValue="#{leb.lecture_id}"
                                                    itemLabel="#{leb.date}"/>
@@ -363,7 +362,7 @@
                                 <b:commandButton value="Submit"
                                                  look="primary"
                                                  actionListener="#{attendanceBean.submit}"
-                                                 update="lecture_picker attendance-table"/>
+                                                 update="lecture-picker attendance-table"/>
                             </b:column>
 
                         </b:row>
