@@ -6,13 +6,16 @@ import ejb.RoleEjb;
 import jpa.Attendance;
 import jpa.Lecture;
 import jpa.Person;
+import net.bootsfaces.render.A;
 
 import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ValueChangeListener;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author László Hágó
@@ -31,6 +34,9 @@ public class AttendanceBean implements Serializable
     private Long course_id;
     private List<Person> studentsByCourse;
     private List<Person> studentsByLecture;
+    private List<Person> studentsByAttendance;
+    private List<Attendance> attendanceList;
+
 
     @Inject
     private AttendanceEjb attEjb;
@@ -50,6 +56,7 @@ public class AttendanceBean implements Serializable
 
             for(Person student: getStudentsByLecture()) {
                 Attendance attendance = new Attendance(student, new Lecture(lecture_id), present);
+                attendanceList.add(attendance);
                 attEjb.addAttendance(attendance);
             }
         }
@@ -61,12 +68,24 @@ public class AttendanceBean implements Serializable
         return "admin_panel?faces-redirect=true";
     }
 
+    public String merge()
+    {
+        for(Attendance studentAtt: attendanceList)
+        {
+                studentAtt.setPresent(!present);
+                attEjb.markAttendance(studentAtt);
+        }
+        return "admin_panel?faces-redirect=true";
+//       Attendance attendance = new Attendance(student);
+    }
+
+
     public String setAttendance()
     {
-        students = attEjb.getStudentsByLecture(10L, course_id, lecture_id);
+        studentsByAttendance = attEjb.getStudentsByAttendance(10L, lecture_id);
         try
         {
-            for (Person student : students)
+            for (Person student : studentsByAttendance)
                 attEjb.markAttendance(new Attendance(student, new Lecture(lecture_id), present));
         } catch (EJBException ejbe)
         {
@@ -79,6 +98,11 @@ public class AttendanceBean implements Serializable
 //    {
 //        return studentsByLecture;
 //    }
+
+    public void setStudentsByAttendance(List<Person> studentsByAttendance)
+    {
+        this.studentsByAttendance = studentsByAttendance;
+    }
 
     public void setStudentsByLecture(List<Person> studentsByLecture)
     {
@@ -141,5 +165,13 @@ public class AttendanceBean implements Serializable
     {
         return "attendance?faces-redirect=true";
     }
+
+    public List<Person> getStudentsByAttendance()
+    {
+
+        studentsByAttendance = attEjb.getStudentsByAttendance(10L, lecture_id);
+        return studentsByAttendance;
+    }
+
 
 }
