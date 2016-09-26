@@ -252,21 +252,10 @@
 
         <b:panel title="Course" look="primary">
 
-            <h:form id="course-table">
-
-                <b:dataTable id="table" styleClass="table table-striped" value="#{courseBean.courses}"
-                             var="courses"
-                             rows="15">
-                    <b:column>
-                        <f:facet name="header"><h:outputText value="Course Name"/></f:facet>
-                        <h:outputText value="#{courses.courseName}"/>
-                    </b:column>
-                </b:dataTable>
-
-
+            <h:form id="course-form">
                 <b:row>
                     <h:form>
-                        <b:panel span="6" id="add_new_course" title="Add New Course" look="info"
+                        <b:panel span="6" id="add-remove-course" title="Add/Remove New Course" look="info"
                                  collapsed="true">
 
                             <b:row>
@@ -281,14 +270,31 @@
                                 <b:column span="2">
                                     <b:commandButton value="Save" ajax="true"
                                                      actionListener="#{courseBean.submit}"
-                                                     update="course-table add_new_course" look="primary"
+                                                     update="add-remove-course :course-form:**:table" look="primary"
+                                    />
+                                </b:column>
+                                <b:row>
+                                    </b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputText value="Course Name:"/>
+                                    <b:selectOneMenu id="course-picker" value="#{courseBean.course_id}">
+                                        <f:selectItems value="#{courseBean.courses}" var="courses"
+                                                       itemValue="#{courses.course_id}"
+                                                       itemLabel="#{courses.courseName}"/>
+                                    </b:selectOneMenu>
+
+                                </b:column>
+                                <b:column span="2">
+                                    <b:commandButton value="Delete" ajax="true"
+                                                     actionListener="#{courseBean.remove}"
+                                                     update="add-remove-course :course-form:**:table" look="danger"
                                     />
                                 </b:column>
                             </b:row>
                         </b:panel>
                     </h:form>
                     <h:form id="date-popup">
-                        <b:panel span="6" id="add_new_lecture" title="Add Lecture Date" look="info"
+                        <b:panel span="6" id="add-new-lecture" title="Add Lecture Date" look="info"
                                  collapsed="true">
 
                             <b:row>
@@ -311,7 +317,7 @@
                                 <b:column span="1">
                                     <b:commandButton value="Save"
                                                      actionListener="#{lectureBean.submit}" look="primary"
-                                                     update="add_new_lecture"/>
+                                                     update="add-new-lecture"/>
                                 </b:column>
                             </b:row>
 
@@ -319,6 +325,17 @@
                         </b:panel>
                     </h:form>
                 </b:row>
+
+                <b:dataTable id="table" styleClass="table table-striped" value="#{courseBean.courses}"
+                             var="courses"
+                             rows="15">
+                    <b:column>
+                        <f:facet name="header"><h:outputText value="Course Name"/></f:facet>
+                        <h:outputText value="#{courses.courseName}"/>
+                    </b:column>
+                </b:dataTable>
+
+
 
             </h:form>
         </b:panel>
@@ -386,6 +403,10 @@
                 <b:column>
                     <f:facet name="header"><h:outputText value="E-mail"/></f:facet>
                     <h:outputText value="#{student.email}"/>
+                </b:column>
+                <b:column>
+                    <f:facet name="header"><h:outputText value="Attendance"/></f:facet>
+                    <b:selectBooleanCheckbox value="#{attendanceBean.present}"/>
                 </b:column>
             </b:dataTable>
             </h:form>
