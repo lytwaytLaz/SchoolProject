@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+
+<f:view>
+    <f:event type="preRenderView"
+             listener="#{loginBean.forwardToLoginIfNotLoggedIn}"/>
+</f:view>
+
+
+<h:head>
+    <title>Admin</title>
+    <meta name="author" content="Riccardo Massera"></meta>
+</h:head>
+
+<h:body style="padding-top: 60px; background-color: #add;">
+    <div class="container" align="center">
+        <h2>Lexicon's Local School Project</h2>
+        <h3>Admin Dashboard</h3>
+        <br/>
+    </div>
+
+
+    <b:accordion expanded-panels="panel1,panel3">
+        <b:panel id="student" title="Student" look="primary">
+
+
+
+
+            <h:form>
+                <b:row>
+                    <b:panel span="7" id="add_new_student" title="Add/Remove Student" look="info" collapsed="true">
+                        <b:row>
+                    <b:column mediumScreen="6">
+                        <b:row>
+                            <b:column medium-screen="3">
+                                <h:outputText value="First Name:"/>
+                            </b:column>
+                            <b:column medium-screen="7">
+                                <b:inputText placeholder="First Name" value="#{personBean.firstName}"/>
+                            </b:column>
+
+                        </b:row>
+                        <b:row>
+                            <b:column medium-screen="3">
+                                <h:outputText value="Last Name:"/>
+                            </b:column>
+                            <b:column medium-screen="7">
+                                <b:inputText placeholder="Last Name" value="#{personBean.lastName}"/>
+                            </b:column>
+
+                        </b:row>
+                        <b:row>
+                            <b:column medium-screen="3">
+                                <h:outputText value="Email:"/>
+                            </b:column>
+                            <b:column medium-screen="7">
+                                <b:inputText placeholder="email@address.com" value="#{personBean.email}"/>
+                            </b:column>
+
+                        </b:row>
+                        <b:row>
+                            <b:column medium-screen="3">
+                                <h:outputText value="Password:"/>
+                            </b:column>
+                            <b:column medium-screen="7">
+                                <b:inputSecret placeholder="Password" value="#{personBean.passWord}"/>
+                            </b:column>
+
+                        </b:row>
+
+                        <b:row>
+                            <b:column span="2" offset="3">
+                                <b:commandButton value="Add"
+                                                 update="add_new_student student-table register_student_to_course"
+                                                 actionListener="#{personBean.submit(10)}" look="primary"/>
+                            </b:column>
+                        </b:row>
+
+                    </b:column>
+                        <b:column mediumScreen="6">
+
+                            <b:row>
+                                <b:column mediumScreen="2"><h:outputText value="Student:"/></b:column>
+                                <b:column mediumScreen="6">
+                                    <b:selectOneMenu value="#{personBean.person_id}">
+                                        <f:selectItems value="#{personBean.getPersonsByRole(10)}" var="p"
+                                                       itemValue="#{p.person_id}"
+                                                       itemLabel="#{p.firstName} #{p.lastName}"/>
+                                    </b:selectOneMenu>
+                                </b:column>
+
+                            <b:column mediumScreen="1">
+                                <b:commandButton value="Delete"
+                                                 update="add_new_student student-table register_student_to_course"
+                                                 actionListener="#{personBean.remove}" look="danger"/>
+                            </b:column>
+                            </b:row>
+
+                        </b:column>
+                        </b:row>
+                    </b:panel>
+
+                    <b:panel span="5" id="register_student_to_course" title="Register/Unregister student's courses"
+                             look="info"
+                             collapsed="true">
+                        <b:row>
+                            <b:column span="2"><h:outputText value="Course:"/></b:column>
+                            <b:column span="4">
+                                <b:selectOneMenu value="#{registrationBean.course_id}">
+                                    <f:selectItems value="#{courseBean.courses}" var="c"
+                                                   itemValue="#{c.course_id}"
+                                                   itemLabel="#{c.courseName}"/>
+                                </b:selectOneMenu>
+                            </b:column>
+                        </b:row>
+
+
+                        <b:row>
+                            <b:column span="2"><h:outputText value="Student:"/></b:column>
+                            <b:column span="4">
+                                <b:selectOneMenu value="#{registrationBean.person_id}">
+                                    <f:selectItems value="#{personBean.getPersonsByRole(10)}" var="p"
+                                                   itemValue="#{p.person_id}"
+                                                   itemLabel="#{p.firstName} #{p.lastName}"/>
+                                </b:selectOneMenu>
+                            </b:column>
+                            <b:column span="3">
+                                <b:commandButton value="Register" update="register_student_to_course"
+                                                 look="primary"
+                                                 actionListener="#{registrationBean.submit}"/>
+                            </b:column>
+                            <b:column span="3">
+                                <b:commandButton value="Unregister" update="register_student_to_course"
+                                                 look="danger"
+                                                 actionListener="#{registrationBean.remove}"/>
+                            </b:column>
+                        </b:row>
+                    </b:panel>
+                </b:row>
+
+                <h:column>
+                    <b:dataTable id="student-table" styleClass="table table-striped"
+                                 value="#{personBean.getPersonsByRole(10)}"
+                                 var="student"
+                                 rows="15">
+
+                        <b:column>
+                            <f:facet name="header"><h:outputText value="First Name"/></f:facet>
+                            <h:outputText value="#{student.firstName}"/>
+                        </b:column>
+                        <b:column>
+                            <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
+                            <h:outputText value="#{student.lastName}"/>
+                        </b:column>
+                        <b:column>
+                            <f:facet name="header"><h:outputText value="E-mail"/></f:facet>
+                            <h:outputText value="#{student.email}"/>
+                        </b:column>
+
+                    </b:dataTable>
+                </h:column>
+
+            </h:form>
+
+        </b:panel>
+
+
+        <b:panel id="teacher" title="Teacher" look="primary">
+
+            <b:dataTable id="teacher-table" styleClass="table table-striped"
+                         value="#{personBean.getPersonsByRole(20)}"
+                         var="teacher" rows="15">
+                <b:column>
+                    <f:facet name="header"><h:outputText value="First Name"/></f:facet>
+                    <h:outputText value="#{teacher.firstName}"/>
+                </b:column>
+                <b:column>
+                    <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
+                    <h:outputText value="#{teacher.lastName}"/>
+                </b:column>
+                <b:column>
+                    <f:facet name="header"><h:outputText value="E-mail"/></f:facet>
+                    <h:outputText value="#{teacher.email}"/>
+                </b:column>
+            </b:dataTable>
+
+
+            <h:form>
+
+                <b:row>
+                    <b:panel span="7" id="add_new_teacher" title="Add New Teacher" look="info"
+                             collapsed="true">
+
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="First Name:"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="First Name" value="#{personBean.firstName}"/>
+                            </b:column>
+
+                        </b:row>
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="Last Name:"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Last Name" value="#{personBean.lastName}"/>
+                            </b:column>
+
+                        </b:row>
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="Email:"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="email@address.com" value="#{personBean.email}"/>
+                            </b:column>
+
+                        </b:row>
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="Password:"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputSecret placeholder="Password" value="#{personBean.passWord}"/>
+                            </b:column>
+
+                        </b:row>
+
+                        <b:row>
+                            <b:column span="2" offset="2">
+                                <b:commandButton value="Save" actionListener="#{personBean.submit(20)}"
+                                                 update="teacher-table add_new_teacher register_teacher_to_course"
+                                                 look="primary"/>
+                            </b:column>
+                        </b:row>
+
+                    </b:panel>
+                    <b:panel span="5" id="register_teacher_to_course" title="Register teacher's courses"
+                             look="info"
+                             collapsed="true">
+                        <b:row>
+                            <b:column span="2"><h:outputText value="Course:"/></b:column>
+                            <b:column span="3">
+                                <b:selectOneMenu value="#{registrationBean.course_id}">
+                                    <f:selectItems value="#{courseBean.courses}" var="c"
+                                                   itemValue="#{c.course_id}"
+                                                   itemLabel="#{c.courseName}"/>
+                                </b:selectOneMenu>
+                            </b:column>
+                        </b:row>
+
+
+                        <b:row>
+                            <b:column span="2"><h:outputText value="Teacher:"/></b:column>
+                            <b:column span="3">
+                                <b:selectOneMenu value="#{registrationBean.person_id}">
+                                    <f:selectItems value="#{personBean.getPersonsByRole(20)}" var="p"
+                                                   itemValue="#{p.person_id}"
+                                                   itemLabel="#{p.firstName} #{p.lastName}"/>
+                                </b:selectOneMenu>
+                            </b:column>
+                            <b:column span="1">
+                                <b:commandButton value="Save" update="register_teacher_to_course"
+                                                 look="primary"
+                                                 actionListener="#{registrationBean.submit}"/>
+                            </b:column>
+                        </b:row>
+                    </b:panel>
+                </b:row>
+
+            </h:form>
+
+        </b:panel>
+
+
+        <b:panel title="Course" look="primary">
+
+            <h:form id="course-form">
+                <b:row>
+                    <h:form>
+                        <b:panel span="6" id="add-remove-course" title="Add/Remove New Course" look="info"
+                                 collapsed="true">
+
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputText value="Course Name:"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="Course Name"
+                                                 value="#{courseBean.courseBeanName}"/>
+                                </b:column>
+
+                                <b:column span="2">
+                                    <b:commandButton value="Save" ajax="true"
+                                                     actionListener="#{courseBean.submit}"
+                                                     update="add-remove-course :course-form:**:table" look="primary"
+                                    />
+                                </b:column>
+                                <b:row>
+                                    </b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputText value="Course Name:"/>
+                                    <b:selectOneMenu id="course-picker" value="#{courseBean.course_id}">
+                                        <f:selectItems value="#{courseBean.courses}" var="courses"
+                                                       itemValue="#{courses.course_id}"
+                                                       itemLabel="#{courses.courseName}"/>
+                                    </b:selectOneMenu>
+
+                                </b:column>
+                                <b:column span="2">
+                                    <b:commandButton value="Delete" ajax="true"
+                                                     actionListener="#{courseBean.remove}"
+                                                     update="add-remove-course :course-form:**:table" look="danger"
+                                    />
+                                </b:column>
+                            </b:row>
+                        </b:panel>
+                    </h:form>
+                    <h:form id="date-popup">
+                        <b:panel span="6" id="add-new-lecture" title="Add Lecture Date" look="info"
+                                 collapsed="true">
+
+                            <b:row>
+                                <b:column span="1"><h:outputText value="Course:"/></b:column>
+                                <b:column span="2">
+                                    <b:selectOneMenu id="course-picker" value="#{lectureBean.course_id}">
+                                        <f:selectItems value="#{courseBean.courses}" var="courses"
+                                                       itemValue="#{courses.course_id}"
+                                                       itemLabel="#{courses.courseName}"/>
+                                    </b:selectOneMenu>
+                                </b:column>
+
+                                <b:column span="1" offset="1"><h:outputText value="Date:"/></b:column>
+                                <b:column span="3">
+                                    <b:datepicker id="date-picker" value="#{lectureBean.lectureDate}"
+                                                  placeholder="yyyy-MM-dd" format="YYYY-MM-DD"
+                                                  show-week="true"
+                                                  changeYear="true" changeMonth="true" required="true"/>
+                                </b:column>
+                                <b:column span="1">
+                                    <b:commandButton value="Save"
+                                                     actionListener="#{lectureBean.submit}" look="primary"
+                                                     update="add-new-lecture"/>
+                                </b:column>
+                            </b:row>
+
+
+                        </b:panel>
+                    </h:form>
+                </b:row>
+
+                <b:dataTable id="table" styleClass="table table-striped" value="#{courseBean.courses}"
+                             var="courses"
+                             rows="15">
+                    <b:column>
+                        <f:facet name="header"><h:outputText value="Course Name"/></f:facet>
+                        <h:outputText value="#{courses.courseName}"/>
+                    </b:column>
+                </b:dataTable>
+
+
+
+            </h:form>
+        </b:panel>
+
+        <b:panel id="attendance" title="Attendance" look="primary">
+
+
+            <h:form>
+                <b:row>
+                    <b:panel span="6" look="info" title="Pick Course" collapsable="false">
+                        <b:row>
+                            <b:column medium-screen="2"><h:outputText value="Course:"/></b:column>
+                            <b:column medium-screen="4">
+                                <b:selectOneMenu id="course-picker" value="#{lectureBean.course_id}" >
+                                    <f:selectItems value="#{courseBean.courses}" var="courses"
+                                                   itemValue="#{courses.course_id}"
+                                                   itemLabel="#{courses.courseName}"/>
+                                </b:selectOneMenu>
+                            </b:column>
+                            <b:column span="1">
+                                <b:commandButton value="Submit"
+                                                 look="primary"
+                                                 update="course-picker lecture-picker attendance-table"/>
+                            </b:column>
+                        </b:row>
+                    </b:panel>
+
+                    <b:panel span="6" look="info" title="Pick Lecture Date" collapsable="false">
+                        <b:row>
+                            <b:column span="1"><h:outputText value="Lecture Date:"/></b:column>
+                            <b:column span="3">
+                                <b:selectOneMenu id="lecture-picker" value="#{attendanceBean.lecture_id}">
+                                    <f:selectItems value="#{lectureBean.lecturesByCourse}" var="leb"
+                                                   itemValue="#{leb.lecture_id}"
+                                                   itemLabel="#{leb.date}"/>
+                                </b:selectOneMenu>
+                            </b:column>
+
+
+                            <b:column span="1">
+                                <b:commandButton value="Submit"
+                                                 look="primary"
+                                                 actionListener="#{attendanceBean.submit}"
+                                                 update="lecture-picker attendance-table"/>
+                            </b:column>
+
+                        </b:row>
+                    </b:panel>
+                </b:row>
+
+
+
+            <b:dataTable id="attendance-table" styleClass="table table-striped"
+                         value="#{attendanceBean.studentsByLecture}"
+                         var="student"
+                         rows="15">
+                <b:column>
+                    <f:facet name="header"><h:outputText value="First Name"/></f:facet>
+                    <h:outputText value="#{student.firstName}"/>
+                </b:column>
+                <b:column>
+                    <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
+                    <h:outputText value="#{student.lastName}"/>
+                </b:column>
+                <b:column>
+                    <f:facet name="header"><h:outputText value="E-mail"/></f:facet>
+                    <h:outputText value="#{student.email}"/>
+                </b:column>
+                <b:column>
+                    <f:facet name="header"><h:outputText value="Attendance"/></f:facet>
+                    <b:switch value="#{attendanceBean.present}"
+                              valueChangeListener="#{attendanceBean.testSwitch}"
+                              offText="rtl"
+                              onText="ltr"
+                              offColor="success"
+                              onColor="info"
+                              update="@form"/>
+
+                    action="#{myBean.navigate}"
+                </b:column>
+            </b:dataTable>
+            </h:form>
+
+        </b:panel>
+
+    </b:accordion>
+
+</h:body>
+</html>
