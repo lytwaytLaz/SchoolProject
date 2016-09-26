@@ -27,6 +27,12 @@ public class PersonEjb
         em.persist(p);
     }
 
+    public void removePerson(Long person_id)
+    {
+        Person c = em.find(Person.class, person_id);
+        em.remove(c);
+    }
+
     public List<Person> getPerson(String email)
     {
         List<Person> persons;

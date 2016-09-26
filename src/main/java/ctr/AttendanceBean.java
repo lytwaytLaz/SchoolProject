@@ -3,7 +3,9 @@ package ctr;
 import ejb.AttendanceEjb;
 import ejb.LectureEjb;
 import ejb.RoleEjb;
-import jpa.*;
+import jpa.Attendance;
+import jpa.Lecture;
+import jpa.Person;
 
 import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
@@ -59,6 +61,19 @@ public class AttendanceBean implements Serializable
         return "admin_panel?faces-redirect=true";
     }
 
+    public String setAttendance()
+    {
+        students = attEjb.getStudentsByLecture(10L, course_id, lecture_id);
+        try
+        {
+            for (Person student : students)
+                attEjb.markAttendance(new Attendance(student, new Lecture(lecture_id), present));
+        } catch (EJBException ejbe)
+        {
+            return "admin_panel?faces-redirect=true";
+        }
+        return "admin_panel?faces-redirect=true";
+    }
 
 //    public List<Person> getStudentsByLecture()
 //    {
@@ -98,7 +113,7 @@ public class AttendanceBean implements Serializable
         return students;
     }
 
-    public boolean getPresent()
+    public boolean isPresent()
     {
         return present;
     }

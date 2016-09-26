@@ -23,6 +23,12 @@ public class CourseEjb
         em.persist(c);
     }
 
+    public void removeCourse(Long course_id)
+    {
+        Course c = em.find(Course.class, course_id);
+        em.remove(c);
+    }
+
     public List<Course> getCourses()
     {
         List<Course> courses;

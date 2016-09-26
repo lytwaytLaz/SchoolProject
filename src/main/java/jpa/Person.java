@@ -18,7 +18,7 @@ import java.util.List;
 
         @NamedQuery(
                 name = "selectPersonsByRoleId",
-                query = "SELECT p FROM Person p WHERE (p.role.role_id = ?1) ORDER BY p.firstName"),
+                query = "SELECT p FROM Person p WHERE p.role.role_id = ?1 ORDER BY p.firstName"),
 
         @NamedQuery(
                 name = "selectPerson",

@@ -20,23 +20,22 @@ import java.util.List;
 @SessionScoped
 public class PersonBean implements Serializable
 {
+    private Long person_id;
     private String firstName;
     private String lastName;
     private String email;
     private String passWord;
-    private Role role;
-    private Long role_id;
     private List<Person> persons;
     private String fullName;
     private List<Person> personByRole;
 
     @Inject
-    private PersonEjb pers;
+    private PersonEjb persEjb;
 
     public String submit(Long role_id)
     {
         try {
-            pers.addPerson(
+            persEjb.addPerson(
                             new Person(getFirstName(), getLastName(),
                             getEmail(), getPassWord(), new Role(role_id)));
             setFirstName("");
@@ -46,10 +45,15 @@ public class PersonBean implements Serializable
         }
         catch (EJBException ejbe)
         {
-            return "person?faces-redirect=true";
+            return "admin_panel?faces-redirect=true";
         }
 
-        return "person?faces-redirect=true";
+        return "admin_panel?faces-redirect=true";
+    }
+
+    public void remove()
+    {
+        persEjb.removePerson(this.person_id);
     }
 
     public String getFirstName()
@@ -99,38 +103,25 @@ public class PersonBean implements Serializable
         this.passWord = passWord;
     }
 
-
-    public void setRole(Role role)
+    public Long getPerson_id()
     {
-        this.role = role;
+        return person_id;
     }
 
-
-    public Role getRole()
+    public void setPerson_id(Long person_id)
     {
-
-        return role;
-    }
-
-    public Long getRole_id()
-    {
-        return role_id;
-    }
-
-    public void setRole_id(Long role_id)
-    {
-        this.role_id = role_id;
+        this.person_id = person_id;
     }
 
     public List<Person> getPersons()
     {
-        persons = pers.getPersons();
+        persons = persEjb.getPersons();
         return persons;
     }
 
     public List<Person> getPersonsByRole(Long role_id)
     {
-        personByRole = pers.getPersonsByRole(role_id);
+        personByRole = persEjb.getPersonsByRole(role_id);
         return personByRole;
     }
 

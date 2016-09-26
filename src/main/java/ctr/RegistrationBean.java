@@ -47,6 +47,11 @@ public class RegistrationBean implements Serializable
         return "registration?faces-redirect=true";
     }
 
+    public void remove()
+    {
+
+    }
+
 
     public Long getPerson_id()
     {

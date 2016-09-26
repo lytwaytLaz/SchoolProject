@@ -17,7 +17,7 @@ import java.util.List;
                 query = "SELECT c FROM Course c ORDER BY c.courseName"),
         @NamedQuery(
                 name = "selectCourseName",
-                query = "SELECT c FROM Course c WHERE c.courseName LIKE :courseName")})
+                query = "SELECT c FROM Course c WHERE c.courseName LIKE :courseName ORDER BY c.courseName")})
 
 public class Course
 {

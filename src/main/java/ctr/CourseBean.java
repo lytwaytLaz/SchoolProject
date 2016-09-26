@@ -22,7 +22,7 @@ import java.util.List;
 public class CourseBean implements Serializable
 
 {
-    private Long courseBeanId;
+    private Long course_id;
     private List<Course> courses;
 
     @NotNull
@@ -36,15 +36,19 @@ public class CourseBean implements Serializable
     public String submit()
     {
         try {
-            System.out.println("Course submit");
             courseEjb.addCourse(new Course(getCourseBeanName()));
 
         } catch (EJBException ejbe) {
-            return "course?faces-redirect=true";
+            return "admin_panel?faces-redirect=true";
         }
         setCourseBeanName("");
 
-        return "course?faces-redirect=true";
+        return "admin_panel?faces-redirect=true";
+    }
+
+    public void remove()
+    {
+        courseEjb.removeCourse(this.course_id);
     }
 
 
@@ -58,20 +62,19 @@ public class CourseBean implements Serializable
         this.courseBeanName = courseBeanName;
     }
 
-    public void setCourseBeanId(Long courseBeanId)
+    public void setCourse_id(Long course_id)
     {
-        this.courseBeanId = courseBeanId;
+        this.course_id = course_id;
     }
 
-    public Long getCourseBeanId()
+    public Long getCourse_id()
     {
-        return courseBeanId;
+        return course_id;
     }
 
     public List<Course> getCourses()
     {
         courses = courseEjb.getCourses();
-//        System.out.println("Roles passed on: " + roles);
         return courses;
     }
 }

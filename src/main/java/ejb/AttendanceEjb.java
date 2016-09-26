@@ -21,10 +21,14 @@ public class AttendanceEjb
 
     public void addAttendance(Attendance a)
     {
-//        a.setLecture(em.find(Lecture.class, a.getLecture().getLecture_id()));
-
         em.persist(a);
     }
+
+    public void markAttendance(Attendance a)
+    {
+        em.merge(a);
+    }
+
     public List<Person> getStudents(Long role_id)
     {
         List<Person> persons;

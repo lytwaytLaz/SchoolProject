@@ -23,7 +23,7 @@ import java.util.List;
 public class LectureBean implements Serializable
 {
     private Date lectureDate;
-    private Course lectureBeanCourse;
+    private Course lectureCourse;
     private Course course;
     private Long course_id;
     private Long lecture_id;
@@ -59,14 +59,14 @@ public class LectureBean implements Serializable
     }
 
 
-    public Course getLectureBeanCourse()
+    public Course getLectureCourse()
     {
-        return lectureBeanCourse;
+        return lectureCourse;
     }
 
-    public void setLectureBeanCourse(Course lectureBeanCourse)
+    public void setLectureCourse(Course lectureCourse)
     {
-        this.lectureBeanCourse = lectureBeanCourse;
+        this.lectureCourse = lectureCourse;
     }
 
     public Course getCourse()
