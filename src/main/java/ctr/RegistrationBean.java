@@ -28,13 +28,13 @@ public class RegistrationBean implements Serializable
 
 
     @Inject
-    private RegistrationEjb reg;
+    private RegistrationEjb regEjb;
 
 
     public String submit()
     {
         try {
-            reg.addRegistration(
+            regEjb.addRegistration(
                     new Registration(new Course(getCourse_id()),
                             new Person(getPerson_id())));
         }
@@ -49,7 +49,7 @@ public class RegistrationBean implements Serializable
 
     public void remove()
     {
-
+        regEjb.removeRegistration(person_id, course_id);
     }
 
 

@@ -1,8 +1,10 @@
 package ejb;
 
+import com.sun.org.apache.regexp.internal.RE;
 import jpa.Course;
 import jpa.Person;
 import jpa.Registration;
+import net.bootsfaces.render.R;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -30,16 +32,23 @@ public class RegistrationEjb
 
         em.persist(r);
     }
+//TODO fix EJBException index out of range when registration does not exist
+    public void removeRegistration(Long person_id, Long course_id)
+    {
+        Registration r = getRegistration(course_id, person_id);
+        em.remove(r);
+    }
 
 
-
-    public List<Registration> getRegistration()
+    public Registration getRegistration(Long course_id, Long person_id)
     {
         List<Registration> registrations;
         registrations = em.createNamedQuery(
-                "selectAllRegistrations")
+                "selectRegistration", Registration.class)
+                .setParameter(1, course_id)
+                .setParameter(2, person_id)
                 .getResultList();
-        return registrations;
+        return registrations.get(0);
 
     }
 

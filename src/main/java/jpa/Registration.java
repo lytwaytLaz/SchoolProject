@@ -16,7 +16,10 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(
                 name = "selectAllRegistrations",
-                query = "SELECT r from Registration r")
+                query = "SELECT r from Registration r"),
+        @NamedQuery(
+                name = "selectRegistration",
+                query = "SELECT r FROM Registration r WHERE r.course.course_id = ?1 AND r.person.person_id = ?2")
 })
 
 public class Registration
