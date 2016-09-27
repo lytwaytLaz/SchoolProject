@@ -416,7 +416,6 @@
 
         <b:panel id="attendance" title="Attendance" look="primary">
 
-
             <h:form id="attendance-form">
                 <b:row>
                     <b:panel span="6" look="info" title="Pick Course" collapsable="false">
@@ -432,7 +431,7 @@
                             <b:column span="1">
                                 <b:commandButton value="Submit"
                                                  look="primary"
-                                                 update="course-picker lecture-picker attendance-table"/>
+                                                 update="@form"/>
                             </b:column>
                         </b:row>
                     </b:panel>
@@ -453,14 +452,12 @@
                                 <b:commandButton value="Submit"
                                                  look="primary"
                                                  actionListener="#{attendanceBean.submit}"
-                                                 update="lecture-picker attendance-table"/>
+                                                 update="@form"/>
                             </b:column>
 
                         </b:row>
                     </b:panel>
                 </b:row>
-
-
                 <b:dataTable id="attendance-table" styleClass="table table-striped"
                              value="#{attendanceBean.attendanceList}"
                              var="studentAtt"
@@ -479,18 +476,11 @@
                     </b:column>
                     <b:column>
 
-                        <b:switch value="#{studentAtt.present}"
-                                  dir="#num;{settingsBean.checkbox4?'ltr':'rtl'}"
-                                  onchange="ajax:settingsBean.action()"
-                                  valueChangeListener="#{attendanceBean.present}"
-                                  offText="rtl"
-                                  onText="ltr"
-                                  offColor="success"
-                                  onColor="info"
-                                  update="@form"/>
 
                     </b:column>
                 </b:dataTable>
+
+
             </h:form>
 
         </b:panel>

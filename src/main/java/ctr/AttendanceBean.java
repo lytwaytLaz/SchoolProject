@@ -14,6 +14,7 @@ import javax.faces.event.ValueChangeListener;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -51,6 +52,8 @@ public class AttendanceBean implements Serializable
     {
         //Injecting lecEjb to be able to get course_id through lecture_id
         setCourse_id(lecEjb.getCourse_id(lecture_id));
+        attendanceList = new ArrayList<>();
+
         try
             {
 
@@ -68,19 +71,23 @@ public class AttendanceBean implements Serializable
         return "admin_panel?faces-redirect=true";
     }
 
-//    public String merge()
-//    {
-//        for(Attendance studentAtt: attendanceList)
-//        {
-//                studentAtt.setPresent(!present);
-//                attEjb.markAttendance(studentAtt);
-//        }
-//        return "admin_panel?faces-redirect=true";
-////       Attendance attendance = new Attendance(student);
-//    }
+    public String merge()
+    {
+        for(Attendance studentAtt: attendanceList)
+        {
+                studentAtt.setPresent(!present);
+                attEjb.markAttendance(studentAtt);
+        }
+        return "admin_panel?faces-redirect=true";
+//       Attendance attendance = new Attendance(student);
+    }
 
+    public List<Attendance> getAttendanceList()
+    {
+        return attendanceList;
+    }
 
-//    public String setAttendance()
+    //    public String setAttendance()
 //    {
 //        studentsByAttendance = attEjb.getStudentsByAttendance(10L, lecture_id);
 //        try
@@ -166,12 +173,12 @@ public class AttendanceBean implements Serializable
         return "attendance?faces-redirect=true";
     }
 
-    public List<Person> getStudentsByAttendance()
-    {
-
-        studentsByAttendance = attEjb.getStudentsByAttendance(10L, lecture_id);
-        return studentsByAttendance;
-    }
+//    public List<Person> getStudentsByAttendance()
+//    {
+//
+//        studentsByAttendance = attEjb.getStudentsByAttendance(10L, lecture_id);
+//        return studentsByAttendance;
+//    }
 
     public List<Attendance> getAttendanceListByLecture() {
 

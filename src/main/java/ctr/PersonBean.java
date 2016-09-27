@@ -50,7 +50,7 @@ public class PersonBean implements Serializable
 
         return "admin_panel?faces-redirect=true";
     }
-
+//TODO check why not removing teacher
     public void remove()
     {
         persEjb.removePerson(this.person_id);
