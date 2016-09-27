@@ -6,6 +6,7 @@ import jpa.Person;
 import jpa.Registration;
 import net.bootsfaces.render.R;
 
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,15 +33,19 @@ public class RegistrationEjb
 
         em.persist(r);
     }
-//TODO fix EJBException index out of range when registration does not exist
-    public void removeRegistration(Long person_id, Long course_id)
+    public String removeRegistration(Long person_id, Long course_id)
     {
-        Registration r = getRegistration(course_id, person_id);
-        em.remove(r);
+    List<Registration> r = getRegistration(course_id, person_id);
+
+        if(!r.isEmpty()) {
+            em.remove(r.get(0));
+            return "admin_panel?faces-redirect=true";
+        }
+        return "admin_panel?faces-redirect=true";
     }
 
 
-    public Registration getRegistration(Long course_id, Long person_id)
+    public List<Registration> getRegistration(Long course_id, Long person_id)
     {
         List<Registration> registrations;
         registrations = em.createNamedQuery(
@@ -48,7 +53,9 @@ public class RegistrationEjb
                 .setParameter(1, course_id)
                 .setParameter(2, person_id)
                 .getResultList();
-        return registrations.get(0);
+
+
+        return registrations;
 
     }
 

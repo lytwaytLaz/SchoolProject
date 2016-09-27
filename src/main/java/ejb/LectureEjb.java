@@ -39,6 +39,11 @@ public class LectureEjb
         em.persist(l);
     }
 
+    public void removeLecture(Long course_id)
+    {
+
+    }
+
     public List<Lecture> getLectures()
     {
         List<Lecture> lectures;

@@ -48,6 +48,11 @@ public class LectureBean implements Serializable
         return "lecture?faces-redirect=true";
     }
 
+    public void removeLecture(Date lectureDate, Long course_id)
+    {
+
+    }
+
     public Date getLectureDate()
     {
         return lectureDate;
