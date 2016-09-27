@@ -26,7 +26,10 @@ import javax.persistence.*;
                 name = "selectAllStudentsByLecture",
                 query = "SELECT p FROM Person p JOIN Registration r ON p.person_id=r.person.person_id " +
                         "JOIN Lecture lec ON r.course.course_id = lec.course.course_id " +
-                        "WHERE p.role.role_id = ?1 AND r.course.course_id = ?2  AND lec.lecture_id = ?3 ORDER BY p.firstName")
+                        "WHERE p.role.role_id = ?1 AND r.course.course_id = ?2  AND lec.lecture_id = ?3 ORDER BY p.firstName"),
+        @NamedQuery(
+                name = "selectStudentsByAttendance",
+                query = "SELECT p FROM Person p JOIN Attendance a ON p.person_id=a.person.person_id")
 })
 
 public class Attendance
@@ -41,13 +44,13 @@ public class Attendance
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long attendance_id;
 
-    private boolean present = false;
+    private boolean present;
 
     public Attendance()
     {
     }
 
-    public Attendance(Person person, Lecture lecture, Boolean present)
+    public Attendance(Person person, Lecture lecture, boolean present)
     {
         this.person = person;
         this.lecture = lecture;
@@ -82,5 +85,15 @@ public class Attendance
     public void setLecture(Lecture lecture)
     {
         this.lecture = lecture;
+    }
+
+    public boolean isPresent()
+    {
+        return present;
+    }
+
+    public void setPresent(boolean present)
+    {
+        this.present = present;
     }
 }
