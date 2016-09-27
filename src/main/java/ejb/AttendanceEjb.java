@@ -53,13 +53,13 @@ public class AttendanceEjb
 
     }
 
-    public List<Person> getStudentsByAttendance(Long role_id, Long lecture_id)
+    public List<Attendance> getStudentsByAttendance(Long role_id, Long lecture_id)
     {
-        List<Person> persons;
-        persons = em.createNamedQuery(
+        List<Attendance> attListBylecture;
+        attListBylecture = em.createNamedQuery(
                 "selectStudentsByAttendance")
                 .getResultList();
-        return persons;
+        return attListBylecture;
     }
 
     public List<Person> getStudentsByLecture(Long role_id, Long course_id, Long lecture_id)

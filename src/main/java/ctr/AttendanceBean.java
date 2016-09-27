@@ -68,31 +68,31 @@ public class AttendanceBean implements Serializable
         return "admin_panel?faces-redirect=true";
     }
 
-    public String merge()
-    {
-        for(Attendance studentAtt: attendanceList)
-        {
-                studentAtt.setPresent(!present);
-                attEjb.markAttendance(studentAtt);
-        }
-        return "admin_panel?faces-redirect=true";
-//       Attendance attendance = new Attendance(student);
-    }
+//    public String merge()
+//    {
+//        for(Attendance studentAtt: attendanceList)
+//        {
+//                studentAtt.setPresent(!present);
+//                attEjb.markAttendance(studentAtt);
+//        }
+//        return "admin_panel?faces-redirect=true";
+////       Attendance attendance = new Attendance(student);
+//    }
 
 
-    public String setAttendance()
-    {
-        studentsByAttendance = attEjb.getStudentsByAttendance(10L, lecture_id);
-        try
-        {
-            for (Person student : studentsByAttendance)
-                attEjb.markAttendance(new Attendance(student, new Lecture(lecture_id), present));
-        } catch (EJBException ejbe)
-        {
-            return "admin_panel?faces-redirect=true";
-        }
-        return "admin_panel?faces-redirect=true";
-    }
+//    public String setAttendance()
+//    {
+//        studentsByAttendance = attEjb.getStudentsByAttendance(10L, lecture_id);
+//        try
+//        {
+//            for (Person student : studentsByAttendance)
+//                attEjb.markAttendance(new Attendance(student, new Lecture(lecture_id), present));
+//        } catch (EJBException ejbe)
+//        {
+//            return "admin_panel?faces-redirect=true";
+//        }
+//        return "admin_panel?faces-redirect=true";
+//    }
 
 //    public List<Person> getStudentsByLecture()
 //    {
@@ -173,5 +173,12 @@ public class AttendanceBean implements Serializable
         return studentsByAttendance;
     }
 
+    public List<Attendance> getAttendanceListByLecture() {
 
+        return attendanceList;
+    }
+
+    public void setAttendanceList(List<Attendance> attendanceList) {
+        this.attendanceList = attendanceList;
+    }
 }
