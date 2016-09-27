@@ -29,7 +29,7 @@ import javax.persistence.*;
                         "WHERE p.role.role_id = ?1 AND r.course.course_id = ?2  AND lec.lecture_id = ?3 ORDER BY p.firstName"),
         @NamedQuery(
                 name = "selectStudentsByAttendance",
-                query = "SELECT a FROM Attendance a JOIN Person p ON p.person_id=a.person.person_id")
+                query = "SELECT a FROM Attendance a JOIN Person p ON p.person_id=a.person.person_id ORDER BY p.firstName")
 })
 
 public class Attendance
