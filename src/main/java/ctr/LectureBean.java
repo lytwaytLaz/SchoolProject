@@ -48,9 +48,9 @@ public class LectureBean implements Serializable
         return "lecture?faces-redirect=true";
     }
 
-    public void removeLecture(Date lectureDate, Long course_id)
+    public void remove()
     {
-
+        lecEjb.removeLecture(course_id, lectureDate);
     }
 
     public Date getLectureDate()

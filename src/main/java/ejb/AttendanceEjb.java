@@ -21,11 +21,14 @@ public class AttendanceEjb
 
     public void addAttendance(Attendance a)
     {
+
         em.persist(a);
     }
 
-    public void markAttendance(Attendance a)
+    public void markAttendance(Long attendance_id)
     {
+        Attendance a = em.find(Attendance.class, attendance_id);
+        a.setPresent(!a.isPresent());
         em.merge(a);
     }
 

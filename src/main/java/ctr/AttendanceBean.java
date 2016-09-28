@@ -27,6 +27,7 @@ import java.util.Map;
 @SessionScoped
 public class AttendanceBean implements Serializable
 {
+    private Long attendance_id;
     private Long person_id;
     private Long lecture_id;
     private boolean present; //Couldn't make it work with Boolean, resorted to primitive
@@ -59,8 +60,10 @@ public class AttendanceBean implements Serializable
 
             for(Person student: getStudentsByLecture()) {
                 Attendance attendance = new Attendance(student, new Lecture(lecture_id), present);
-                attendanceList.add(attendance);
+
                 attEjb.addAttendance(attendance);
+
+                attendanceList.add(attendance);
             }
         }
         catch (EJBException ejbe)
@@ -71,15 +74,21 @@ public class AttendanceBean implements Serializable
         return "admin_panel?faces-redirect=true";
     }
 
-    public String merge()
+
+    public void merge()
+{
+
+    attEjb.markAttendance(attendance_id);
+}
+
+    public Long getAttendance_id()
     {
-        for(Attendance studentAtt: attendanceList)
-        {
-                studentAtt.setPresent(!present);
-                attEjb.markAttendance(studentAtt);
-        }
-        return "admin_panel?faces-redirect=true";
-//       Attendance attendance = new Attendance(student);
+        return attendance_id;
+    }
+
+    public void setAttendance_id(Long attendance_id)
+    {
+        this.attendance_id = attendance_id;
     }
 
     public List<Attendance> getAttendanceList()

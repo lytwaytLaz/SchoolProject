@@ -236,7 +236,7 @@
                                 <b:row>
                                     <b:column span="2"><h:outputText value="Teacher:"/></b:column>
                                     <b:column span="6">
-                                        <b:selectOneMenu value="#{registrationBean.person_id}">
+                                        <b:selectOneMenu value="#{personBean.person_id}">
                                             <f:selectItems value="#{personBean.getPersonsByRole(20)}" var="p"
                                                            itemValue="#{p.person_id}"
                                                            itemLabel="#{p.firstName} #{p.lastName}"/>
@@ -245,7 +245,7 @@
 
 
                                     <b:column mediumScreen="1">
-                                        <b:commandButton value="Remove" actionListener="#{personBean.submit(20)}"
+                                        <b:commandButton value="Remove" actionListener="#{personBean.remove}"
                                                          update="@form"
                                                          look="danger"/>
                                     </b:column>
@@ -437,7 +437,10 @@
                     </b:panel>
 
                     <b:panel span="6" look="info" title="Pick Lecture Date" collapsable="false">
+
                         <b:row>
+                            <b:column>
+                                <b:row>
                             <b:column span="1"><h:outputText value="Lecture Date:"/></b:column>
                             <b:column span="3">
                                 <b:selectOneMenu id="lecture-picker" value="#{attendanceBean.lecture_id}">
@@ -452,10 +455,49 @@
                                 <b:commandButton value="Submit"
                                                  look="primary"
                                                  actionListener="#{attendanceBean.submit}"
-                                                 update="@form"/>
+                                                 update="student-picker"/>
+                            </b:column>
+                                </b:row>
+
+
+
+                        <b:row>
+
+                            <b:column>
+                                <b:row>
+                                    <b:column span="1"><h:outputText value="Student:"/></b:column>
+                                    <b:column span="3">
+                                        <b:selectOneMenu id="student-picker" value="#{attendanceBean.attendance_id}">
+                                            <f:selectItems value="#{attendanceBean.attendanceList}" var="a"
+                                                           itemValue="#{a.attendance_id}"
+                                                           itemLabel="#{a.present}"/>
+                                        </b:selectOneMenu>
+                                    </b:column>
+
+
+                                    <b:column span="1">
+                                        <b:commandButton value="Set"
+                                                         look="primary"
+                                                         actionListener="#{attendanceBean.merge}"
+                                                         update="student-picker @form:**:attendance-table"/>
+                                    </b:column>
+
+                                </b:row>
+
+
+
                             </b:column>
 
+
+
                         </b:row>
+
+
+                            </b:column>
+                        </b:row>
+
+
+
                     </b:panel>
                 </b:row>
                 <b:dataTable id="attendance-table" styleClass="table table-striped"
@@ -476,9 +518,29 @@
                     </b:column>
                     <b:column>
 
+                            <f:facet name="header"><h:outputText value="Attended"/></f:facet>
+                            <h:outputText value="#{studentAtt.present}"/>
 
                     </b:column>
+
+                    <h:column>
+                        <f:facet name="header"><h:outputText value="Here or there"/></f:facet>
+
+
+                        <h:form>
+                            <b:commandButton value="#{attendanceBean.present}"
+                                             look="primary"
+                                             actionListener="#{studentAtt.merge}"
+                                             update="student-picker"/>
+                        </h:form>
+
+                    </h:column>
+
+
+
                 </b:dataTable>
+
+
 
 
             </h:form>

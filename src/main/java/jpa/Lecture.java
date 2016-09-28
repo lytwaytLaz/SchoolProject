@@ -12,26 +12,31 @@ import java.util.List;
  */
 @Entity
 @Table(
-        name="Lecture",
-        uniqueConstraints = @UniqueConstraint(columnNames ={ "course_course_id", "date"})
+        name = "Lecture",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"course_course_id", "date"})
 )
 @NamedQueries(
         {
-        @NamedQuery(
-        name = "selectAllLectures",
-        query = "SELECT le from Lecture le ORDER BY le.date"),
+                @NamedQuery(
+                        name = "selectAllLectures",
+                        query = "SELECT le from Lecture le ORDER BY le.date"),
 
-        @NamedQuery(
-                name = "selectLecturesByCourse",
-                query = "SELECT leb FROM Lecture leb WHERE (leb.course.course_id = ?1) ORDER BY leb.date")
+                @NamedQuery(
+                        name = "selectLecturesByCourse",
+                        query = "SELECT leb FROM Lecture leb WHERE (leb.course.course_id = ?1) ORDER BY leb.date"),
+
+                @NamedQuery(
+                        name = "selectLecturesByCourseAndDate",
+                        query = "SELECT leb FROM Lecture leb WHERE (leb.course.course_id = ?1 AND leb.date = ?2) ORDER BY leb.date")
+
+
         }
 )
 
 
-
 public class Lecture
 {
-    @OneToMany(mappedBy = "lecture", orphanRemoval=true)
+    @OneToMany(mappedBy = "lecture", orphanRemoval = true)
     private List<Attendance> attendance;
 
     @ManyToOne

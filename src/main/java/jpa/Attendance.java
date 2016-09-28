@@ -57,12 +57,12 @@ public class Attendance
         this.present = present;
     }
 
-    public Long getAttendence_id()
+    public Long getAttendance_id()
     {
         return attendance_id;
     }
 
-    public void setAttendence_id(Long id)
+    public void setAttendance_id(Long id)
     {
         this.attendance_id = id;
     }
