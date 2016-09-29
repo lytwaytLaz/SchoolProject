@@ -130,12 +130,14 @@
                                 </b:selectOneMenu>
                             </b:column>
                             <b:column span="3">
-                                <b:commandButton value="Register" update="add_new_student register_student_to_course @form:**:student-table"
+                                <b:commandButton value="Register"
+                                                 update="add_new_student register_student_to_course @form:**:student-table"
                                                  look="primary"
                                                  actionListener="#{registrationBean.submit}"/>
                             </b:column>
                             <b:column span="3">
-                                <b:commandButton value="Unregister" update="add_new_student register_student_to_course @form:**:student-table"
+                                <b:commandButton value="Unregister"
+                                                 update="add_new_student register_student_to_course @form:**:student-table"
                                                  look="danger"
                                                  actionListener="#{registrationBean.remove}"/>
                             </b:column>
@@ -170,11 +172,7 @@
         </b:panel>
 
 
-
-
-
         <b:panel id="teacher" title="Teacher" look="primary">
-
 
 
             <h:form>
@@ -314,8 +312,6 @@
         </b:panel>
 
 
-
-
         <b:panel title="Course" look="primary">
 
             <h:form id="course-form">
@@ -441,61 +437,27 @@
                         <b:row>
                             <b:column>
                                 <b:row>
-                            <b:column span="1"><h:outputText value="Lecture Date:"/></b:column>
-                            <b:column span="3">
-                                <b:selectOneMenu id="lecture-picker" value="#{attendanceBean.lecture_id}">
-                                    <f:selectItems value="#{lectureBean.lecturesByCourse}" var="leb"
-                                                   itemValue="#{leb.lecture_id}"
-                                                   itemLabel="#{leb.date}"/>
-                                </b:selectOneMenu>
-                            </b:column>
-
-
-                            <b:column span="1">
-                                <b:commandButton value="Submit"
-                                                 look="primary"
-                                                 actionListener="#{attendanceBean.submit}"
-                                                 update="student-picker"/>
-                            </b:column>
-                                </b:row>
-
-
-
-                        <b:row>
-
-                            <b:column>
-                                <b:row>
-                                    <b:column span="1"><h:outputText value="Student:"/></b:column>
+                                    <b:column span="1"><h:outputText value="Lecture Date:"/></b:column>
                                     <b:column span="3">
-                                        <b:selectOneMenu id="student-picker" value="#{attendanceBean.attendance_id}">
-                                            <f:selectItems value="#{attendanceBean.attendanceList}" var="a"
-                                                           itemValue="#{a.attendance_id}"
-                                                           itemLabel="#{a.present}"/>
+                                        <b:selectOneMenu id="lecture-picker" value="#{attendanceBean.lecture_id}">
+                                            <f:selectItems value="#{lectureBean.lecturesByCourse}" var="leb"
+                                                           itemValue="#{leb.lecture_id}"
+                                                           itemLabel="#{leb.date}"/>
                                         </b:selectOneMenu>
                                     </b:column>
 
 
                                     <b:column span="1">
-                                        <b:commandButton value="Set"
+                                        <b:commandButton value="Submit"
                                                          look="primary"
-                                                         actionListener="#{attendanceBean.merge}"
-                                                         update="student-picker @form:**:attendance-table"/>
+                                                         actionListener="#{attendanceBean.submit}"
+                                                         update="@form:**:attendance-table"/>
                                     </b:column>
-
                                 </b:row>
 
 
-
-                            </b:column>
-
-
-
-                        </b:row>
-
-
                             </b:column>
                         </b:row>
-
 
 
                     </b:panel>
@@ -518,29 +480,22 @@
                     </b:column>
                     <b:column>
 
-                            <f:facet name="header"><h:outputText value="Attended"/></f:facet>
-                            <h:outputText value="#{studentAtt.present}"/>
+                        <f:facet name="header"><h:outputText value="Attended"/></f:facet>
+                        <h:outputText value="#{studentAtt.present}"/>
 
                     </b:column>
 
                     <h:column>
                         <f:facet name="header"><h:outputText value="Here or there"/></f:facet>
-
-
-                        <h:form>
-                            <b:commandButton value="#{attendanceBean.present}"
-                                             look="primary"
-                                             actionListener="#{studentAtt.merge}"
-                                             update="student-picker"/>
-                        </h:form>
+                        <b:commandButton value="#{attendanceBean.present}"
+                                         look="primary"
+                                         action="#{studentAtt.merge}"
+                                         update="@form"/>
 
                     </h:column>
 
 
-
                 </b:dataTable>
-
-
 
 
             </h:form>
