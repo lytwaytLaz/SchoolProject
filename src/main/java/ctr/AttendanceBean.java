@@ -36,7 +36,7 @@ public class AttendanceBean implements Serializable
     private Long course_id;
     private List<Person> studentsByCourse;
     private List<Person> studentsByLecture;
-    private List<Person> studentsByAttendance;
+    private List<Attendance> studentsByAttendance;
     private List<Attendance> attendanceList;
 
 
@@ -115,9 +115,9 @@ public class AttendanceBean implements Serializable
 //        return studentsByLecture;
 //    }
 
-    public void setStudentsByAttendance(List<Person> studentsByAttendance)
+    public void setStudentsByAttendance(List<Attendance> studentsByAttendance)
     {
-        this.studentsByAttendance = studentsByAttendance;
+        this.studentsByAttendance = attEjb.getStudentsByAttendance(10L, lecture_id);
     }
 
     public void setStudentsByLecture(List<Person> studentsByLecture)
