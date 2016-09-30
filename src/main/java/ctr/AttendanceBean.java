@@ -63,9 +63,11 @@ public class AttendanceBean implements Serializable
 
                 attEjb.addAttendance(attendance);
 
-                attendanceList.add(attendance);
+//               attendanceList.add(attendance);
             }
-        }
+                studentsByAttendance = attEjb.getStudentsByAttendance(10L, lecture_id);
+
+            }
         catch (EJBException ejbe)
         {
             return "admin_panel?faces-redirect=true";
@@ -128,6 +130,11 @@ public class AttendanceBean implements Serializable
     public Long getCourse_id()
     {
         return course_id;
+    }
+
+    public List<Attendance> getStudentsByAttendance()
+    {
+        return studentsByAttendance;
     }
 
     public void setCourse_id(Long course_id)

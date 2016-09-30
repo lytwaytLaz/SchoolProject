@@ -60,7 +60,9 @@ public class AttendanceEjb
     {
         List<Attendance> attListBylecture;
         attListBylecture = em.createNamedQuery(
-                "selectStudentsByAttendance")
+                "selectStudentsByAttendance", Attendance.class)
+                .setParameter(1, role_id)
+                .setParameter(2, lecture_id)
                 .getResultList();
         return attListBylecture;
     }
